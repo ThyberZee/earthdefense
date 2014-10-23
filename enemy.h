@@ -7,6 +7,7 @@ class Enemy
 {
 private:
     bool alive = true;
+    int scoreValue;
 
 public:
     Enemy();
