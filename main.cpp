@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     
-	// Matt was here. lolz
+    // MATT ---- YOUR DEAD
 
     return a.exec();
 }
