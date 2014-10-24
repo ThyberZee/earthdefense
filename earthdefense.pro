@@ -14,15 +14,21 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    ship.cpp \
-    bullet.cpp \
-    gamemodel.cpp \
-    enemy.cpp
+        enemy.cpp \
+        highscore.cpp \
+        ship.cpp \
+        bullet.cpp \
+        gamemodel.cpp \
+        enemy.cpp
 
 HEADERS  += mainwindow.h \
-    gamemodel.h \
-    ship.h \
-    bullet.h \
-    enemy.h
+            enemy.h \
+            gamemodel.h \
+            highscore.h \
+            ship.h \
+            bullet.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resources.qrc

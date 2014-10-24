@@ -1,3 +1,6 @@
+//
+// enemy.cpp
+//
 #include "enemy.h"
 
 void enemy::getInfo(bool* tempalive, int* tempscorevalue, QString* tempsprite){     //Used to access enemy data
