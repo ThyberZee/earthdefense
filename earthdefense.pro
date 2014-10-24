@@ -16,11 +16,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     ship.cpp \
     bullet.cpp \
-    gamemodel.cpp
+    gamemodel.cpp \
+    enemy.cpp
 
 HEADERS  += mainwindow.h \
     gamemodel.h \
     ship.h \
-    bullet.h
+    bullet.h \
+    enemy.h
 
 FORMS    += mainwindow.ui
