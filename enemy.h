@@ -3,7 +3,7 @@
 
 #include <QPoint>
 
-class Enemy
+class Enemy : public Ship
 {
 private:
     bool alive = true;
