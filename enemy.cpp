@@ -1,6 +1,4 @@
-#include "enemy.h"
+//
+// enemy.cpp
+//
 
-Enemy::Enemy()
-{
-
-}
