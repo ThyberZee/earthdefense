@@ -1,5 +1,6 @@
 *.swp
 *.pro.user
 *.o
+*.autosave
 earthdefense
 .netrc
