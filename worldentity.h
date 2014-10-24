@@ -6,14 +6,13 @@
 
 class WorldEntity
 {
-
+    bool alive;
+    QString sprite = "";
 };
 
 class Enemy : public WorldEntity
 {               //basic enemy data
-    bool alive;
     int scorevalue;
-    QString sprite = "";
 
 public slots:
     void getInfo(bool* tempalive, int* tempscorevalue, QString* tempsprite);
