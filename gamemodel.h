@@ -8,7 +8,7 @@ class Ship;
 class GameModel {
     Ship* ship;
 public:
-    GameModel(QWidget* )
+    GameModel(QWidget* );
 };
 
 #endif // GAMEMODEL_H
