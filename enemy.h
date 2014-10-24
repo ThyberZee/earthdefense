@@ -1,12 +1,18 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-class Enemy : public Ship
-{
-    bool alive;
+#include <QString>
+#include <QPoint>
 
-    // from Jared to Matt -> What is this for?
-    int scoreValue;
+class Enemy
+{               //basic enemy data
+    bool alive;
+    int scorevalue;
+    QString sprite = "";
+
+public slots:
+    void getInfo(bool* tempalive, int* tempscorevalue, QString* tempsprite);
+    void create(QString type, QPoint loc);
 
 public:
     Enemy();
