@@ -17,6 +17,7 @@ SOURCES += main.cpp\
     enemy.cpp
 
 HEADERS  += mainwindow.h \
-    enemy.h
+    enemy.h \
+    gamemodel.h
 
 FORMS    += mainwindow.ui
