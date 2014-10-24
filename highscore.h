@@ -1,42 +1,46 @@
 #ifndef HIGHSCORE_H
 #define HIGHSCORE_H
 
-class Ship {
+class HighScore {
+
 
 private:
     int x, y;  // position
     int fuelLevel;  // amount of fuel
     int shields; // shield level
 
-    Ship(int initShields) {
-            // instantiate ship
+
+    HighScore(int initShields) {
+            // instantiate HighScore
     }
 
 public:
     void fly(int direction, int distance) {
-        // moves ship
+        // moves HighScore
     }
 
     void refuel(int amount) {
-        // refuels ship
+        // refuels HighScore
     }
 
 /***** singleton implementation ****/
 private:
-    static Ship *instance;
+    static HighScore *instance;
 
 public:
-    static Ship* getInstance() {
+    static HighScore* getInstance() {
         if (instance == nullptr) {
-            instance = new Ship(10);
+            instance = new HighScore(10);
         }
         return instance;
     }
 
 };
 
-Ship Ship::instance = nullptr;
 
-int main() {
-    Ship::getInstance()->fly(3, 5);
-}
+
+// Example usage:
+    // HighScore::getInstance()->fly(3, 5);
+
+
+#endif // HIGHSCORE_H
