@@ -24,3 +24,6 @@ HEADERS  += mainwindow.h \
     bullet.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resources.qrc
