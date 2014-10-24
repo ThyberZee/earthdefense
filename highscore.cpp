@@ -2,5 +2,5 @@
 
 HighScore::HighScore()
 {
-
+    HighScore HighScore::instance = nullptr;
 }

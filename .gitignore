@@ -1,5 +1,5 @@
+*.pro.swp
 *.pro.user
 *.o
 earthdefense
-.gitignore
 .netrc

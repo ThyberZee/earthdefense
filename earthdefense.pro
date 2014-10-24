@@ -6,6 +6,8 @@
 
 QT       += core gui
 
+QMAKE_CXXFLAGS += -std=c++0x # Singleton
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = earthdefense
@@ -16,12 +18,12 @@ SOURCES += main.cpp\
         mainwindow.cpp \
         highscore.cpp \
         gamemodel.cpp \
-    worldentity.cpp
+        worldentity.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
             highscore.h \
-    worldentity.h
+            worldentity.h
 
 FORMS    += mainwindow.ui
 
