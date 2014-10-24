@@ -12,18 +12,6 @@ class Ship
 
 };
 
-
-class Enemy : public Ship
-{
-    bool alive;
-
-    // from Jared to Matt -> What is this for?
-    int scoreValue;
-
-public:
-    Enemy();
-};
-
 class Player : public Ship
 {
     Bullet bullet;
