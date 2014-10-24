@@ -14,7 +14,7 @@ class GameModel {
     // not sure what to do here, mabye some kind of configuration file that
     // contains all the info of a Game State? In that case, GameStateType would
     // be something like an ofstream file object.
-    GameStateType state;
+    GameStateType state; // <---- probably should fix this soon
 
 public:
     GameModel(QWidget* parent);
@@ -35,7 +35,6 @@ public:
 
     // pretty much calls the Save class "                      "
     void saveGame(GameStateType state);
-
 
 };
 
