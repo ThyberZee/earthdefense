@@ -11,8 +11,8 @@ class WorldEntity
 
 public:
     WorldEntity();
-    bool getAlive(){return &alive;}
-    QString getSprite(){return &sprite;}
+    bool getAlive() const       {return &alive;}
+    QString getSprite() const   {return &sprite;}
 };
 
 class Enemy : public WorldEntity
@@ -21,7 +21,7 @@ class Enemy : public WorldEntity
 
 public:
     Enemy();
-    int getScoreValue(){return scorevalue;}
+    int getScoreValue() const {return scorevalue;}
 };
 
 class Player : public WorldEntity
@@ -30,7 +30,7 @@ class Player : public WorldEntity
 
 public:
     Player();
-    unsigned int getScore(){return score;}
+    unsigned int getScore() const {return score;}
 };
 
 class Bullet : public WorldEntity

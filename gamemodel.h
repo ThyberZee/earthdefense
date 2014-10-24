@@ -29,7 +29,7 @@ public:
     void updateBackground(QWidget* parent);
 
     // pretty much calls the Load class (Which Matt is making?)
-    void loadGame(string filename);
+    void loadGame(std::string filename);
 
     // pretty much calls the Save class "                      "
     void saveGame(GameStateType state);

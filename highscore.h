@@ -1,27 +1,22 @@
 #ifndef HIGHSCORE_H
 #define HIGHSCORE_H
 
+#include <QVector>
+
 class HighScore {
 
-
 private:
-    int x, y;  // position
-    int fuelLevel;  // amount of fuel
-    int shields; // shield level
+    // instance variables
 
 
-    HighScore(int initShields) {
+    HighScore() {
             // instantiate HighScore
     }
 
 public:
-    void fly(int direction, int distance) {
-        // moves HighScore
-    }
+    // Methods
 
-    void refuel(int amount) {
-        // refuels HighScore
-    }
+
 
 /***** singleton implementation ****/
 private:
@@ -30,11 +25,10 @@ private:
 public:
     static HighScore* getInstance() {
         if (instance == nullptr) {
-            instance = new HighScore(10);
+            instance = new HighScore();
         }
         return instance;
     }
-
 };
 
 
