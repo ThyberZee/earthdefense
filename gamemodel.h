@@ -3,11 +3,9 @@
 
 #include <QWidget>
 #include "gamemodel.h"
-#include "bullet.h"
 
 class Ship;
 class Bullet;
-
 
 class GameModel {
     Ship* ship;

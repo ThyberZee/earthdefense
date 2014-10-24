@@ -14,19 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-        enemy.cpp \
         highscore.cpp \
-        ship.cpp \
-        bullet.cpp \
         gamemodel.cpp \
-        enemy.cpp
+    worldentity.cpp
 
 HEADERS  += mainwindow.h \
-            enemy.h \
             gamemodel.h \
             highscore.h \
-            ship.h \
-            bullet.h
+    worldentity.h
 
 FORMS    += mainwindow.ui
 

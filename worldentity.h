@@ -1,10 +1,15 @@
-#ifndef ENEMY_H
-#define ENEMY_H
+#ifndef WORLDENTITY_H
+#define WORLDENTITY_H
 
-#include <QString>
 #include <QPoint>
+#include <QString>
 
-class Enemy
+class WorldEntity
+{
+
+};
+
+class Enemy : public WorldEntity
 {               //basic enemy data
     bool alive;
     int scorevalue;
@@ -18,4 +23,14 @@ public:
     Enemy();
 };
 
-#endif // ENEMY_H
+class Player : public WorldEntity
+{
+
+};
+
+class Bullet : public WorldEntity
+{
+
+};
+
+#endif // WORLDENTITY_H
