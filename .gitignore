@@ -2,5 +2,4 @@
 *.pro.user
 *.o
 earthdefense
-.gitignore
 .netrc
