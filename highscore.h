@@ -6,14 +6,20 @@
 class HighScore {
 
 private:
-    // instance variables
-
+    QVector<int> scores;
 
     HighScore() {
             // instantiate HighScore
     }
 
 public:
+    void loadScores()
+    {
+        // do something with fstream to get the scores
+    }
+
+    int getScore();
+
     // Methods
 
 
