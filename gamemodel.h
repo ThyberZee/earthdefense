@@ -32,7 +32,7 @@ public:
     void loadGame(std::string filename);
 
     // pretty much calls the Save class "                      "
-    void saveGame(GameStateType state);
+    void saveGame(/*NEED TO PUT SOMETHING HERE :)*/);
 
 };
 

@@ -7,21 +7,19 @@
 class WorldEntity
 {
     bool alive;
-    QString sprite = "";
+    QString sprite;
 
 public:
     WorldEntity();
-    bool getAlive() const       {return &alive;}
-    QString getSprite() const   {return &sprite;}
+    bool* getAlive()     {return &alive;}
+    QString* getSprite() {return &sprite;}
 };
 
 class Enemy : public WorldEntity
 {               //basic enemy data
-    int scorevalue;
-
 public:
     Enemy();
-    int getScoreValue() const {return scorevalue;}
+    int getScoreValue() const {return 200;}
 };
 
 class Player : public WorldEntity
