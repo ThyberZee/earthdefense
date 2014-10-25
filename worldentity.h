@@ -7,12 +7,12 @@
 class WorldEntity
 {
     bool alive;
-    QString sprite = "";
+    QString sprite;
 
 public:
     WorldEntity();
-    bool getAlive() const       {return &alive;}
-    QString getSprite() const   {return &sprite;}
+    bool* getAlive()     {return &alive;}
+    QString* getSprite() {return &sprite;}
 };
 
 class Enemy : public WorldEntity

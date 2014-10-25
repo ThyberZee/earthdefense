@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>resources/fonts/galaga.ttf</file>
         <file>resources/images/space.jpg</file>
+        <file>resources/images/Logo.png</file>
     </qresource>
 </RCC>
