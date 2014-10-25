@@ -17,11 +17,9 @@ public:
 
 class Enemy : public WorldEntity
 {               //basic enemy data
-    int scorevalue;
-
 public:
     Enemy();
-    int getScoreValue() const {return scorevalue;}
+    int getScoreValue() const {return 200;}
 };
 
 class Player : public WorldEntity
