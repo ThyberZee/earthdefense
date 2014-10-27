@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "gamemodel.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -16,13 +17,14 @@ public:
     ~MainWindow();
     
 private slots:
-    void on_pushButton_clicked();
 
-    void on_pushButton_2_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_btnNewGame_clicked();
 
-    void on_pushButton_4_clicked();
+    void on_btnLoadGame_clicked();
+    void on_rbSinglePlayer_clicked();
+
+    void on_rbMultiplayer_clicked();
 
 private:
     Ui::MainWindow *ui;
