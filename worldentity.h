@@ -20,6 +20,7 @@ class Enemy : public WorldEntity
 public:
     Enemy();
     int getScoreValue() const {return 200;}
+    virtual void create();
 };
 
 class Player : public WorldEntity
