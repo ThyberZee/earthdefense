@@ -12,23 +12,21 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_btnNewGame_clicked()
 {
 
 }
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_btnLoadGame_clicked()
+{
+
+}
+void MainWindow::on_rbSinglePlayer_clicked()
 {
 
 }
 
-void MainWindow::on_pushButton_3_clicked()
-{
-
-}
-
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_rbMultiplayer_clicked()
 {
 
 }

@@ -15,6 +15,8 @@ public:
     QString* getSprite() {return &sprite;}
 };
 
+
+
 class Enemy : public WorldEntity
 {               //basic enemy data
 public:
@@ -22,6 +24,8 @@ public:
     int getScoreValue() const {return 200;}
     virtual void create();
 };
+
+
 
 class Player : public WorldEntity
 {
@@ -31,6 +35,8 @@ public:
     Player();
     unsigned int getScore() const {return score;}
 };
+
+
 
 class Bullet : public WorldEntity
 {

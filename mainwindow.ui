@@ -36,7 +36,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnNewGame">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -62,7 +62,7 @@
      <string>New Game</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btnLoadGame">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -88,56 +88,30 @@
      <string>Load Game</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QRadioButton" name="rbMultiplayer">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>310</y>
-      <width>201</width>
-      <height>81</height>
+      <x>60</x>
+      <y>360</y>
+      <width>141</width>
+      <height>41</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Courier 10 Pitch</family>
-      <pointsize>17</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-      <underline>false</underline>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:darkgreen</string>
-    </property>
-    <property name="text">
-     <string>Single Player</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_4">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>420</y>
-      <width>201</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Courier 10 Pitch</family>
-      <pointsize>17</pointsize>
-      <weight>75</weight>
-      <italic>true</italic>
-      <bold>true</bold>
-      <underline>false</underline>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:darkgreen</string>
     </property>
     <property name="text">
      <string>Multiplayer</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="rbSinglePlayer">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>310</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Single Player</string>
     </property>
    </widget>
   </widget>
