@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "gamemodel.h"
 
-class Ship;
+class WorldEntity;
 class Bullet;
 
 class GameModel {
@@ -21,7 +21,7 @@ public:
     // sets up initial game settings
     void initializeGame();
 
-    void updateShipPos(Ship);
+    void updateShipPos(WorldEntity);
 
     void updateBulletPos(Bullet);
 

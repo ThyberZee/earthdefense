@@ -33,6 +33,7 @@ public:
 
 class Bullet : public WorldEntity
 {
+    void shoot(bool friendly);
 
 public:
     Bullet();
