@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets network
 
 QMAKE_CXXFLAGS += -std=c++0x # Singleton
 
@@ -18,12 +18,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
         highscore.cpp \
         gamemodel.cpp \
-        worldentity.cpp
+        worldentity.cpp \
+    server.cpp \
+    client.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
             highscore.h \
-            worldentity.h
+            worldentity.h \
+    server.h \
+    client.h
 
 FORMS    += mainwindow.ui
 
