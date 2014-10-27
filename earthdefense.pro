@@ -6,7 +6,7 @@
 
 QT       += core gui widgets network
 
-QMAKE_CXXFLAGS += -std=c++0x # Singleton
+QMAKE_CXXFLAGS += -std=c++0x # Singleton (specifically 'nullptr')
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

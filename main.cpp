@@ -1,5 +1,8 @@
 #include "mainwindow.h"
+#include "highscore.h"
 #include <QApplication>
+
+HighScore* HighScore::instance = nullptr;
 
 int main(int argc, char *argv[])
 {

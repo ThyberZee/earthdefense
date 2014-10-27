@@ -1,11 +1,11 @@
 #include "worldentity.h"
 
 //creates the enemy at set location
-virtual void Enemy::create(){
+void Enemy::create(){
 
 }
 
-virtual void Bullet::shoot(bool friendly){
+void Bullet::shoot(bool friendly){
     if(friendly){
         //if shot by player
 
