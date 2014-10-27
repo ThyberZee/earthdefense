@@ -8,7 +8,7 @@ class WorldEntity;
 class Bullet;
 
 class GameModel {
-    Ship* ship;
+    //Ship* ship;
     // not sure what to do here, mabye some kind of configuration file that
     // contains all the info of a Game State? In that case, GameStateType would
     // be something like an ofstream file object.

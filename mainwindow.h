@@ -3,6 +3,8 @@
 
 #include "gamemodel.h"
 #include <QMainWindow>
+#include <QTcpSocket>
+#include <QTcpServer>
 
 namespace Ui {
 class MainWindow;
@@ -15,16 +17,21 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    QTcpServer* server;
+    int connectCount;
     
 private slots:
 
 
     void on_btnNewGame_clicked();
-
     void on_btnLoadGame_clicked();
     void on_rbSinglePlayer_clicked();
-
     void on_rbMultiplayer_clicked();
+
+    void clientConnected();
+    void dataReceived();
+    void clientDisconnected();
 
 private:
     Ui::MainWindow *ui;

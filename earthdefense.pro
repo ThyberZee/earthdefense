@@ -18,17 +18,12 @@ SOURCES += main.cpp\
         mainwindow.cpp \
         highscore.cpp \
         gamemodel.cpp \
-        worldentity.cpp \
-    server.cpp \
-    client.cpp
+        worldentity.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
             highscore.h \
-            worldentity.h \
-    server.h \
-    client.h
-
+            worldentity.h
 FORMS    += mainwindow.ui
 
 RESOURCES += \
