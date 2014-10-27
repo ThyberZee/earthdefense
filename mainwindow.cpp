@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "ingame.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,15 +13,19 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 void MainWindow::on_btnNewGame_clicked()
 {
-
+    InGame* win = new InGame(this);
+    win->show();
+    delete ui;
 }
 
 void MainWindow::on_btnLoadGame_clicked()
 {
 
 }
+
 void MainWindow::on_rbSinglePlayer_clicked()
 {
 
