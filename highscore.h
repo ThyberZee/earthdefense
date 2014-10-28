@@ -53,6 +53,7 @@ public:
 #define HIGHSCORE_H
 
 #include <QDebug>
+#include <sys/stat.h> // check if file exists (see highscore.cpp)
 
 #include <vector>
 using std::vector;
@@ -61,24 +62,33 @@ using std::vector;
 using std::ifstream;
 using std::ofstream;
 
-#include <string>
-using std::string;
-
 
 
 class HighScore {
 
 private:
-    vector<string> scores;
+    vector<std::string> scores;
 
     HighScore() { /* instantiate HighScore */ }
 
+
 public:
 
+    // GETTERS
     int get(int pos);
+
+
+    // SETTERS
+
+
+    // METHODS
+
+    void createFile();
+    bool fileExists();
 
     void write();   // overwrite highscore file (highscores)
     void load();    // load from highscore file (highscores)
+
     void addScore();
 
 
