@@ -1,14 +1,24 @@
 #include "mainwindow.h"
-#include "highscore.h"
+#include "gamemodel.h"
 #include <QApplication>
 
-HighScore* HighScore::instance = nullptr;
+bool unitTest(){
+    GameModel* model = new GameModel();
+    model->spawn(1,2,3);
+    model->spawn(2,3,4);
+    model->spawn(34,5,2);
+    model->saveGame("savefilename");
+    return true;
+
+}
 
 int main(int argc, char *argv[])
-{
+{    
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+
+    unitTest();
 
     return a.exec();
 }

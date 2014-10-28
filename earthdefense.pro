@@ -15,27 +15,24 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-        highscore.cpp \
-        gamemodel.cpp \
-        worldentity.cpp \
-    ingame.cpp \
-    mastermodel.cpp \
-    slavemodel.cpp \
-    entity.cpp \
-    player.cpp
+           mainwindow.cpp \
+           highscore.cpp \
+           gamemodel.cpp \
+           ingame.cpp \
+           entity.cpp \
+           player.cpp \
+    enemy.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
             highscore.h \
-            worldentity.h \
-    ingame.h \
-    mastermodel.h \
-    slavemodel.h \
-    entity.h \
-    player.h
+            ingame.h \
+            entity.h \
+            player.h \
+    enemy.h
+
 FORMS    += mainwindow.ui \
-    ingame.ui
+            ingame.ui
 
 RESOURCES += \
     resources.qrc

@@ -5,6 +5,7 @@
 #include <vector>
 #include <QWidget>
 
+#include "player.h"
 #include "entity.h"
 
 using namespace std;
@@ -12,17 +13,18 @@ using namespace std;
 //abstract game model class
 class GameModel {
 private:
-    vector<Entity> entities;
+    vector<Entity*> entities;
+    Player* player;
 
 public:
-    GameModel(QWidget* parent);
+    GameModel();
     ~GameModel();
 
-    virtual void initializeGame();
+    void initializeGame();
+    void spawn(int x, int y, int s);
 
-    virtual void loadGame(string filename);
-
-    virtual void saveGame(/*NEED TO PUT SOMETHING HERE :)*/);
+    void loadGame(string filename);
+    void saveGame(string filename);
 
 };
 

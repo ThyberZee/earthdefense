@@ -1,13 +1,16 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef ENEMY_H
+#define ENEMY_H
+
 
 #include <string>
 #include "entity.h"
 
-class Player : public Entity
+class Enemy : public Entity
 {
+private:
+    int score;
 public:
-    Player(int x, int y): Entity(x,y){}
+    Enemy(int x, int y, int s): Entity(x,y), score(s){}
 
     string toString();
     void save(ofstream& outfile);
