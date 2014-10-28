@@ -21,7 +21,7 @@ SOURCES += main.cpp\
            ingame.cpp \
            entity.cpp \
            player.cpp \
-    enemy.cpp
+           enemy.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
@@ -29,7 +29,8 @@ HEADERS  += mainwindow.h \
             ingame.h \
             entity.h \
             player.h \
-    enemy.h
+            enemy.h \
+            ingame.h
 
 FORMS    += mainwindow.ui \
             ingame.ui

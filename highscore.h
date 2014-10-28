@@ -53,6 +53,7 @@ public:
 #define HIGHSCORE_H
 
 #include <QDebug>
+#include <sys/stat.h> // check if file exists (see highscore.cpp)
 
 #include <vector>
 using std::vector;
@@ -61,26 +62,33 @@ using std::vector;
 using std::ifstream;
 using std::ofstream;
 
-#include <string>
-using std::string;
-
 
 
 class HighScore {
 
 private:
-    vector<string> scores;
+    vector<std::string> scores;
 
     HighScore() { /* instantiate HighScore */ }
 
+
 public:
 
-    int get(int pos);
+    // GETTERS
+    int get(int pos); // Do we even need this?
 
-    void write();   // overwrite highscore file (highscores)
-    void load();    // load from highscore file (highscores)
+
+    // SETTERS
+
+
+    // METHODS
+
+    void createFile(const std::string& SCOREFILE);          // create a file that contains default high scores.
+    bool fileDoesNotExist(const std::string& SCOREFILE);    // check to see if there are issues with the high scores file.
+    void write();                                           // overwrite highscore file (highscores)
+    void load();                                            // load from highscore file (highscores)
+
     void addScore();
-
 
 
 /***** singleton implementation ****/
@@ -96,10 +104,5 @@ public:
         return instance;
     }
 };
-
-
-// Example usage:
-    // HighScore::getInstance()->fly(3, 5);
-
 
 #endif // HIGHSCORE_H

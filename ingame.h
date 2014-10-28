@@ -2,6 +2,8 @@
 #define INGAME_H
 
 #include <QMainWindow>
+#include <QWidget>
+#include <QKeyEvent>
 
 namespace Ui {
 class InGame;
@@ -14,6 +16,10 @@ class InGame : public QMainWindow
 public:
     explicit InGame(QMainWindow *parent = 0);
     ~InGame();
+
+private slots:
+
+    void keyPressEvent(QKeyEvent *ev);
     
 private:
     Ui::InGame *ui;
