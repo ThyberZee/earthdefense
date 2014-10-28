@@ -1,35 +1,32 @@
 #ifndef GAMEMODEL_H
 #define GAMEMODEL_H
 
+#include <string>
+#include <vector>
 #include <QWidget>
-#include "gamemodel.h"
 
-class WorldEntity;
-class Bullet;
+#include "player.h"
+#include "entity.h"
 
+using namespace std;
+
+//abstract game model class
 class GameModel {
-
-    //Player player; //Joshua
+private:
+    vector<Entity*> entities;
+    Player* player;
 
 public:
-    GameModel(QWidget* parent);
+    GameModel();
     ~GameModel();
 
-    // sets up initial game settings
     void initializeGame();
+    void spawn(int x, int y, int s);
 
-    void updateShipPos(WorldEntity);
+    void reset();
 
-    void updateBulletPos(Bullet);
-
-    // eventually....
-    void updateBackground(QWidget* parent);
-
-    // pretty much calls the Load class (Which Matt is making?)
-    void loadGame(std::string filename);
-
-    // pretty much calls the Save class "                      "
-    void saveGame(/*NEED TO PUT SOMETHING HERE :)*/);
+    void loadGame(string filename);
+    void saveGame(string filename);
 
 };
 
