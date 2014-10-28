@@ -75,7 +75,7 @@ private:
 public:
 
     // GETTERS
-    int get(int pos);
+    int get(int pos); // Do we even need this?
 
 
     // SETTERS
@@ -83,14 +83,12 @@ public:
 
     // METHODS
 
-    void createFile();
-    bool fileExists();
-
-    void write();   // overwrite highscore file (highscores)
-    void load();    // load from highscore file (highscores)
+    void createFile(const std::string& SCOREFILE);          // create a file that contains default high scores.
+    bool fileDoesNotExist(const std::string& SCOREFILE);    // check to see if there are issues with the high scores file.
+    void write();                                           // overwrite highscore file (highscores)
+    void load();                                            // load from highscore file (highscores)
 
     void addScore();
-
 
 
 /***** singleton implementation ****/
@@ -106,10 +104,5 @@ public:
         return instance;
     }
 };
-
-
-// Example usage:
-    // HighScore::getInstance()->fly(3, 5);
-
 
 #endif // HIGHSCORE_H
