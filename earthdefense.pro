@@ -19,13 +19,21 @@ SOURCES += main.cpp\
         highscore.cpp \
         gamemodel.cpp \
         worldentity.cpp \
-    ingame.cpp
+    ingame.cpp \
+    mastermodel.cpp \
+    slavemodel.cpp \
+    entity.cpp \
+    player.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
             highscore.h \
             worldentity.h \
-    ingame.h
+    ingame.h \
+    mastermodel.h \
+    slavemodel.h \
+    entity.h \
+    player.h
 FORMS    += mainwindow.ui \
     ingame.ui
 

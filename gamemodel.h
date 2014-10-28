@@ -1,38 +1,28 @@
 #ifndef GAMEMODEL_H
 #define GAMEMODEL_H
 
+#include <string>
+#include <vector>
 #include <QWidget>
-#include "gamemodel.h"
 
-class WorldEntity;
-class Bullet;
+#include "entity.h"
 
+using namespace std;
+
+//abstract game model class
 class GameModel {
-    //Ship* ship;
-    // not sure what to do here, mabye some kind of configuration file that
-    // contains all the info of a Game State? In that case, GameStateType would
-    // be something like an ofstream file object.
-    //GameStateType state; // <---- probably should fix this soon
+private:
+    vector<Entity> entities;
 
 public:
     GameModel(QWidget* parent);
     ~GameModel();
 
-    // sets up initial game settings
-    void initializeGame();
+    virtual void initializeGame();
 
-    void updateShipPos(WorldEntity);
+    virtual void loadGame(string filename);
 
-    void updateBulletPos(Bullet);
-
-    // eventually....
-    void updateBackground(QWidget* parent);
-
-    // pretty much calls the Load class (Which Matt is making?)
-    void loadGame(std::string filename);
-
-    // pretty much calls the Save class "                      "
-    void saveGame(/*NEED TO PUT SOMETHING HERE :)*/);
+    virtual void saveGame(/*NEED TO PUT SOMETHING HERE :)*/);
 
 };
 
