@@ -8,6 +8,11 @@ bool unitTest(){
     model->spawn(2,3,4);
     model->spawn(34,5,2);
     model->saveGame("savefilename");
+
+    model->reset();
+
+    model->loadGame("savefilename");
+    model->saveGame("savefilename2");
     return true;
 
 }

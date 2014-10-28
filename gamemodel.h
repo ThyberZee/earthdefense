@@ -23,6 +23,8 @@ public:
     void initializeGame();
     void spawn(int x, int y, int s);
 
+    void reset();
+
     void loadGame(string filename);
     void saveGame(string filename);
 
