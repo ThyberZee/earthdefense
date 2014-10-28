@@ -16,9 +16,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnNewGame_clicked()
 {
-    InGame* win = new InGame(this);
-    win->show();
-    delete ui;
+    InGame* gameWindow = new InGame(this);
+    gameWindow->show();
+    gameWindow->setEnabled(true);
+    this->hide();
 }
 
 void MainWindow::on_btnLoadGame_clicked()
@@ -66,4 +67,5 @@ void MainWindow::clientDisconnected()
     sock->deleteLater();
     --connectCount;
 }
+
 
