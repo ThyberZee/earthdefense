@@ -52,7 +52,6 @@ public:
 #ifndef HIGHSCORE_H
 #define HIGHSCORE_H
 
-#include <QDebug>
 #include <sys/stat.h> // check if file exists (see highscore.cpp)
 
 #include <vector>
@@ -61,7 +60,6 @@ using std::vector;
 #include <fstream>
 using std::ifstream;
 using std::ofstream;
-
 
 
 class HighScore {
@@ -86,7 +84,7 @@ public:
     void createFile(const std::string& SCOREFILE);          // create a file that contains default high scores.
     bool fileDoesNotExist(const std::string& SCOREFILE);    // check to see if there are issues with the high scores file.
     void write();                                           // overwrite highscore file (highscores)
-    void load();                                            // load from highscore file (highscores)
+    bool load(const std::string& SCOREFILE);                // load from highscore file (highscores)
 
     void addScore();
 
