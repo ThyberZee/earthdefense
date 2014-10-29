@@ -23,6 +23,7 @@ public slots:
     void clientConnected();
     void dataReceived();
     void clientDisconnected();
+    void changeClient(bool tempClient){client = tempClient;}
 
 };
 
