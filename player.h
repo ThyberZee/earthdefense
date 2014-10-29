@@ -14,6 +14,12 @@ public:
     void save(ofstream& file);
     void update();
 
+    int getDir(){return direction;}
+    void setDir(int x){direction = x;}
+
+    QPoint getPos(){return pos;}
+    void setPoint(QPoint p){pos = p;}
+
 
 };
 #endif // PLAYER_H

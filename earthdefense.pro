@@ -33,7 +33,6 @@ HEADERS  += mainwindow.h \
             entity.h \
             player.h \
 	    enemy.h \
-            ingame.h \
             projectile.h \
             playerwidget.h \
 	    host.h

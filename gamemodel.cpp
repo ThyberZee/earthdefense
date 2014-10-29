@@ -11,7 +11,9 @@
 
 GameModel GameModel::instance;
 
-GameModel::GameModel(){}
+GameModel::GameModel(){
+    initializeGame();
+}
 
 void GameModel::initializeGame(){
     QPoint point(5,5);
