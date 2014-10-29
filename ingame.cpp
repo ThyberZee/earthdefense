@@ -2,11 +2,13 @@
 #include "ui_ingame.h"
 #include <QLabel>
 #include <QTimer>
+#include <iostream>
+
+using namespace std;
 
 InGame::InGame(QMainWindow *parent) :
     QMainWindow(parent),
-    ui(new Ui::InGame),
-    pl(new PlayerWidget(this))
+    ui(new Ui::InGame)
 {
     ui->setupUi(this);
     mvPlayerTimer = new QTimer(this);
@@ -20,9 +22,10 @@ InGame::~InGame()
 }
 
 void InGame::keyPressEvent(QKeyEvent *ev){
-    if (ev->key() == Qt::LeftArrow){ //Left key pressed
+    if (ev->key() == 0x01000012) { //Left key pressed
         mvPlayerTimer->start();
-    } else if (ev->key() == Qt::RightArrow){ //Right key pressed
+        cout << "left key pressed" << endl;
+    } else if (ev->key() == 0x01000014){ //Right key pressed
 
     }
 }
@@ -32,7 +35,6 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 }
 
 void InGame::mvPlayerTimerHit() {
-    pl->getPlayer()->update();
-    pl->setGeometry(0,0, 111, 111);
-    pl->show();
+    cout << "Timer hit!" << endl;
+    // MATT!!!! HELP!!!!!
 }

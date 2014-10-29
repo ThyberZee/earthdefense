@@ -11,6 +11,8 @@ class PlayerWidget : public QWidget
 private:
     //pointer to GameModel player
     Player* player;
+    QPixmap image;
+
 public:
     explicit PlayerWidget(QWidget *parent = 0);
 

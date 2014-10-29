@@ -23,12 +23,12 @@ public:
 private slots:
 
     void keyPressEvent(QKeyEvent *ev);
-    void keyReleaseEvent(QKeyEvent *);
+    void keyReleaseEvent(QKeyEvent *ev);
     void mvPlayerTimerHit();
     
 private:
     Ui::InGame *ui;
-    PlayerWidget *pl;  // Pointer to the Player Object
+    PlayerWidget *pl;  // Pointer to the Player Widget
     QTimer *mvPlayerTimer;
 
 };
