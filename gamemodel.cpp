@@ -4,26 +4,31 @@
 #include "gamemodel.h"
 #include "enemy.h"
 
+GameModel GameModel::instance;
+
 GameModel::GameModel(){
     //test
     player = new Player(5,5);
 }
 
 void GameModel::reset(){
-    //BUGGY (I think)
+
+    //reset player
     delete player;
     player = nullptr;
 
+    //delete all entities
     for(Entity* e: entities){
         delete e;
     }
-    //does clear really clear?
+
     entities.clear();
 }
 
+
+//save state of all entities
 void GameModel::saveGame(string filename){
     ofstream outfile(filename);
-
     for(Entity* e: entities){
         e->save(outfile);
     }
@@ -32,24 +37,29 @@ void GameModel::saveGame(string filename){
     outfile.close();
 }
 
+
 void GameModel::loadGame(string filename){
-    //doing the deletions and stuff should go in a reset function
-    entities.clear();
     string type;
     int x;
     int y;
-    ifstream infile(filename);
-    infile >> type;
-    infile >> x;
-    infile >> y;
 
-    if(type == "player"){
-        //don't forget to delete old player
-        player = new Player(x,y);
-    }else{
-        entities.push_back(new Enemy(x,y,100));
+    ifstream infile(filename);
+    while(infile){
+        infile >> type;
+        infile >> x;
+        infile >> y;
+
+        if(type == "player"){
+            //don't forget to delete old player
+            delete player;
+            player = new Player(x,y);
+        }else{
+            entities.push_back(new Enemy(x,y,100));
+        }
     }
+    infile.close();
 }
+
 void GameModel::spawn(int x, int y, int s)
 {
     entities.push_back(new Enemy(x,y,s));

@@ -15,6 +15,8 @@ class GameModel {
 private:
     vector<Entity*> entities;
     Player* player;
+    int width;
+    int height;
 
 public:
     GameModel();
@@ -28,6 +30,14 @@ public:
     void loadGame(string filename);
     void saveGame(string filename);
 
+
+    /***  singleton implementation ****/
+private:
+    static GameModel instance;
+public:
+    static GameModel &getInstance() {
+        return instance;
+    }
 };
 
 #endif // GAMEMODEL_H

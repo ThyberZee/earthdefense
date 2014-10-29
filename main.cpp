@@ -4,18 +4,17 @@
 #include <QApplication>
 
 bool unitTest(){
-    GameModel* model = new GameModel();
-    model->spawn(1,2,3);
-    model->spawn(2,3,4);
-    model->spawn(34,5,2);
-    model->saveGame("savefilename");
+    //GameModel* model = new GameModel(500,500);
+    GameModel::getInstance().spawn(1,2,3);
+    GameModel::getInstance().spawn(2,3,4);
+    GameModel::getInstance().spawn(34,5,2);
+    GameModel::getInstance().saveGame("savefilename");
 
-    model->reset();
+    GameModel::getInstance().reset();
 
-   /* model->loadGame("savefilename");
-    model->saveGame("savefilename2");*/
+    GameModel::getInstance().loadGame("savefilename");
+    GameModel::getInstance().saveGame("savefilename2");
     return true;
-
 }
 
 int main(int argc, char *argv[])
