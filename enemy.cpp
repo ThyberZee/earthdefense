@@ -17,11 +17,6 @@ void Enemy::save(ofstream& outfile)
     outfile << toString() << endl;
 }
 
-void Enemy::load(ifstream& infile)
-{
-    return;
-}
-
 void Enemy::update()
 {
     //fix this later

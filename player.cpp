@@ -14,11 +14,6 @@ void Player::save(ofstream& outfile)
     outfile << toString() << endl;
 }
 
-void Player::load(ifstream& infile)
-{
-    return;
-}
-
 void Player::update()
 {
     pos.setX(3);

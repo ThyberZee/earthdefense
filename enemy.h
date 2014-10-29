@@ -13,7 +13,6 @@ public:
 
     string toString();
     void save(ofstream& outfile);
-    void load(ifstream& infile);
     void update();
 
 };

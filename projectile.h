@@ -9,7 +9,6 @@ public:
     Projectile(int x, int y);
     string toString();
     void save(ofstream& outfile);
-    void load(ifstream& infile);
     void update();
 };
 

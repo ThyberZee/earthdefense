@@ -21,11 +21,11 @@ public:
     ~Entity();
 
     QPoint getPos(){return pos;}
+    int getId(){return ID;}
 
     virtual void update() = 0;
     virtual string toString() = 0;
     virtual void save(ofstream& outfile) = 0;
-    virtual void load(ifstream& infile) = 0;
 };
 
 #endif // ENTITY_H

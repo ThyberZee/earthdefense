@@ -23,14 +23,13 @@ public:
     ~GameModel();
 
     void initializeGame();
-    void spawn(int x, int y);
-    Entity* create(string type, int x, int y);
-
     void reset();
 
     void loadGame(string filename);
     void saveGame(string filename);
 
+    Entity* create(string type, int x, int y);
+    Entity* getById(int id);
 
     /***  singleton implementation ****/
 private:

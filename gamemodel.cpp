@@ -10,7 +10,6 @@ GameModel GameModel::instance;
 
 GameModel::GameModel(){}
 
-
 void GameModel::initializeGame(){
     player = new Player(5,5);
 }
@@ -53,20 +52,9 @@ void GameModel::loadGame(string filename){
         infile >> x;
         infile >> y;
 
-        if(type == "player"){
-            //don't forget to delete old player
-            delete player;
-            player = new Player(x,y);
-        }else{
-            entities.push_back(new Enemy(x,y));
-        }
+        create(type,x,y);
     }
     infile.close();
-}
-
-void GameModel::spawn(int x, int y)
-{
-    entities.push_back(new Enemy(x,y));
 }
 
 Entity *GameModel::create(string type, int x, int y){
@@ -86,7 +74,19 @@ Entity *GameModel::create(string type, int x, int y){
         entities.push_back(p);
 
         return p;
+    }else{
+        return nullptr;
     }
+}
+
+Entity* GameModel::getById(int id) {
+    for (size_t i = 0; i < entities.size(); ++i) {
+        Entity* obj = entities.at(i);
+        if (obj->getId() == id) {
+            return obj;
+        }
+    }
+    return NULL;
 }
 
 GameModel::~GameModel(){

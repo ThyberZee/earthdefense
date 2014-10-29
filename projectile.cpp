@@ -1,12 +1,17 @@
 #include "projectile.h"
+#include "sstream"
 #include <QPoint>
 
 Projectile::Projectile(int x, int y): Entity(x,y) {}
 
-void Projectile::load(ifstream &infile){}
+void Projectile::save(ofstream &outfile){
+    outfile << toString() << endl;
+}
 
-void Projectile::save(ofstream &outfile){}
-
-string Projectile::toString(){}
+string Projectile::toString(){
+    stringstream ss;
+    ss << "projectile " << pos.x() << " " << pos.y();
+    return ss.str();
+}
 
 void Projectile::update(){}
