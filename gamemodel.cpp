@@ -2,11 +2,15 @@
 #include <string>
 
 #include "gamemodel.h"
+#include "entity.h"
 #include "enemy.h"
+#include "player.h"
 
 GameModel::GameModel(){
     //test
-    player = new Player(5,5);
+    /* for some reason, this was giving me compile errors --- Jared */
+    QPoint* point = new QPoint(5,5);
+    Player* player = new Player(point);
 }
 
 void GameModel::reset(){
@@ -18,6 +22,7 @@ void GameModel::reset(){
         delete e;
     }
     //does clear really clear?
+    // - Jared -> Yes
     entities.clear();
 }
 
@@ -45,14 +50,15 @@ void GameModel::loadGame(string filename){
 
     if(type == "player"){
         //don't forget to delete old player
-        player = new Player(x,y);
+
+        player = new Player(new QPoint(x,y));
     }else{
-        entities.push_back(new Enemy(x,y,100));
+        entities.push_back(new Enemy(new QPoint(x,y),100));
     }
 }
 void GameModel::spawn(int x, int y, int s)
 {
-    entities.push_back(new Enemy(x,y,s));
+    entities.push_back(new Enemy(new QPoint(x,y),s));
 }
 
 GameModel::~GameModel(){

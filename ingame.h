@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QKeyEvent>
 
+#include "player.h"
+
 namespace Ui {
 class InGame;
 }
@@ -20,9 +22,14 @@ public:
 private slots:
 
     void keyPressEvent(QKeyEvent *ev);
+    void keyReleaseEvent(QKeyEvent *);
+    void mvPlayerTimerHit();
     
 private:
     Ui::InGame *ui;
+    Player *pl;  // Pointer to the Player Object
+    QTimer *mvPlayerTimer;
+
 };
 
 #endif // INGAME_H

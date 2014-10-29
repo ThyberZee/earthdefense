@@ -10,7 +10,7 @@ class Enemy : public Entity
 private:
     int score;
 public:
-    Enemy(int x, int y, int s): Entity(x,y), score(s){}
+    Enemy(QPoint* point, int s): Entity(point), score(s) {}
 
     string toString();
     void save(ofstream& outfile);

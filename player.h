@@ -6,13 +6,14 @@
 
 class Player : public Entity
 {
+    int x;
 public:
-    Player(int x, int y): Entity(x,y){}
+    Player(QPoint* point): Entity(point), x(3) {}
 
     string toString();
     void save(ofstream& outfile);
     void load(ifstream& infile);
-    void update();
+    void update(QPoint *newPos);
 
 };
 
