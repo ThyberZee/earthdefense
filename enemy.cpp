@@ -16,6 +16,6 @@ void Enemy::save(ofstream& outfile)
 
 void Enemy::update()
 {
-    pos.setX(newPos.x());
-    pos.setY(newPos.y());
+    pos.setX(9);
+    pos.setY(9);
 }

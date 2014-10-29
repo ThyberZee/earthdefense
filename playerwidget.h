@@ -13,6 +13,8 @@ private:
     Player* player;
 public:
     explicit PlayerWidget(QWidget *parent = 0);
+
+    Player* getPlayer() { return player; }
     
 signals:
     
