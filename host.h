@@ -12,6 +12,7 @@ class Host : public QObject
 private:
     QTcpServer* server;
     int connectCount;
+    bool client;
 
 public:
     explicit Host(QObject *parent = 0);
