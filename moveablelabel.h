@@ -16,8 +16,6 @@ class MoveableLabel : public QLabel {
 public:
     explicit MoveableLabel(QWidget *parent, Ui::InGame *initUi);
 
-    void keyPressEvent(QKeyEvent *ev);
-
     void setX(int initX) { x = initX; }
 
     int getX() { return x; }

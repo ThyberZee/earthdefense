@@ -1,10 +1,11 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <QPoint>
 #include <iostream>
 #include <fstream>
+#include <sstream>  // for children classes
 #include <string>
+#include <QPoint>
 
 using namespace std;
 
@@ -28,7 +29,7 @@ public:
      *we give it a QPoint as a <pos>, that's instantiating the object. So
      *pure virtual functions would not work here.  ...just thinking out loud.
      *What do you guys think? */
-    virtual void update();
+    virtual void update(QPoint* newPos);
     virtual string toString();
     virtual void save(ofstream& outfile);
     virtual void load(ifstream& infile);

@@ -1,6 +1,3 @@
-#include <string>
-#include <sstream>
-
 #include "enemy.h"
 
 
@@ -21,8 +18,8 @@ void Enemy::load(ifstream& infile)
     return;
 }
 
-void Enemy::update()
+void Enemy::update(QPoint *newPos)
 {
-    pos.setX(3);
-    pos.setY(3);
+    pos.setX(newPos->x());
+    pos.setY(newPos->y());
 }
