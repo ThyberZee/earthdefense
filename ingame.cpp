@@ -1,6 +1,7 @@
 #include "ingame.h"
 #include "ui_ingame.h"
 #include <QLabel>
+#include <QTimer>
 
 InGame::InGame(QMainWindow *parent) :
     QMainWindow(parent),
@@ -15,21 +16,21 @@ InGame::~InGame()
 }
 
 void InGame::keyPressEvent(QKeyEvent *ev){
-    if (ev->key() == 0x01000012){ //Left key pressed
-        QLabel* lbl = new QLabel(this);
-        lbl->setText("Left key pressed.");
-        lbl->setGeometry(QRect(
-             rand() % (this->geometry().width() - 100),
-             rand() % (this->geometry().height() - 100),
-             100, 20));
-        lbl->show();
-    } else if (ev->key() == 0x01000014){ //Right key pressed
-        QLabel* lbl = new QLabel(this);
-        lbl->setText("Right key pressed.");
-        lbl->setGeometry(QRect(
-             rand() % (this->geometry().width() - 100),
-             rand() % (this->geometry().height() - 100),
-             100, 20));
-        lbl->show();
+    if (ev->key() == Qt::LeftArrow){ //Left key pressed
+        mvPlayerTimer = new QTimer(this);
+        mvPlayerTimer->setInterval(50);
+        connect(mvPlayerTimer, &QTimer::timeout, this, &InGame::mvPlayerTimerHit);
+        mvPlayerTimer->start();
+    } else if (ev->key() == Qt::RightArrow){ //Right key pressed
+
     }
+}
+
+void InGame::keyReleaseEvent(QKeyEvent *ev) {
+    mvPlayerTimer->stop();
+}
+
+void InGame::mvPlayerTimerHit() {
+    //FIX STUFF
+    pl->update(QPoint(pl->getPos().x()-2, pl->getPos().y()));
 }

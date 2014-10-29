@@ -1,11 +1,11 @@
 #include "entity.h"
 
-int Entity::nextID = 0;
+int Entity::nextId = 0;
 
-Entity::Entity(int x, int y)
+Entity::Entity(QPoint newPos)
 {
-    pos = QPoint(x,y);
-    ID = nextID++;
+    pos = newPos;
+    ID = nextId++;
 
 }
 

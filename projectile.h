@@ -2,13 +2,14 @@
 #define PROJECTILE_H
 
 #include "entity.h"
+#include <QPoint>
 
 class Projectile : public Entity
 {
 private:
     int velocity;
 public:
-    Projectile(int x, int y, int v);
+    Projectile(QPoint p, int v);
     string toString();
     void save(ofstream& outfile);
     void update();

@@ -1,6 +1,4 @@
 #include "player.h"
-#include <string>
-#include <sstream>
 
 string Player::toString()
 {
@@ -14,8 +12,18 @@ void Player::save(ofstream& outfile)
     outfile << toString() << endl;
 }
 
+//updates player position based on direction travelled;
 void Player::update()
 {
-    pos.setX(3);
-    pos.setY(3);
+    switch(direction){
+    case 0:
+        break;
+    case 1:
+        pos.setX(pos.x() + 5);
+        break;
+    case -1:
+        pos.setX(pos.x() - 5);
+    default:
+        break;
+    }
 }
