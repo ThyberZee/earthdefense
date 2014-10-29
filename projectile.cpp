@@ -2,7 +2,7 @@
 #include "sstream"
 #include <QPoint>
 
-Projectile::Projectile(int x, int y): Entity(x,y) {}
+Projectile::Projectile(int x, int y, int v): Entity(x,y), velocity(v) {}
 
 void Projectile::save(ofstream &outfile){
     outfile << toString() << endl;

@@ -5,8 +5,10 @@
 
 class Projectile : public Entity
 {
+private:
+    int velocity;
 public:
-    Projectile(int x, int y);
+    Projectile(int x, int y, int v);
     string toString();
     void save(ofstream& outfile);
     void update();

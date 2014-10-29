@@ -70,7 +70,7 @@ Entity *GameModel::create(string type, int x, int y){
 
         return e;
     }else if(type == "bullet"){
-        Projectile* p = new Projectile(x,y);
+        Projectile* p = new Projectile(x,y,50);
         entities.push_back(p);
 
         return p;

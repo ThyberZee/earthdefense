@@ -31,6 +31,11 @@ public:
     Entity* create(string type, int x, int y);
     Entity* getById(int id);
 
+    //getters and setters
+    Player* getPlayer(){return player;}
+    vector<Entity*> getEntities(){return entities;}
+
+
     /***  singleton implementation ****/
 private:
     static GameModel instance;

@@ -22,7 +22,8 @@ SOURCES += main.cpp\
            entity.cpp \
            player.cpp \
            enemy.cpp \
-    projectile.cpp
+    projectile.cpp \
+    playerwidget.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
@@ -32,7 +33,8 @@ HEADERS  += mainwindow.h \
             player.h \
             enemy.h \
             ingame.h \
-    projectile.h
+    projectile.h \
+    playerwidget.h
 
 FORMS    += mainwindow.ui \
             ingame.ui
