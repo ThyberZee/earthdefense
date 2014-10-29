@@ -5,15 +5,13 @@
 
 class Enemy : public Entity
 {
-private:
-    int score;
 public:
-    Enemy(QPoint* point, int s): Entity(point), score(s) {}
+    static int score;
+    Enemy(QPoint point): Entity(point) {}
 
     string toString();
     void save(ofstream& outfile);
-    void load(ifstream& infile);
-    void update(QPoint* newPos);
+    void update(QPoint newPos);
 
 };
 

@@ -1,5 +1,6 @@
 #include "enemy.h"
 
+int Enemy::score = 100;
 
 string Enemy::toString()
 {
@@ -13,13 +14,8 @@ void Enemy::save(ofstream& outfile)
     outfile << toString() << endl;
 }
 
-void Enemy::load(ifstream& infile)
+void Enemy::update(QPoint newPos)
 {
-    return;
-}
-
-void Enemy::update(QPoint *newPos)
-{
-    pos.setX(newPos->x());
-    pos.setY(newPos->y());
+    pos.setX(newPos.x());
+    pos.setY(newPos.y());
 }

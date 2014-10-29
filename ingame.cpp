@@ -31,5 +31,5 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 }
 
 void InGame::mvPlayerTimerHit() {
-    pl->update(new QPoint(pl->getPos().x()-2, pl->getPos().y()));
+    pl->update(QPoint(pl->getPos().x()-2, pl->getPos().y()));
 }

@@ -12,13 +12,8 @@ void Player::save(ofstream& outfile)
     outfile << toString() << endl;
 }
 
-void Player::load(ifstream& infile)
+void Player::update(QPoint newPos)
 {
-    return;
-}
-
-void Player::update(QPoint* newPos)
-{
-    pos.setX(newPos->x());
-    pos.setY(newPos->y());
+    pos.setX(newPos.x());
+    pos.setY(newPos.y());
 }

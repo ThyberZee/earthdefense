@@ -15,19 +15,34 @@ class GameModel {
 private:
     vector<Entity*> entities;
     Player* player;
+    int width;
+    int height;
 
 public:
     GameModel();
     ~GameModel();
 
     void initializeGame();
-    void spawn(int x, int y, int s);
-
     void reset();
 
     void loadGame(string filename);
     void saveGame(string filename);
 
+    Entity* create(string type, int x, int y);
+    Entity* getById(int id);
+
+    //getters and setters
+    Player* getPlayer(){return player;}
+    vector<Entity*> getEntities(){return entities;}
+
+
+    /***  singleton implementation ****/
+private:
+    static GameModel instance;
+public:
+    static GameModel &getInstance() {
+        return instance;
+    }
 };
 
 #endif // GAMEMODEL_H

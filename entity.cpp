@@ -1,10 +1,15 @@
 #include "entity.h"
 
+int Entity::nextId = 0;
 
-Entity::Entity(QPoint* point) : pos(*point) {}
+Entity::Entity(QPoint newPos)
+{
+    pos = newPos;
+    ID = nextId++;
 
-void Entity::load(ifstream &infile){}
+}
+
 void Entity::save(ofstream &outfile){}
 string Entity::toString(){}
-void Entity::update(QPoint* newPos){}
+void Entity::update(QPoint newPos){}
 Entity::~Entity(){}

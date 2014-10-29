@@ -1,10 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "gamemodel.h"
+
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QTcpServer>
+
+//#include "gamemodel.h"
 
 namespace Ui {
 class MainWindow;
