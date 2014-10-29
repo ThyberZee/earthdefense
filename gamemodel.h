@@ -23,7 +23,8 @@ public:
     ~GameModel();
 
     void initializeGame();
-    void spawn(int x, int y, int s);
+    void spawn(int x, int y);
+    Entity* create(string type, int x, int y);
 
     void reset();
 

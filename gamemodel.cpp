@@ -1,6 +1,8 @@
 #include <vector>
 #include <string>
+#include <QDebug>
 
+#include "projectile.h"
 #include "gamemodel.h"
 #include "enemy.h"
 
@@ -56,15 +58,35 @@ void GameModel::loadGame(string filename){
             delete player;
             player = new Player(x,y);
         }else{
-            entities.push_back(new Enemy(x,y,100));
+            entities.push_back(new Enemy(x,y));
         }
     }
     infile.close();
 }
 
-void GameModel::spawn(int x, int y, int s)
+void GameModel::spawn(int x, int y)
 {
-    entities.push_back(new Enemy(x,y,s));
+    entities.push_back(new Enemy(x,y));
+}
+
+Entity *GameModel::create(string type, int x, int y){
+
+    if(type == "player"){
+        delete player;
+        player = new Player(x,y);
+
+        return player;
+    }else if(type == "enemy"){
+        Enemy* e = new Enemy(x,y);
+        entities.push_back(e);
+
+        return e;
+    }else if(type == "bullet"){
+        Projectile* p = new Projectile(x,y);
+        entities.push_back(p);
+
+        return p;
+    }
 }
 
 GameModel::~GameModel(){

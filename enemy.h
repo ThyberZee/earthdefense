@@ -7,10 +7,9 @@
 
 class Enemy : public Entity
 {
-private:
-    int score;
 public:
-    Enemy(int x, int y, int s): Entity(x,y), score(s){}
+    static int score;
+    Enemy(int x, int y): Entity(x,y){}
 
     string toString();
     void save(ofstream& outfile);
