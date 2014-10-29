@@ -4,14 +4,18 @@
 
 #include "projectile.h"
 #include "gamemodel.h"
+#include "entity.h"
 #include "enemy.h"
+#include "player.h"
+
 
 GameModel GameModel::instance;
 
 GameModel::GameModel(){}
 
 void GameModel::initializeGame(){
-    player = new Player(5,5);
+    QPoint point(5,5);
+    player = new Player(point);
 }
 
 void GameModel::reset(){
@@ -24,7 +28,6 @@ void GameModel::reset(){
     for(Entity* e: entities){
         delete e;
     }
-
     entities.clear();
 }
 
@@ -61,16 +64,18 @@ Entity *GameModel::create(string type, int x, int y){
 
     if(type == "player"){
         delete player;
-        player = new Player(x,y);
+        player = new Player(QPoint(x,y));
 
         return player;
     }else if(type == "enemy"){
-        Enemy* e = new Enemy(x,y);
+        QPoint tempPoint(x,y);
+        Enemy* e = new Enemy(tempPoint);
         entities.push_back(e);
 
         return e;
     }else if(type == "bullet"){
-        Projectile* p = new Projectile(x,y,50);
+        QPoint tempPoint(x,y);
+        Projectile* p = new Projectile(tempPoint,50);
         entities.push_back(p);
 
         return p;
@@ -86,7 +91,7 @@ Entity* GameModel::getById(int id) {
             return obj;
         }
     }
-    return NULL;
+    return nullptr;
 }
 
 GameModel::~GameModel(){

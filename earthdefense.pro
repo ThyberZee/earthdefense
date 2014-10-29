@@ -21,9 +21,10 @@ SOURCES += main.cpp\
            ingame.cpp \
            entity.cpp \
            player.cpp \
-           enemy.cpp \
-    projectile.cpp \
-    playerwidget.cpp
+	   enemy.cpp \
+	   moveablelabel.cpp \
+	   projectile.cpp \
+	   playerwidget.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
@@ -32,9 +33,10 @@ HEADERS  += mainwindow.h \
             entity.h \
             player.h \
             enemy.h \
-            ingame.h \
-    projectile.h \
-    playerwidget.h
+	    ingame.h \
+	    moveablelabel.h \
+	    projectile.h \
+	    playerwidget.h
 
 FORMS    += mainwindow.ui \
             ingame.ui

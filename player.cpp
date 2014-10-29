@@ -1,6 +1,4 @@
 #include "player.h"
-#include <string>
-#include <sstream>
 
 string Player::toString()
 {

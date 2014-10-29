@@ -1,6 +1,3 @@
-#include <string>
-#include <sstream>
-
 #include "enemy.h"
 
 int Enemy::score = 100;
@@ -19,7 +16,6 @@ void Enemy::save(ofstream& outfile)
 
 void Enemy::update()
 {
-    //fix this later
-    pos.setX(3);
-    pos.setY(3);
+    pos.setX(newPos.x());
+    pos.setY(newPos.y());
 }
