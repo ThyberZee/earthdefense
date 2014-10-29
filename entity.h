@@ -12,8 +12,11 @@ class Entity
 {
 protected:
     QPoint pos;
+    int ID;
 
 public:
+    static int nextID;
+
     Entity(int x, int y);
     ~Entity();
 

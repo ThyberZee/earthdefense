@@ -1,14 +1,17 @@
+#include <QApplication>
+
 #include "mainwindow.h"
 #include "gamemodel.h"
 #include "highscore.h"
-#include <QApplication>
+#include "enemy.h"
+
 
 bool unitTest(){
     //GameModel* model = new GameModel(500,500);
     GameModel::getInstance().initializeGame();
-    GameModel::getInstance().spawn(1,2,3);
-    GameModel::getInstance().spawn(2,3,4);
-    GameModel::getInstance().spawn(34,5,2);
+    GameModel::getInstance().create("enemy",1,2);
+    GameModel::getInstance().create("enemy",2,3);
+    GameModel::getInstance().create("enemy",34,5);
     GameModel::getInstance().saveGame("savefilename");
 
     GameModel::getInstance().reset();

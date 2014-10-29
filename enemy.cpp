@@ -3,6 +3,7 @@
 
 #include "enemy.h"
 
+int Enemy::score = 100;
 
 string Enemy::toString()
 {
@@ -23,6 +24,7 @@ void Enemy::load(ifstream& infile)
 
 void Enemy::update()
 {
+    //fix this later
     pos.setX(3);
     pos.setY(3);
 }
