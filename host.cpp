@@ -15,18 +15,22 @@ void Host::clientConnected()
 
 void Host::dataReceived()
 {
-    QTcpSocket *sock = dynamic_cast<QTcpSocket*>(sender());
+    if(client){
 
-    while (sock->canReadLine()) {
-        QString str = sock->readLine();
+    }else{
+        QTcpSocket *sock = dynamic_cast<QTcpSocket*>(sender());
 
-        // send data to all connected clients
-        for (QObject *obj : server->children()) {
-            QTcpSocket *anotherSock = dynamic_cast<QTcpSocket*>(obj);
-            if (anotherSock != NULL)
-                anotherSock->write(str.toLocal8Bit());
+        while (sock->canReadLine()) {
+            QString str = sock->readLine();
+
+            // send data to all connected clients
+            for (QObject *obj : server->children()) {
+                QTcpSocket *anotherSock = dynamic_cast<QTcpSocket*>(obj);
+                if (anotherSock != NULL)
+                    anotherSock->write(str.toLocal8Bit());
+            }
+
         }
-
     }
 }
 
