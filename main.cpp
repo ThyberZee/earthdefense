@@ -27,10 +27,15 @@ HighScore* HighScore::instance = nullptr; // Singleton
 
 int main(int argc, char *argv[])
 {
-    if (HighScore::getInstance()->fileDoesNotExist("scores"))    // If the highscore file is not found,
-    { HighScore::getInstance()->createFile("scores"); }     // Create it.
+// Stuff to do before the main window pops up
+    // HIGHSCORE
+    if (HighScore::getInstance()->fileDoesNotExist("scores"))   // If the highscore file is not found,
+    {   HighScore::getInstance()->createFile("scores"); }       // Create it.
 
+    //HighScore::getInstance()->load("scores");
 */
+
+
 
     QApplication a(argc, argv);
     MainWindow w;
