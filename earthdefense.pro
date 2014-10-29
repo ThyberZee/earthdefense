@@ -21,7 +21,6 @@ SOURCES += main.cpp\
            ingame.cpp \
            entity.cpp \
            player.cpp \
-
            enemy.cpp \
            projectile.cpp \
            playerwidget.cpp \
