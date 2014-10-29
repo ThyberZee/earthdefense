@@ -5,7 +5,7 @@
 
 class Player : public Entity
 {
-    int x;
+    int x; // direction: 1 for moving left, -1 for moving right
 public:
     Player(QPoint point): Entity(point), x(3) {}
 

@@ -22,7 +22,6 @@ SOURCES += main.cpp\
            entity.cpp \
            player.cpp \
 	   enemy.cpp \
-	   moveablelabel.cpp \
 	   projectile.cpp \
 	   playerwidget.cpp
 
@@ -34,7 +33,6 @@ HEADERS  += mainwindow.h \
             player.h \
             enemy.h \
 	    ingame.h \
-	    moveablelabel.h \
 	    projectile.h \
 	    playerwidget.h
 

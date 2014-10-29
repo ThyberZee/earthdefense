@@ -5,9 +5,13 @@
 
 InGame::InGame(QMainWindow *parent) :
     QMainWindow(parent),
-    ui(new Ui::InGame)
+    ui(new Ui::InGame),
+    pl(new PlayerWidget(this))
 {
     ui->setupUi(this);
+    mvPlayerTimer = new QTimer(this);
+    mvPlayerTimer->setInterval(50);
+    connect(mvPlayerTimer, &QTimer::timeout, this, &InGame::mvPlayerTimerHit);
 }
 
 InGame::~InGame()
@@ -17,9 +21,6 @@ InGame::~InGame()
 
 void InGame::keyPressEvent(QKeyEvent *ev){
     if (ev->key() == Qt::LeftArrow){ //Left key pressed
-        mvPlayerTimer = new QTimer(this);
-        mvPlayerTimer->setInterval(50);
-        connect(mvPlayerTimer, &QTimer::timeout, this, &InGame::mvPlayerTimerHit);
         mvPlayerTimer->start();
     } else if (ev->key() == Qt::RightArrow){ //Right key pressed
 
@@ -31,5 +32,7 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 }
 
 void InGame::mvPlayerTimerHit() {
-    pl->update(QPoint(pl->getPos().x()-2, pl->getPos().y()));
+    pl->getPlayer()->update(QPoint(pl->getPlayer()->getPos().x()-2, pl->getPlayer()->getPos().y()));
+    pl->setGeometry(0,0, 111, 111);
+    pl->show();
 }
