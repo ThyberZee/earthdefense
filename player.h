@@ -14,6 +14,6 @@ public:
     void save(ofstream& file);
     void update();
 
-};
 
+};
 #endif // PLAYER_H

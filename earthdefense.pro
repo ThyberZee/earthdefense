@@ -20,7 +20,7 @@ SOURCES += main.cpp\
            gamemodel.cpp \
            ingame.cpp \
            entity.cpp \
-	   player.cpp \
+           player.cpp \
            enemy.cpp \
            projectile.cpp \
            playerwidget.cpp \
