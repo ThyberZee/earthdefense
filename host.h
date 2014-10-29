@@ -2,6 +2,8 @@
 #define HOST_H
 
 #include <QObject>
+#include <QTcpServer>
+#include <QTcpSocket>
 
 class Host : public QObject
 {

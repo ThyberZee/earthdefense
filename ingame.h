@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QKeyEvent>
+#include "playerwidget.h"
 
 #include "player.h"
 
@@ -27,7 +28,7 @@ private slots:
     
 private:
     Ui::InGame *ui;
-    Player *pl;  // Pointer to the Player Object
+    PlayerWidget *pl;  // Pointer to the Player Object
     QTimer *mvPlayerTimer;
 
 };

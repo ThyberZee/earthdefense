@@ -8,9 +8,9 @@ Host::Host(QObject *parent) :
 
 void Host::clientConnected()
 {
-    QTcpSocket *sock = server->nextPendingConnection();
-    connect(sock, &QTcpSocket::disconnected, this, Host::clientDisconnected);
-    connect(sock, &QTcpSocket::readyRead, this, Host::dataReceived);
+//    QTcpSocket *sock = server->nextPendingConnection();
+//    connect(sock, &QTcpSocket::disconnected, this, Host::clientDisconnected);
+//    connect(sock, &QTcpSocket::readyRead, this, Host::dataReceived);
 }
 
 void Host::dataReceived()
