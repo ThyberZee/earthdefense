@@ -32,7 +32,7 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 }
 
 void InGame::mvPlayerTimerHit() {
-    pl->getPlayer()->update(QPoint(pl->getPlayer()->getPos().x()-2, pl->getPlayer()->getPos().y()));
+    pl->getPlayer()->update();
     pl->setGeometry(0,0, 111, 111);
     pl->show();
 }

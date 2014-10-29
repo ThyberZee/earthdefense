@@ -14,8 +14,8 @@ void Enemy::save(ofstream& outfile)
     outfile << toString() << endl;
 }
 
-void Enemy::update(QPoint newPos)
+void Enemy::update()
 {
-    pos.setX(newPos.x());
-    pos.setY(newPos.y());
+    pos.setX(9);
+    pos.setY(9);
 }

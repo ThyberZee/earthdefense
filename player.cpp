@@ -12,8 +12,18 @@ void Player::save(ofstream& outfile)
     outfile << toString() << endl;
 }
 
-void Player::update(QPoint newPos)
+//updates player position based on direction travelled;
+void Player::update()
 {
-    pos.setX(newPos.x());
-    pos.setY(newPos.y());
+    switch(direction){
+    case 0:
+        break;
+    case 1:
+        pos.setX(pos.x() + 5);
+        break;
+    case -1:
+        pos.setX(pos.x() - 5);
+    default:
+        break;
+    }
 }

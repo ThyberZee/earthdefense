@@ -11,5 +11,5 @@ Entity::Entity(QPoint newPos)
 
 void Entity::save(ofstream &outfile){}
 string Entity::toString(){}
-void Entity::update(QPoint newPos){}
+void Entity::update(){}
 Entity::~Entity(){}

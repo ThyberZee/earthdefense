@@ -11,7 +11,7 @@ public:
 
     string toString();
     void save(ofstream& outfile);
-    void update(QPoint newPos);
+    void update();
 
 };
 

@@ -5,13 +5,14 @@
 
 class Player : public Entity
 {
-    int x; // direction: 1 for moving left, -1 for moving right
+private:
+    int direction; // 0 for not moving, -1 for left, and 1 for right;
 public:
-    Player(QPoint point): Entity(point), x(3) {}
+    Player(QPoint point): Entity(point) {}
 
     string toString();
     void save(ofstream& file);
-    void update(QPoint newPos);
+    void update();
 
 };
 

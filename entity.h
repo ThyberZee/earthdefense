@@ -28,7 +28,7 @@ public:
     QPoint getPos(){return pos;}
     int getId(){return ID;}
 
-    virtual void update(QPoint newPos) = 0;
+    virtual void update() = 0;
     virtual string toString() = 0;
     virtual void save(ofstream& outfile) = 0;
 };
