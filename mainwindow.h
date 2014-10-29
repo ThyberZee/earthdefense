@@ -31,10 +31,6 @@ private slots:
     void on_rbSinglePlayer_clicked();
     void on_rbMultiplayer_clicked();
 
-    void clientConnected();
-    void dataReceived();
-    void clientDisconnected();
-
 private:
     Ui::MainWindow *ui;
 
