@@ -19,21 +19,8 @@ bool unitTest(){
 }
 
 int main(int argc, char *argv[])
-{    
-
-/* commenting out this for now.
-
-HighScore* HighScore::instance = nullptr; // Singleton
-
-int main(int argc, char *argv[])
 {
-// Stuff to do before the main window pops up
-    // HIGHSCORE
-    if (HighScore::getInstance()->fileDoesNotExist("scores"))   // If the highscore file is not found,
-    {   HighScore::getInstance()->createFile("scores"); }       // Create it.
-
-    //HighScore::getInstance()->load("scores");
-*/
+    // HighScore::getInstance()->load();
 
 
 
