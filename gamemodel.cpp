@@ -6,8 +6,10 @@
 
 GameModel GameModel::instance;
 
-GameModel::GameModel(){
-    //test
+GameModel::GameModel(){}
+
+
+void GameModel::initializeGame(){
     player = new Player(5,5);
 }
 

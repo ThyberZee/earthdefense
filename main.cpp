@@ -5,6 +5,7 @@
 
 bool unitTest(){
     //GameModel* model = new GameModel(500,500);
+    GameModel::getInstance().initializeGame();
     GameModel::getInstance().spawn(1,2,3);
     GameModel::getInstance().spawn(2,3,4);
     GameModel::getInstance().spawn(34,5,2);
