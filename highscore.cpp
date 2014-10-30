@@ -13,11 +13,13 @@ bool HighScore::load() {
 
     if (scorefile) {                        // If the scores file loaded without having issues
         std::string line;                   // Load the contents into a vector<string>
-        for ( size_t i = 0; i < 10; ++i) {  // specifically, the first 10 lines
+        for ( size_t i = 0; i < 5; ++i) {   // specifically, the first 10 lines
             scorefile >> line;
             scores.push_back(line);
         }
-        return true;
+
+        sort();                             // then sort in the correct order
+        return true;                        // aaand... done!
     } else {
         return false;
     }
@@ -36,17 +38,25 @@ void HighScore::createFile() {
     ofstream scorefile;
     scorefile.open("scores");
 
-    const std::string DEFAULT_CONTENTS = "10000,AAA\n9000,AAA\n8000,AAA\n7000,AAA\n6000,AAA\n5000,AAA\n4000,AAA\n3000,AAA\n2000,AAA\n1000,AAA\n";
+    const std::string DEFAULT_CONTENTS = "10000,AAA\n8000,AAA\n6000,AAA\n4000,AAA\n2000,AAA";
     scorefile << DEFAULT_CONTENTS;
     scorefile.close();
 }
 
 void HighScore::write() {
-
+    ofstream scorefile;
+    scorefile.open("scores");
+    for (size_t i = 0; i < 5; ++i) {
+        scorefile << scores.at(i) << "\n";
+    }
+    scorefile.close();
 }
 
-void HighScore::addScore() {
-
+void HighScore::addScore(std::string score) {
+    scores.push_back(score);
+    HighScore::sort();
+    scores.pop_back();
+    HighScore::write();
 }
 
 HighScore::~HighScore() {}

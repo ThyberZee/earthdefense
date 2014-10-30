@@ -9,6 +9,9 @@ using std::vector;
 using std::ifstream;
 using std::ofstream;
 
+#include <algorithm>
+#include <QDebug>
+
 
 class HighScore {
 
@@ -33,7 +36,8 @@ public:
     bool fileDoesNotExist();    // check to see if there are issues with the high scores file.
     void write();               // overwrite highscore file (highscores)
     bool load();                // load from highscore file (highscores)
-    void addScore();
+    void sort() { std::sort(scores.begin(), scores.end()); }
+    void addScore(std::string score);
 
 
 /***** singleton implementation ****/

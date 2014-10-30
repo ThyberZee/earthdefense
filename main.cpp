@@ -23,7 +23,8 @@ bool unitTest(){
 
 int main(int argc, char *argv[])
 {
-    // HighScore::getInstance()->load();
+    HighScore::getInstance()->load();
+    // HighScore::getInstance()->addScore("5000,MSW");
 
 
 
