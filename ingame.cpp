@@ -17,8 +17,15 @@ InGame::InGame(QMainWindow *parent) :
 
     //Josh experiment
     pl = new PlayerWidget(this);
+    //pl->setPixmap(pl->getImage());
 
+    pl->setGeometry(QRect(
+             pl->getPlayer()->getPos().x(),
+             pl->getPlayer()->getPos().y(),
+             100, 100));
+    pl->show();
     mvPlayerTimer->start();
+
 }
 
 InGame::~InGame()
@@ -60,6 +67,10 @@ void InGame::mvPlayerTimerHit() {
 
     //JOSH EXPERIEMNT
     GameModel::getInstance().update();
-    pl->pos() = pl->getPlayer()->getPos();
+    pl->setGeometry(QRect(
+             pl->getPlayer()->getPos().x(),
+             pl->getPlayer()->getPos().y(),
+             100, 100));
+
     pl->show();
 }

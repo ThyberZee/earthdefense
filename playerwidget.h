@@ -3,9 +3,9 @@
 
 #include "player.h"
 #include "gamemodel.h"
-#include <QWidget>
+#include <QLabel>
 
-class PlayerWidget : public QWidget
+class PlayerWidget : public QLabel
 {
     Q_OBJECT
 private:
@@ -17,6 +17,9 @@ public:
     explicit PlayerWidget(QWidget *parent = 0);
 
     Player* getPlayer() { return player; }
+
+    //getters, setters
+    QPixmap getImage() {return image;}
     
 signals:
     
