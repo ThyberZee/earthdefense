@@ -11,6 +11,7 @@ class Host : public QObject
 
 private:
     QTcpServer* server;
+    QTcpSocket* socket;
     int connectCount;
     bool client;
 
@@ -23,6 +24,9 @@ public slots:
     void clientConnected();
     void dataReceived();
     void clientDisconnected();
+    void changeClient(bool tempClient){client = tempClient;}
+    void on_serverDisconnected();
+    void on_connectionSucceeded();
 
 };
 

@@ -11,10 +11,12 @@
 
 GameModel GameModel::instance;
 
-GameModel::GameModel(){}
+GameModel::GameModel(){
+    initializeGame();
+}
 
 void GameModel::initializeGame(){
-    QPoint point(5,5);
+    QPoint point(50,50);
     player = new Player(point);
 }
 
@@ -31,6 +33,12 @@ void GameModel::reset(){
     entities.clear();
 }
 
+void GameModel::update(){
+    player->update();
+    for(Entity* e: entities){
+        e->update();
+    }
+}
 
 //save state of all entities
 void GameModel::saveGame(string filename){
