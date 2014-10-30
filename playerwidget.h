@@ -4,6 +4,7 @@
 #include "player.h"
 #include "gamemodel.h"
 #include <QLabel>
+#include <QPicture>
 
 class PlayerWidget : public QLabel
 {

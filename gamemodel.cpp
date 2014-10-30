@@ -16,7 +16,7 @@ GameModel::GameModel(){
 }
 
 void GameModel::initializeGame(){
-    QPoint point(270,700);
+    QPoint point(270,500);
     player = new Player(point);
 }
 
