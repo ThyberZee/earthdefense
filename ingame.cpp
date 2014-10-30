@@ -77,3 +77,10 @@ void InGame::mvPlayerTimerHit() {
 
     pl->show();
 }
+
+
+
+void InGame::updateView() {
+    vector<Entity*> entities = GameModel::getInstance().getEntities();
+
+}
