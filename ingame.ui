@@ -13,16 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="WidgetPlayerArea" native="true">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>510</y>
-     <width>641</width>
-     <height>111</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

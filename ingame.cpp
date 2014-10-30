@@ -12,7 +12,7 @@ InGame::InGame(QMainWindow *parent) :
 {
     ui->setupUi(this);
     mvPlayerTimer = new QTimer(this);
-    mvPlayerTimer->setInterval(50);
+    mvPlayerTimer->setInterval(1000/30.0);
     connect(mvPlayerTimer, &QTimer::timeout, this, &InGame::mvPlayerTimerHit);
 
     //Josh experiment
@@ -46,6 +46,8 @@ void InGame::keyPressEvent(QKeyEvent *ev){
     //JOSH EXPERIMENT
     if (ev->key() == 0x01000012){ //left key pressed
         GameModel::getInstance().getPlayer()->setDir(-1);
+    }else if (ev->key() == 0x01000014){ //left key pressed
+        GameModel::getInstance().getPlayer()->setDir(1);
     }
 }
 
@@ -55,8 +57,9 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
     */
     if (ev->key() == 0x01000012){ //left key pressed
         GameModel::getInstance().getPlayer()->setDir(0);
+    }else if (ev->key() == 0x01000014){ //left key pressed
+        GameModel::getInstance().getPlayer()->setDir(0);
     }
-
 }
 
 void InGame::mvPlayerTimerHit() {
