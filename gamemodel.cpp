@@ -16,7 +16,7 @@ GameModel::GameModel(){
 }
 
 void GameModel::initializeGame(){
-    QPoint point(5,5);
+    QPoint point(270,700);
     player = new Player(point);
 }
 
@@ -33,6 +33,12 @@ void GameModel::reset(){
     entities.clear();
 }
 
+void GameModel::update(){
+    player->update();
+    for(Entity* e: entities){
+        e->update();
+    }
+}
 
 //save state of all entities
 void GameModel::saveGame(string filename){
@@ -75,7 +81,7 @@ Entity *GameModel::create(string type, int x, int y){
         entities.push_back(e);
 
         return e;
-    }else if(type == "bullet"){
+    }else if(type == "projectile"){
         QPoint tempPoint(x,y);
         Projectile* p = new Projectile(tempPoint,50);
         entities.push_back(p);

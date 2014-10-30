@@ -28,6 +28,8 @@ public:
     void loadGame(string filename);
     void saveGame(string filename);
 
+    void update();
+
     Entity* create(string type, int x, int y);
     Entity* getById(int id);
 

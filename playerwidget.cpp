@@ -1,8 +1,9 @@
 #include "playerwidget.h"
 
-PlayerWidget::PlayerWidget(QWidget *parent) :
-    QWidget(parent)
+PlayerWidget::PlayerWidget(QWidget *parent) :QLabel(parent)
 {
     player = GameModel::getInstance().getPlayer();
-    image = QPixmap(":/images/Player.png");
+    //image = QPixmap(":/images/Player.png");
+    setText("HEY!");
+
 }
