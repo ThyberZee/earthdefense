@@ -6,13 +6,11 @@ PlayerWidget::PlayerWidget(QWidget *parent) :QLabel(parent)
     image = QPixmap(":/resources/images/Player.png");
 
 
-    setGeometry(QRect(
+    /*setGeometry(QRect(
              player->getPos().x(),
              player->getPos().y(),
                               100,
-                              100));
-
+                              100));*/
     setPixmap(image);
-    //setText("HEY!");
-
+    setScaledContents(true);
 }

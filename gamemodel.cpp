@@ -12,7 +12,7 @@
 GameModel GameModel::instance;
 
 GameModel::GameModel(){
-    initializeGame();
+    //initializeGame();
 }
 
 void GameModel::initializeGame(){
@@ -92,6 +92,7 @@ Entity *GameModel::create(string type, int x, int y){
     }
 }
 
+//return pointer to object specified;  if it doesn't exist, return NULL
 Entity* GameModel::getById(int id) {
     for (size_t i = 0; i < entities.size(); ++i) {
         Entity* obj = entities.at(i);
@@ -99,7 +100,19 @@ Entity* GameModel::getById(int id) {
             return obj;
         }
     }
-    return nullptr;
+    return NULL;
+}
+
+//removes entity from entities if it exitsts, but DOES NOT DELETE
+Entity* GameModel::destroy(int id) {
+    for(size_t i = 0; i < entities.size(); ++i){
+        Entity *obj = entities.at(i);
+        if (obj->getId() == id){
+            entities.erase(entities.begin()+i);
+            return obj;
+        }
+    }
+    return NULL;
 }
 
 GameModel::~GameModel(){

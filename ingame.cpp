@@ -11,6 +11,9 @@ InGame::InGame(QMainWindow *parent) :
     ui(new Ui::InGame)
 {
     ui->setupUi(this);
+
+    //start gamemodel
+    GameModel::getInstance().initializeGame();
     Timer = new QTimer(this);
     Timer->setInterval(1000/30.0);
     connect(Timer, &QTimer::timeout, this, &InGame::TimerHit);
@@ -69,6 +72,5 @@ void InGame::TimerHit() {
              pl->getPlayer()->getPos().x(),
              pl->getPlayer()->getPos().y(),
              100, 100));
-
     pl->show();
 }
