@@ -24,7 +24,8 @@ SOURCES += main.cpp\
            enemy.cpp \
            projectile.cpp \
            playerwidget.cpp \
-	   host.cpp
+	   host.cpp \
+    score.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
@@ -35,7 +36,8 @@ HEADERS  += mainwindow.h \
 	    enemy.h \
             projectile.h \
             playerwidget.h \
-	    host.h
+	    host.h \
+    score.h
 
 FORMS    += mainwindow.ui \
             ingame.ui

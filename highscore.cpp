@@ -1,5 +1,6 @@
 #include "highscore.h"
 
+/////////////////////////////////////////
 
 HighScore* HighScore::instance = nullptr;
 
@@ -11,18 +12,26 @@ bool HighScore::load() {
     ifstream scorefile;               // load the "scores" file
     scorefile.open("scores");
 
-    if (scorefile) {                        // If the scores file loaded without having issues
-        std::string line;                   // Load the contents into a vector<string>
-        for ( size_t i = 0; i < 5; ++i) {   // specifically, the first 10 lines
-            scorefile >> line;
-            scores.push_back(line);
-        }
+    if (scorefile) {                        // If the scores file loaded without having issues, do the following
+        for ( size_t i = 0; i < 5; ++i) {   // Load 5 scores into a vector<Score*>
+            //Score score;
 
-        sort();                             // then sort in the correct order
+            std::string value;      scorefile >> value;
+            std::string initials;   scorefile >> initials;
+
+            Score score(value, initials);   // Generate a score
+            addScore(score);                // and add it to the vector of scores
+        }
+        save();
         return true;                        // aaand... done!
     } else {
         return false;
     }
+}
+
+Score HighScore::newScore(std::string& value, std::string& initials) {
+    Score score(value, initials);
+    return score;
 }
 
 // If file exists, return true
@@ -38,12 +47,12 @@ void HighScore::createFile() {
     ofstream scorefile;
     scorefile.open("scores");
 
-    const std::string DEFAULT_CONTENTS = "10000,AAA\n8000,AAA\n6000,AAA\n4000,AAA\n2000,AAA";
+    const std::string DEFAULT_CONTENTS = "10000 AAA\n8000 AAA\n6000 AAA\n4000 AAA\n2000 AAA";
     scorefile << DEFAULT_CONTENTS;
     scorefile.close();
 }
 
-void HighScore::write() {
+void HighScore::save() {
     ofstream scorefile;
     scorefile.open("scores");
     for (size_t i = 0; i < 5; ++i) {
@@ -52,11 +61,16 @@ void HighScore::write() {
     scorefile.close();
 }
 
-void HighScore::addScore(std::string score) {
-    scores.push_back(score);
+// Add score to the vector of scores, then sort in order,
+// take the lowest score (last in vector) out, and save the new highscores file 'scores'
+void HighScore::addScore(Score &score) {
+    scores.push_back(&score);
     HighScore::sort();
     scores.pop_back();
-    HighScore::write();
 }
 
-HighScore::~HighScore() {}
+HighScore::~HighScore() {
+    for (size_t i = 0; i < scores.size(); ++i) {
+        delete scores.at(i);
+    }
+}
