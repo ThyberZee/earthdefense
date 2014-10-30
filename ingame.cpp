@@ -19,6 +19,7 @@ InGame::InGame(QMainWindow *parent) :
     pl = new PlayerWidget(this);
     //pl->setPixmap(pl->getImage());
 
+
     pl->setGeometry(QRect(
              pl->getPlayer()->getPos().x(),
              pl->getPlayer()->getPos().y(),
@@ -48,13 +49,16 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         GameModel::getInstance().getPlayer()->setDir(-1);
     }else if (ev->key() == 0x01000014){ //left key pressed
         GameModel::getInstance().getPlayer()->setDir(1);
+    }else if (ev->key() == 0x20){ // space key pressed
+        int x = GameModel::getInstance().getPlayer()->getPos().x();
+        int y = GameModel::getInstance().getPlayer()->getPos().y();
+
+        GameModel::getInstance().create("projectile",x,y);
     }
 }
 
 void InGame::keyReleaseEvent(QKeyEvent *ev) {
-    /*
-    mvPlayerTimer->stop();
-    */
+
     if (ev->key() == 0x01000012){ //left key pressed
         GameModel::getInstance().getPlayer()->setDir(0);
     }else if (ev->key() == 0x01000014){ //left key pressed
@@ -63,12 +67,7 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 }
 
 void InGame::mvPlayerTimerHit() {
-    /*
-    cout << "Timer hit!" << endl;
-    // MATT!!!! HELP!!!!!
-    */
 
-    //JOSH EXPERIEMNT
     GameModel::getInstance().update();
     pl->setGeometry(QRect(
              pl->getPlayer()->getPos().x(),

@@ -81,7 +81,7 @@ Entity *GameModel::create(string type, int x, int y){
         entities.push_back(e);
 
         return e;
-    }else if(type == "bullet"){
+    }else if(type == "projectile"){
         QPoint tempPoint(x,y);
         Projectile* p = new Projectile(tempPoint,50);
         entities.push_back(p);
