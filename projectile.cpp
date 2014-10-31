@@ -15,5 +15,5 @@ string Projectile::toString(){
 }
 
 void Projectile::update(){
-    //do stuff
+    pos.setY(pos.y() -10);
 }

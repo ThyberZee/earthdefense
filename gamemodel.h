@@ -15,8 +15,8 @@ class GameModel {
 private:
     vector<Entity*> entities;
     Player* player;
-    int width;
-    int height;
+    int window_height;
+    int window_window;
 
 public:
     GameModel();
@@ -32,6 +32,7 @@ public:
 
     Entity* create(string type, int x, int y);
     Entity* getById(int id);
+    Entity* destroy(int id);
 
     //getters and setters
     Player* getPlayer(){return player;}

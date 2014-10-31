@@ -23,8 +23,8 @@ bool unitTest(){
 
 int main(int argc, char *argv[])
 {
-    // HighScore::getInstance()->load();
-
+    //HighScore::getInstance()->load();
+    // ^^Do not uncomment^^ -- keep the segfaults caged for now
 
 
     QApplication a(argc, argv);

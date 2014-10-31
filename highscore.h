@@ -2,18 +2,22 @@
 #define HIGHSCORE_H
 
 #include <sys/stat.h> // check if file exists (see highscore.cpp)
+#include <algorithm> // std::sort
 #include <vector>
-using std::vector;
-
+    using std::vector;
 #include <fstream>
-using std::ifstream;
-using std::ofstream;
+    using std::ifstream;
+    using std::ofstream;
+
+#include "score.h"
+
+///////////////////////////////////////////////
 
 
 class HighScore {
 
 private:
-    vector<std::string> scores;
+    vector<Score*> scores;
 
     HighScore() { /* instantiate HighScore */ }
     ~HighScore();
@@ -22,18 +26,21 @@ private:
 public:
 
     // GETTERS
-    int get(int pos); // Do we even need this?
+    Score& get(int pos); // Do we even need this?
+    vector<Score*>& getScores() { return scores; }
 
 
     // SETTERS
 
 
     // METHODS
-    void createFile();          // create a file that contains default high scores.
-    bool fileDoesNotExist();    // check to see if there are issues with the high scores file.
-    void write();               // overwrite highscore file (highscores)
-    bool load();                // load from highscore file (highscores)
-    void addScore();
+    bool load();                            // load from highscore file (highscores)
+    void createFile();                      // create a file that contains default high scores.
+    bool fileDoesNotExist();                // check to see if there are issues with the high scores file.
+    void save();                           // overwrite highscore file (highscores)
+    void sort() { std::sort(scores.begin(), scores.end()); }
+    void addScore(Score &score);
+    Score newScore(std::string& value, std::string& initials);
 
 
 /***** singleton implementation ****/
