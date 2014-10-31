@@ -17,7 +17,7 @@
 class HighScore {
 
 private:
-    vector<Score*> scores;
+    vector<Score> scores;
 
     HighScore() { /* instantiate HighScore */ }
     ~HighScore();
@@ -27,7 +27,7 @@ public:
 
     // GETTERS
     Score& get(int pos); // Do we even need this?
-    vector<Score*>& getScores() { return scores; }
+    vector<Score>& getScores() { return scores; }
 
 
     // SETTERS
@@ -38,9 +38,9 @@ public:
     void createFile();                      // create a file that contains default high scores.
     bool fileDoesNotExist();                // check to see if there are issues with the high scores file.
     void save();                           // overwrite highscore file (highscores)
-    void sort() { std::sort(scores.begin(), scores.end()); }
-    void addScore(Score &score);
-    Score newScore(std::string& value, std::string& initials);
+    void sort() { std::sort(scores.begin(), scores.end(), std::greater<Score>()); }
+    void addScore(unsigned int newValue, std::string newInitials);
+    Score newScore(unsigned int value, std::string& initials);
 
 
 /***** singleton implementation ****/

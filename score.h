@@ -4,23 +4,29 @@
 
 class Score
 {
-    std::string value;
+    unsigned int value;
     std::string initials;
 
 public:
 // CONSTRUCTORS
-    Score(std::string initValue, std::string initInitials) :
+    Score(unsigned int initValue, std::string initInitials) :
         value    (initValue),
         initials (initInitials)
     {}
 
 // ACCESSORS
-    std::string getValue()      const { return value;       }
+    unsigned int getValue()              const { return value;       }
     std::string getInitials()   const { return initials;    }
 
 // MUTATORS
-    void setValue   (std::string value)    { this->value    = value;    }
+    void setValue   (unsigned int value)    { this->value    = value;    }
     void setInitials(std::string initials) { this->initials = initials; }
+
+    std::string toString() { return std::to_string(value) + " " + initials; }
+
+// OPERATORS
+    bool operator <(const Score& that) const { return value < that.value; }
+    bool operator >(const Score& that) const { return value > that.value; }
 
 };
 
