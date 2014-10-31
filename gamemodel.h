@@ -25,6 +25,7 @@ public:
     void initializeGame();
     void reset();
 
+    string state();
     void loadGame(string filename);
     void saveGame(string filename);
 

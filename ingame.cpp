@@ -32,20 +32,11 @@ InGame::~InGame()
 }
 
 void InGame::keyPressEvent(QKeyEvent *ev){
-    /*
-    if (ev->key() == 0x01000012) { //Left key pressed
-        Timer->start();
-        cout << "left key pressed" << endl;
-    } else if (ev->key() == 0x01000014){ //Right key pressed
-
-    }
-    */
-
     //JOSH EXPERIMENT
     if (ev->key() == 0x01000012){ //left key pressed
         GameModel::getInstance().getPlayer()->setDir(-1);
 
-    }else if (ev->key() == 0x01000014){ //left key pressed
+    }else if (ev->key() == 0x01000014){ //right key pressed
         GameModel::getInstance().getPlayer()->setDir(1);
 
     }else if (ev->key() == 0x20){ // space key pressed
@@ -73,4 +64,5 @@ void InGame::TimerHit() {
              pl->getPlayer()->getPos().y(),
              100, 100));
     pl->show();
+    //qDebug(GameModel::getInstance().state().c_str());
 }
