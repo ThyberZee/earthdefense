@@ -24,8 +24,11 @@ void Host::clientConnected()
 void Host::dataReceived()
 {
     message = "";
+    // Commenting these two lines out for now
+    /*
     QString str = sock->readLine();
     message += str;
+    */
 }
 
 void Host::clientDisconnected()

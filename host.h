@@ -15,7 +15,7 @@ private:
     QTcpSocket* socket;
     int connectCount;
     bool client;
-    string message;
+    std::string message;
 
 public:
     explicit Host(QObject *parent = 0);
@@ -29,7 +29,7 @@ public slots:
     void changeClient(bool tempClient){client = tempClient;}
     void on_serverDisconnected();
     void on_connectionSucceeded();
-    string getMessage() {return message;}
+    std::string getMessage() {return message;}
 
 };
 
