@@ -25,8 +25,8 @@ bool unitTest(){
 
 int main(int argc, char *argv[])
 {
-    //HighScore::getInstance()->load();
-    // ^^Do not uncomment^^ -- keep the segfaults caged for now
+    HighScore::getInstance()->load();
+    HighScore::getInstance()->addScore(99999999999999999, "MSW");
 
 
     QApplication a(argc, argv);

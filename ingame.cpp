@@ -15,7 +15,10 @@ InGame::InGame(QMainWindow *parent) :
     //start gamemodel
     GameModel::getInstance().initializeGame();
     Timer = new QTimer(this);
-    Timer->setInterval(1000/30.0);
+
+    //Timer->setInterval(1000/30.0); // Original 30 frames
+    Timer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
+
     connect(Timer, &QTimer::timeout, this, &InGame::TimerHit);
 
     //Josh experiment

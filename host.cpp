@@ -23,22 +23,12 @@ void Host::clientConnected()
 
 void Host::dataReceived()
 {
-    if(client){
-
-    }else{
-        QTcpSocket *sock = dynamic_cast<QTcpSocket*>(sender());
-
-        while (sock->canReadLine()) {
-            QString str = sock->readLine();
-
-            // send data to all connected clients
-            for (QObject *obj : server->children()) {
-                QTcpSocket *anotherSock = dynamic_cast<QTcpSocket*>(obj);
-                if (anotherSock != NULL)
-                    anotherSock->write(str.toLocal8Bit());
-            }
-        }
-    }
+    message = "";
+    // Commenting these two lines out for now
+    /*
+    QString str = sock->readLine();
+    message += str;
+    */
 }
 
 void Host::clientDisconnected()
