@@ -15,6 +15,7 @@ void Player::save(ofstream& outfile)
 //updates player position based on direction travelled;
 void Player::update()
 {
+    /* ORIGINAL *
     switch(direction){
     case 0:
         break;
@@ -26,4 +27,24 @@ void Player::update()
     default:
         break;
     }
+    */
+
+    /* MATT WILSON */
+    switch(direction){
+    case 0:
+        break;
+
+    case 1: // Move Right
+        if ( (pos.x() <= 640 - 100 /* player width */))
+        { pos.setX(pos.x() + 5); }
+        break;
+
+    case -1: // Move Left
+        if ( (pos.x() >= 0 ))
+        { pos.setX(pos.x() - 5); }
+
+    default:
+        break;
+    }
+    /****      ****/
 }

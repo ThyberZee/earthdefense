@@ -16,11 +16,11 @@ bool HighScore::load() {
         for ( size_t i = 0; i < 5; ++i) {   // Load 5 scores into a vector<Score*>
             //Score score;
 
-            std::string value;      scorefile >> value;
+            unsigned int value;     scorefile >> value;
             std::string initials;   scorefile >> initials;
 
-            Score score(value, initials);   // Generate a score
-            addScore(score);                // and add it to the vector of scores
+            //Score score(value, initials);
+            addScore(value, initials);                // and add it to the vector of scores
         }
         save();
         return true;                        // aaand... done!
@@ -29,7 +29,7 @@ bool HighScore::load() {
     }
 }
 
-Score HighScore::newScore(std::string& value, std::string& initials) {
+Score HighScore::newScore(unsigned int value, std::string& initials) {
     Score score(value, initials);
     return score;
 }
@@ -52,25 +52,31 @@ void HighScore::createFile() {
     scorefile.close();
 }
 
+
 void HighScore::save() {
     ofstream scorefile;
     scorefile.open("scores");
+
     for (size_t i = 0; i < 5; ++i) {
-        scorefile << scores.at(i) << "\n";
+        Score& s = scores.at(i);
+        scorefile << s.toString() << "\n";
     }
     scorefile.close();
 }
 
 // Add score to the vector of scores, then sort in order,
 // take the lowest score (last in vector) out, and save the new highscores file 'scores'
-void HighScore::addScore(Score &score) {
-    scores.push_back(&score);
+void HighScore::addScore(unsigned int newValue, std::string newInitials) {
+    Score s(newValue, newInitials);
+    scores.push_back(s);
     HighScore::sort();
-    scores.pop_back();
+    if (scores.size() > 5) {
+        scores.pop_back();
+        save();
+    }
+
 }
 
 HighScore::~HighScore() {
-    for (size_t i = 0; i < scores.size(); ++i) {
-        delete scores.at(i);
-    }
+
 }

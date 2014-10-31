@@ -12,7 +12,7 @@
 GameModel GameModel::instance;
 
 GameModel::GameModel(){
-    //initializeGame();
+    initializeGame();
 }
 
 void GameModel::initializeGame(){
@@ -38,6 +38,16 @@ void GameModel::update(){
     for(Entity* e: entities){
         e->update();
     }
+}
+
+//return a string representation of game state including pos data for each entity
+string GameModel::state(){
+    stringstream ss;
+    for(Entity* e:entities){
+        ss << e->toString() << endl;
+    }
+    ss << player->toString() << endl;
+    return ss.str();
 }
 
 //save state of all entities
@@ -68,6 +78,7 @@ void GameModel::loadGame(string filename){
     infile.close();
 }
 
+//return entity object of type specified.  returns null by default
 Entity *GameModel::create(string type, int x, int y){
 
     if(type == "player"){
