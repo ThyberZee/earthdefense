@@ -16,7 +16,7 @@ GameModel::GameModel(){
 }
 
 void GameModel::initializeGame(){
-    QPoint point(5,5);
+    QPoint point(270,500);
     player = new Player(point);
 }
 
@@ -33,6 +33,22 @@ void GameModel::reset(){
     entities.clear();
 }
 
+void GameModel::update(){
+    player->update();
+    for(Entity* e: entities){
+        e->update();
+    }
+}
+
+//return a string representation of game state including pos data for each entity
+string GameModel::state(){
+    stringstream ss;
+    for(Entity* e:entities){
+        ss << e->toString() << endl;
+    }
+    ss << player->toString() << endl;
+    return ss.str();
+}
 
 //save state of all entities
 void GameModel::saveGame(string filename){
@@ -62,6 +78,7 @@ void GameModel::loadGame(string filename){
     infile.close();
 }
 
+//return entity object of type specified.  returns null by default
 Entity *GameModel::create(string type, int x, int y){
 
     if(type == "player"){
@@ -75,7 +92,7 @@ Entity *GameModel::create(string type, int x, int y){
         entities.push_back(e);
 
         return e;
-    }else if(type == "bullet"){
+    }else if(type == "projectile"){
         QPoint tempPoint(x,y);
         Projectile* p = new Projectile(tempPoint,50);
         entities.push_back(p);
@@ -86,6 +103,7 @@ Entity *GameModel::create(string type, int x, int y){
     }
 }
 
+//return pointer to object specified;  if it doesn't exist, return NULL
 Entity* GameModel::getById(int id) {
     for (size_t i = 0; i < entities.size(); ++i) {
         Entity* obj = entities.at(i);
@@ -93,7 +111,19 @@ Entity* GameModel::getById(int id) {
             return obj;
         }
     }
-    return nullptr;
+    return NULL;
+}
+
+//removes entity from entities if it exitsts, but DOES NOT DELETE
+Entity* GameModel::destroy(int id) {
+    for(size_t i = 0; i < entities.size(); ++i){
+        Entity *obj = entities.at(i);
+        if (obj->getId() == id){
+            entities.erase(entities.begin()+i);
+            return obj;
+        }
+    }
+    return NULL;
 }
 
 GameModel::~GameModel(){

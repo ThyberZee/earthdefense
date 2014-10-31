@@ -6,6 +6,7 @@
 #include <sstream>  // for children classes
 #include <string>
 #include <QPoint>
+#include <QRect>
 
 using namespace std;
 
@@ -13,19 +14,17 @@ class Entity
 {
 protected:
     QPoint pos;
+    //QRect box;
     int ID;
 
 public:
     static int nextId;
-    /* Jared -> Might it be better to use solely QPoints for everything?  opinions?
-     *ie, this: */
     Entity(QPoint point);
-    /* instead of this: */
-    //Entity(int x, int y);
 
     ~Entity();
 
     QPoint getPos(){return pos;}
+
     int getId(){return ID;}
 
     virtual void update() = 0;

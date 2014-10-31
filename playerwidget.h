@@ -3,18 +3,24 @@
 
 #include "player.h"
 #include "gamemodel.h"
-#include <QWidget>
+#include <QLabel>
+#include <QPicture>
 
-class PlayerWidget : public QWidget
+class PlayerWidget : public QLabel
 {
     Q_OBJECT
 private:
     //pointer to GameModel player
     Player* player;
+    QPixmap image;
+
 public:
     explicit PlayerWidget(QWidget *parent = 0);
 
     Player* getPlayer() { return player; }
+
+    //getters, setters
+    QPixmap getImage() {return image;}
     
 signals:
     

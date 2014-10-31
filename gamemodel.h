@@ -15,8 +15,8 @@ class GameModel {
 private:
     vector<Entity*> entities;
     Player* player;
-    int width;
-    int height;
+    int window_height;
+    int window_window;
 
 public:
     GameModel();
@@ -25,11 +25,15 @@ public:
     void initializeGame();
     void reset();
 
+    string state();
     void loadGame(string filename);
     void saveGame(string filename);
 
+    void update();
+
     Entity* create(string type, int x, int y);
     Entity* getById(int id);
+    Entity* destroy(int id);
 
     //getters and setters
     Player* getPlayer(){return player;}
