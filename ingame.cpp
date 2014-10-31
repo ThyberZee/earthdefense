@@ -57,7 +57,6 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 }
 
 void InGame::TimerHit() {
-
     GameModel::getInstance().update();
     pl->setGeometry(QRect(
              pl->getPlayer()->getPos().x(),

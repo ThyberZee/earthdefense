@@ -16,16 +16,19 @@ protected:
     QPoint pos;
     //QRect box;
     int ID;
+    bool alive;
 
 public:
     static int nextId;
-    Entity(QPoint point);
 
+    Entity(QPoint point);
     ~Entity();
 
     QPoint getPos(){return pos;}
-
     int getId(){return ID;}
+    bool isAlive(){return alive;}
+
+    void kill() {alive = false;}
 
     virtual void update() = 0;
     virtual string toString() = 0;
