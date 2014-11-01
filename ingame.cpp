@@ -14,18 +14,18 @@ InGame::InGame(QMainWindow *parent) :
 
     //start gamemodel
     GameModel::getInstance().initializeGame();
-    Timer = new QTimer(this);
+    fpsTimer = new QTimer(this);
 
     //Timer->setInterval(1000/30.0); // Original 30 frames
-    Timer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
+    fpsTimer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
 
-    connect(Timer, &QTimer::timeout, this, &InGame::TimerHit);
+    connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
 
     //Josh experiment
     pl = new PlayerWidget(this);
 
     pl->show();
-    Timer->start();
+    fpsTimer->start();
 
 }
 
@@ -59,20 +59,40 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
     }
 }
 
-void InGame::TimerHit() {
 
+void InGame::updateView() {
+    vector<Entity*> entities = GameModel::getInstance().getEntities();
+
+    /* Jared to Josh -> I think this needs to go into Game model,
+     *being driven by the master timer in the model (which drives the model)
+     *pretty much the model takes care of itself, the view just taps into it.
+     *The only thing in the model that the view can change is in the functions
+     *above: key events and the initialization of the game model in the constructor.
+     *The view will have its own Timer driving it, calling this function (updateView).
+     *   ---open to discussion :}
+     */
     GameModel::getInstance().update();
+
+
+    /* Update PlayerWidget Position */
     pl->setGeometry(QRect(
              pl->getPlayer()->getPos().x(),
              pl->getPlayer()->getPos().y(),
              100, 100));
     pl->show();
-    //qDebug(GameModel::getInstance().state().c_str());
-}
 
+    /* Update BulletWidget and EnemyWidget Postions */
+    /*--------SUDO CODE-----------
+    for (Entity* i : entities) {
+        if (i is of type bullet) {
+            bl->setGeometry(QRect(
+                                pl->getPlayer()->getPos().x() + 50, //halfway across the playerwidget (pl)
+                                bl->getBullet()->getPos().y()       //should be a constant distance...probably
+                                                                    //HEIGHT_OF_BULLET + 1, so it starts just above pl
+                                WIDTH_OF_BULLET,
+                                HEIGHT_OF_BULLET));
+            bl->show();
+        } else if (i is of type enemy) {
 
-
-void InGame::updateView() {
-    vector<Entity*> entities = GameModel::getInstance().getEntities();
-
+    }*/
 }

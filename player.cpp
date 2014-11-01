@@ -35,13 +35,15 @@ void Player::update()
         break;
 
     case 1: // Move Right
-        if ( (pos.x() <= 640 - 100 /* player width */))
-        { pos.setX(pos.x() + 5); }
+        if ( (pos.x() <= 640 - 100 /* player width */)) {
+            pos.setX(pos.x() + 5);
+        }
         break;
 
     case -1: // Move Left
-        if ( (pos.x() >= 0 ))
-        { pos.setX(pos.x() - 5); }
+        if ( (pos.x() >= 0 )) {
+            pos.setX(pos.x() - 5);
+        }
 
     default:
         break;
