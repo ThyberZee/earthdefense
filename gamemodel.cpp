@@ -36,6 +36,13 @@ void GameModel::reset(){
 void GameModel::update(){
     player->update();
     for(Entity* e: entities){
+        //kill the dead entities
+        if (e->isAlive() == false){
+            delete destroy(e->getId());
+        }
+
+
+        //update the rest
         e->update();
     }
 }
@@ -99,7 +106,7 @@ Entity *GameModel::create(string type, int x, int y){
 
         return p;
     }else{
-        return nullptr;
+        return NULL;
     }
 }
 

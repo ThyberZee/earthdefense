@@ -15,27 +15,12 @@ void Player::save(ofstream& outfile)
 //updates player position based on direction travelled;
 void Player::update()
 {
-    /* ORIGINAL *
-    switch(direction){
-    case 0:
-        break;
-    case 1:
-        pos.setX(pos.x() + 5);
-        break;
-    case -1:
-        pos.setX(pos.x() - 5);
-    default:
-        break;
-    }
-    */
-
-    /* MATT WILSON */
     switch(direction){
     case 0:
         break;
 
     case 1: // Move Right
-        if ( (pos.x() <= 640 - 100 /* player width */))
+        if ( (pos.x() <= 640 - 100)) // game width - player width;  might want to replace with variables.
         { pos.setX(pos.x() + 5); }
         break;
 
@@ -46,5 +31,4 @@ void Player::update()
     default:
         break;
     }
-    /****      ****/
 }
