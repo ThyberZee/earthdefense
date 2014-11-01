@@ -20,7 +20,7 @@ public:
     Player* getPlayer() { return player; }
 
     //getters, setters
-    QPixmap getImage() {return image;}
+    QPixmap getImage() { return image; }
     
 signals:
     

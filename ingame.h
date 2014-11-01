@@ -5,8 +5,8 @@
 #include <QWidget>
 #include <QKeyEvent>
 #include "playerwidget.h"
-
 #include "player.h"
+#include <vector>
 
 namespace Ui {
 class InGame;
@@ -24,12 +24,12 @@ private slots:
 
     void keyPressEvent(QKeyEvent *ev);
     void keyReleaseEvent(QKeyEvent *ev);
-    void TimerHit();
+    void updateView();
     
 private:
     Ui::InGame *ui;
     PlayerWidget *pl;  // Pointer to the Player Widget
-    QTimer *Timer;
+    QTimer *fpsTimer;     // Timer that drives the InGame UI
 
 };
 

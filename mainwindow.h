@@ -33,12 +33,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
-//private slots:
-//    // slot stubs to be replaced later with real slots
-//    void signal_spacebar_shoot();
-//    void signal_left_arrow_moveleft();
-//    void signal_right_arrow_moveright();
 };
 
 #endif // MAINWINDOW_H
