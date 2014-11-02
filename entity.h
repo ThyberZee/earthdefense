@@ -28,7 +28,7 @@ public:
     int getId(){return ID;}
     bool isAlive(){return alive;}
     bool getJustCreated(){return justCreated;}
-    void setJustCreate(bool b){justCreated = b;}
+    void setJustCreated(bool b){justCreated = b;}
 
     void kill() {alive = false;}
 

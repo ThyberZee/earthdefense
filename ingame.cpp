@@ -100,7 +100,7 @@ void InGame::updateView() {
                                           10,                                      //BULLET_WIDTH
                                           30));                                    //BULLET_HEIGHT
                 bullet->show();
-                if (bullet->getProjectile->isAlive() == false) {   // If the bullet goes off the screen
+                if (bullet->getProjectile()->isAlive() == false) {   // If the bullet goes off the screen
                     delete bullet;
                     pr.erase(pr.begin() + j);                               // delete the widget out of the pr vector
 
@@ -127,7 +127,7 @@ void InGame::updateView() {
                     enemy->getEnemy()->getPos().y() < 0 || enemy->getEnemy()->getPos().y() > 800)   // way shape or form....
                 {
                     enemy->getEnemy()->kill();  // kill it (underlying object)
-                    en.erase(i);                // and erase it (EnemyWidget in vector en)
+                    en.erase(en.begin() + i);                // and erase it (EnemyWidget in vector en)
                 }
             }
         }

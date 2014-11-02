@@ -2,7 +2,6 @@
 #define PROJECTILEWIDGET_H
 
 #include "projectile.h"
-#include "gamemodel.h"
 #include <QLabel>
 
 class ProjectileWidget : public QLabel

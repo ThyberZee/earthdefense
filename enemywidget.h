@@ -2,7 +2,6 @@
 #define ENEMYWIDGET_H
 
 #include "enemy.h"
-#include "gamemodel.h"
 #include <QLabel>
 
 using namespace std;
