@@ -5,8 +5,8 @@
 #include <QWidget>
 #include <QKeyEvent>
 #include "playerwidget.h"
-#include "player.h"
-#include <vector>
+#include "enemywidget.h"
+#include "projectilewidget.h"
 
 namespace Ui {
 class InGame;
@@ -28,8 +28,10 @@ private slots:
     
 private:
     Ui::InGame *ui;
-    PlayerWidget *pl;  // Pointer to the Player Widget
-    QTimer *fpsTimer;     // Timer that drives the InGame UI
+    PlayerWidget *pl;               // Pointer to the Player Widget
+    vector<ProjectileWidget*> pr;    // Pointer to the vector of Projectile Widgets
+    vector<EnemyWidget*> en;        // Pointer to the vector of Enemy Widgets
+    QTimer *fpsTimer;               // Timer that drives the InGame UI
 
 };
 

@@ -3,6 +3,7 @@
 #include <QLabel>
 #include <QTimer>
 #include <iostream>
+#include <typeinfo>
 
 using namespace std;
 
@@ -81,17 +82,32 @@ void InGame::updateView() {
     pl->show();
 
     /* Update BulletWidget and EnemyWidget Postions */
-    /*--------SUDO CODE-----------
     for (Entity* i : entities) {
-        if (i is of type bullet) {
-            bl->setGeometry(QRect(
-                                pl->getPlayer()->getPos().x() + 50, //halfway across the playerwidget (pl)
-                                bl->getBullet()->getPos().y()       //should be a constant distance...probably
-                                                                    //HEIGHT_OF_BULLET + 1, so it starts just above pl
-                                WIDTH_OF_BULLET,
-                                HEIGHT_OF_BULLET));
-            bl->show();
-        } else if (i is of type enemy) {
 
-    }*/
+        if (i->toString().find("projectile")){ // if i is of type Projectile...
+            if (i->getJustCreated()) {         // returns true if the projectile was JUST created
+                ProjectileWidget* temp = new ProjectileWidget(this, dynamic_cast<Projectile*>(i));
+                pr.push_back(temp);
+                i->setJustCreated(false);
+            }
+
+            for (size_t i = 0; i < pr.size(); i++) {
+                ProjectileWidget* bullet = pr.at(i);
+                bullet->setGeometry(QRect(bullet->getBullet()->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
+                                          bullet->getBullet()->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
+                                          10,                                  //WIDTH_OF_BULLET
+                                          30));                                //HEIGHT_OF_BULLET
+                bullet->show();
+                if (bullet->getBullet->getPos().y() > 800) {   // If the bullet goes off the screen
+                    bullet->getBullet->kill();                 // delete the underlyine object (should be done in model)
+                    pr.erase(i);                               // delete the widget out of the pr vector
+
+                }
+
+            }
+
+        } else if (i->toString().find("enemy")) {
+            //TODO
+        }
+    }
 }
