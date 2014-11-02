@@ -13,7 +13,7 @@ void Player::save(ofstream& outfile)
 }
 
 //updates player position based on direction travelled;
-void Player::   update()
+void Player::update()
 {
     switch(direction){
     case 0:

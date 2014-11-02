@@ -47,7 +47,7 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         int x = GameModel::getInstance().getPlayer()->getPos().x();
         int y = GameModel::getInstance().getPlayer()->getPos().y();
 
-        GameModel::getInstance().create("projectile",x,y);
+        GameModel::getInstance().create("projectile", x, y);
     }
 }
 
@@ -74,7 +74,8 @@ void InGame::updateView() {
     GameModel::getInstance().update();
 
 
-    /* Update PlayerWidget Position */
+    /* Update PlayerWidget Position ---- MIGHT HAVE TO IMPLEMENT SAME AS BELOW WHEN WE INTRODUCE MULTIPLAYER SINCE THERE WILL BE MORE THAN
+     *                                   ONE PLAYER ON THE SCREEN AT ONE TIME */
     pl->setGeometry(QRect(
              pl->getPlayer()->getPos().x(),
              pl->getPlayer()->getPos().y(),
@@ -82,32 +83,53 @@ void InGame::updateView() {
     pl->show();
 
     /* Update BulletWidget and EnemyWidget Postions */
-    for (Entity* i : entities) {
+    for (Entity* entity_obj : entities) {
 
-        if (i->toString().find("projectile")){ // if i is of type Projectile...
-            if (i->getJustCreated()) {         // returns true if the projectile was JUST created
-                ProjectileWidget* temp = new ProjectileWidget(this, dynamic_cast<Projectile*>(i));
+        /////////////////////IF WIDGET IS PROJECTILE///////////////////////
+        if (entity_obj->toString().find("projectile")){ // if i is of type Projectile...
+            if (entity_obj->getJustCreated()) {         // returns true if the projectile was JUST created
+                ProjectileWidget* temp = new ProjectileWidget(this, dynamic_cast<Projectile*>(entity_obj));
                 pr.push_back(temp);
-                i->setJustCreated(false);
+                entity_obj->setJustCreated(false);
             }
 
-            for (size_t i = 0; i < pr.size(); i++) {
-                ProjectileWidget* bullet = pr.at(i);
-                bullet->setGeometry(QRect(bullet->getBullet()->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
-                                          bullet->getBullet()->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
-                                          10,                                  //WIDTH_OF_BULLET
-                                          30));                                //HEIGHT_OF_BULLET
+            for (size_t j = 0; j < pr.size(); j++) {
+                ProjectileWidget* bullet = pr.at(j);
+                bullet->setGeometry(QRect(bullet->getProjectile()->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
+                                          bullet->getProjectile()->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
+                                          10,                                      //BULLET_WIDTH
+                                          30));                                    //BULLET_HEIGHT
                 bullet->show();
-                if (bullet->getBullet->getPos().y() > 800) {   // If the bullet goes off the screen
-                    bullet->getBullet->kill();                 // delete the underlyine object (should be done in model)
-                    pr.erase(i);                               // delete the widget out of the pr vector
+                if (bullet->getProjectile->isAlive() == false) {   // If the bullet goes off the screen
+                    delete bullet;
+                    pr.erase(pr.begin() + j);                               // delete the widget out of the pr vector
 
                 }
-
             }
 
-        } else if (i->toString().find("enemy")) {
-            //TODO
+
+        //////////////////////IF WIDGET IS ENEMY//////////////////////////
+        } else if (entity_obj->toString().find("enemy")) {
+            if (entity_obj->getJustCreated()) {
+                EnemyWidget* temp = new EnemyWidget(this, dynamic_cast<Enemy*>(entity_obj));
+                en.push_back(temp);
+                entity_obj->setJustCreated(false);
+            }
+
+            for (size_t i = 0; i < en.size(); i++) {
+                EnemyWidget* enemy = en.at(i);
+                enemy->setGeometry(QRect(enemy->getEnemy()->getPos().x(),
+                                          enemy->getEnemy()->getPos().y(),
+                                          100,      //ENEMY_WIDTH
+                                          100));    //ENEMY_HEIGHT
+                enemy->show();
+                if (enemy->getEnemy()->getPos().x() < 0 || enemy->getEnemy()->getPos().x() > 640 || // If the enemy goes off the screen in any
+                    enemy->getEnemy()->getPos().y() < 0 || enemy->getEnemy()->getPos().y() > 800)   // way shape or form....
+                {
+                    enemy->getEnemy()->kill();  // kill it (underlying object)
+                    en.erase(i);                // and erase it (EnemyWidget in vector en)
+                }
+            }
         }
     }
 }

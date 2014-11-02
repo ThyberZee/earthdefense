@@ -14,7 +14,7 @@ private:
     QPixmap image;
 
 public:
-    explicit ProjectileWidget(QWidget *parent = 0, Projectile *init_projectile);
+    explicit ProjectileWidget(QWidget *parent = 0, Projectile *init_projectile = nullptr);
 
     Projectile* getProjectile() { return projectile; }
 

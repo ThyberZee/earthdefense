@@ -5,6 +5,8 @@
 #include "gamemodel.h"
 #include <QLabel>
 
+using namespace std;
+
 class EnemyWidget : public QLabel
 {
     Q_OBJECT
@@ -14,7 +16,7 @@ private:
     QPixmap image;
 
 public:
-    explicit EnemyWidget(QWidget *parent = 0);
+    explicit EnemyWidget(QWidget *parent = 0, Enemy* init_enemy = nullptr);
 
     Enemy* getEnemy() { return enemy; }
 
