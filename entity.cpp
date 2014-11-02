@@ -5,8 +5,9 @@ int Entity::nextId = 0;
 Entity::Entity(QPoint newPos)
 {
     pos = newPos;
-    alive = true;
+    justCreated = alive = true;
     ID = nextId++;
+
 }
 
 void Entity::save(ofstream &outfile){}

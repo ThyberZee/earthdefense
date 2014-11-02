@@ -16,5 +16,5 @@ string Projectile::toString(){
 
 void Projectile::update(){
     pos.setY(pos.y() -10);
-    if(y > 800){this->kill();} //800 screen height;
+    if(pos.y() > 800){this->kill();} //800 screen height;
 }

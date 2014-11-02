@@ -16,7 +16,7 @@ protected:
     QPoint pos;
     //QRect box;
     int ID;
-    bool alive;
+    bool alive, justCreated;
 
 public:
     static int nextId;
@@ -27,6 +27,8 @@ public:
     QPoint getPos(){return pos;}
     int getId(){return ID;}
     bool isAlive(){return alive;}
+    bool getJustCreated(){return justCreated;}
+    void setJustCreate(bool b){justCreated = b;}
 
     void kill() {alive = false;}
 
