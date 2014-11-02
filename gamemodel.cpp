@@ -40,8 +40,6 @@ void GameModel::update(){
         if (e->isAlive() == false){
             delete destroy(e->getId());
         }
-
-
         //update the rest
         e->update();
     }
