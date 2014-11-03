@@ -1,10 +1,10 @@
-#ifndef PROJECTILEWIDGET_H
-#define PROJECTILEWIDGET_H
+#ifndef ENTITYWIDGET_H
+#define ENTITYWIDGET_H
 
 #include "entity.h"
 #include <QLabel>
 
-class ProjectileWidget : public QLabel
+class EntityWidget : public QLabel
 {
     Q_OBJECT
 private:
@@ -13,8 +13,8 @@ private:
     QPixmap image;
 
 public:
-    explicit ProjectileWidget(QWidget *parent = 0, Entity *init_projectile = nullptr);
-    ~ProjectileWidget();
+    explicit EntityWidget(QWidget *parent = 0, Entity *init_projectile = nullptr);
+    ~EntityWidget();
 
     Entity* getProjectile() { return projectile; }
 
@@ -27,4 +27,4 @@ public slots:
 
 };
 
-#endif // PROJECTILEWIDGET_H
+#endif // ENTITYWIDGET_H

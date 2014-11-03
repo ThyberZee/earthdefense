@@ -13,11 +13,10 @@ InGame::InGame(QMainWindow *parent) :
     fpsTimer = new QTimer(this);
 
     //Timer->setInterval(1000/30.0); // Original 30 frames
-    fpsTimer->setInterval(1000/30.0); // EXPERIMENT: 60 frames
+    fpsTimer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
 
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
 
-    //Josh experiment
     pl = new PlayerWidget(this);
 
     pl->show();
@@ -31,7 +30,7 @@ InGame::~InGame()
 }
 
 void InGame::keyPressEvent(QKeyEvent *ev){
-    //JOSH EXPERIMENT
+
     if (ev->key() == 0x01000012){ //left key pressed
         GameModel::getInstance().getPlayer()->setDir(-1);
 
@@ -39,8 +38,8 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         GameModel::getInstance().getPlayer()->setDir(1);
 
     }else if (ev->key() == 0x20){ // space key pressed
-        int x = GameModel::getInstance().getPlayer()->getPos().x();
-        int y = GameModel::getInstance().getPlayer()->getPos().y();
+        int x = GameModel::getInstance().getPlayer()->getPos().x() + 50;
+        int y = GameModel::getInstance().getPlayer()->getPos().y() - 10;
 
         GameModel::getInstance().create("projectile", x, y);
     }
@@ -77,77 +76,43 @@ void InGame::updateView() {
              100, 100));
     pl->show();
 
-    /* Update BulletWidget and EnemyWidget Postions */
-//    for (Entity* entity_obj : entities) {
 
-//        /////////////////////IF WIDGET IS PROJECTILE///////////////////////
-//        if (entity_obj->toString().find("projectile")){ // if i is of type Projectile...
-//            if (entity_obj->getJustCreated()) {         // returns true if the projectile was JUST created
-//                ProjectileWidget* temp = new ProjectileWidget(this, dynamic_cast<Projectile*>(entity_obj));
-//                pr.push_back(temp);
-//                entity_obj->setJustCreated(false);
-//            }
-
-//            for (size_t j = 0; j < pr.size(); j++) {
-//                ProjectileWidget* bullet = pr.at(j);
-//                bullet->setGeometry(QRect(bullet->getProjectile()->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
-//                                          bullet->getProjectile()->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
-//                                          10,                                      //BULLET_WIDTH
-//                                          30));                                    //BULLET_HEIGHT
-//                bullet->show();
-//                if (bullet->getProjectile()->isAlive() == false) {   // If the bullet goes off the screen
-//                    delete bullet;
-//                    pr.erase(pr.begin() + j);                               // delete the widget out of the pr vector
-
-//                }
-//            }
-
-
-//        //////////////////////IF WIDGET IS ENEMY//////////////////////////
-//        } else if (entity_obj->toString().find("enemy")) {
-//            if (entity_obj->getJustCreated()) {
-//                EnemyWidget* temp = new EnemyWidget(this, dynamic_cast<Enemy*>(entity_obj));
-//                en.push_back(temp);
-//                entity_obj->setJustCreated(false);
-//            }
-
-//            for (size_t i = 0; i < en.size(); i++) {
-//                EnemyWidget* enemy = en.at(i);
-//                enemy->setGeometry(QRect(enemy->getEnemy()->getPos().x(),
-//                                          enemy->getEnemy()->getPos().y(),
-//                                          100,      //ENEMY_WIDTH
-//                                          100));    //ENEMY_HEIGHT
-//                enemy->show();
-//                if (enemy->getEnemy()->getPos().x() < 0 || enemy->getEnemy()->getPos().x() > 640 || // If the enemy goes off the screen in any
-//                    enemy->getEnemy()->getPos().y() < 0 || enemy->getEnemy()->getPos().y() > 800)   // way shape or form....
-//                {
-//                    enemy->getEnemy()->kill();  // kill it (underlying object)
-//                    en.erase(en.begin() + i);                // and erase it (EnemyWidget in vector en)
-//                }
-//            }
-//        }
-//    }
 
     for(Entity* entity:entities){
         if(entity->getJustCreated()){
+                EntityWidget* temp = new EntityWidget(this, dynamic_cast<Entity*>(entity));
+                ewidgets.push_back(temp);
 
-            if (entity->toString().find("projectile")){
-                ProjectileWidget* temp = new ProjectileWidget(this, dynamic_cast<Projectile*>(entity));
-                temp->setText("projectile");
                 temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
-                                                         entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
-                                                         10,                                      //BULLET_WIDTH
-                                                       30));
+                                        entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
+                                        10,                                      //BULLET_WIDTH
+                                        30));
+
+
+                //check for type in order to set proper image.  right now just sets text
+                if(temp->getProjectile()->toString().find("projectile") == 0){
+                    temp->setText("P");
+                }else{
+                    temp->setText("E");
+                }
+
                 temp->show();
+
                 entity->setJustCreated(false);      //make sure we know that entity is no longer new.
-            }
         }
     }
-/*
-    for(QLabel* qobj: ui->children()){
-        ProjectileWidget* wdgt = dynamic_cast<ProjectileWidget *>(qobj);
-        wdgt->get->updatePosition();
-        wdgt->move(wdgt->getObject()->getX(),wdgt->getObject()->getY());
-        wdgt->show();
-    }*/
+
+    //update each remaining widget
+
+    for(size_t i = 0; i < ewidgets.size(); i++){
+        EntityWidget *wdgt = ewidgets.at(i);
+        if (wdgt->getProjectile()->isAlive() == false){
+            entities.erase(entities.begin()+i);
+            delete wdgt;
+        }else{
+            wdgt->move(wdgt->getProjectile()->getPos().x(),wdgt->getProjectile()->getPos().y());
+            wdgt->show();
+        }
+    }
 }
+

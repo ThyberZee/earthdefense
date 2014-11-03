@@ -16,8 +16,22 @@ void Enemy::save(ofstream& outfile)
 
 void Enemy::update()
 {
-    pos.setX(9);
-    pos.setY(9);
+    //update x to move closer to target
+    if(target.x() < pos.x()){
+        pos.setX(pos.x() + 1);
+    }else if(target.x() > pos.x()){
+        pos.setX(pos.x() - 1);
+    }
+
+    //update y to move closer to target
+    if(target.y() < pos.y()){
+        pos.setY(pos.y() + 1);
+    }else if(target.y() > pos.y()){
+        pos.setY(pos.y() - 1);
+    }
+    /*
+    pos.setX(rand() % 500);
+    pos.setY(rand() % 500);*/
 }
 
 Enemy::~Enemy() { }
