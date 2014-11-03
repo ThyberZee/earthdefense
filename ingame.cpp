@@ -13,7 +13,7 @@ InGame::InGame(QMainWindow *parent) :
     fpsTimer = new QTimer(this);
 
     //Timer->setInterval(1000/30.0); // Original 30 frames
-    fpsTimer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
+    fpsTimer->setInterval(1000/30.0); // EXPERIMENT: 60 frames
 
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
 
@@ -128,9 +128,26 @@ void InGame::updateView() {
 //        }
 //    }
 
-//    for(Entity* entity: GameModel::getInstance().getEntities()){
-//        if(entity->getJustCreated()){
-//            if()
-//        }
-//    }
+    for(Entity* entity:entities){
+        if(entity->getJustCreated()){
+
+            if (entity->toString().find("projectile")){
+                ProjectileWidget* temp = new ProjectileWidget(this, dynamic_cast<Projectile*>(entity));
+                temp->setText("projectile");
+                temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
+                                                         entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
+                                                         10,                                      //BULLET_WIDTH
+                                                       30));
+                temp->show();
+                entity->setJustCreated(false);      //make sure we know that entity is no longer new.
+            }
+        }
+    }
+/*
+    for(QLabel* qobj: ui->children()){
+        ProjectileWidget* wdgt = dynamic_cast<ProjectileWidget *>(qobj);
+        wdgt->get->updatePosition();
+        wdgt->move(wdgt->getObject()->getX(),wdgt->getObject()->getY());
+        wdgt->show();
+    }*/
 }
