@@ -83,7 +83,7 @@ void InGame::updateView() {
 
 
                 //check for type in order to set proper image.  right now just sets text
-                if(temp->getProjectile()->toString().find("projectile") == 0){
+                if(temp->getEntity()->toString().find("projectile") == 0){
                     temp->setText("P");
                 }else{
                     temp->setText("E");
@@ -99,11 +99,11 @@ void InGame::updateView() {
 
     for(size_t i = 0; i < ewidgets.size(); i++){
         EntityWidget *wdgt = ewidgets.at(i);
-        if (wdgt->getProjectile()->isAlive() == false){
+        if (wdgt->getEntity()->isAlive() == false){     //destroy widget if corresponding entity is dead
             entities.erase(entities.begin()+i);
             delete wdgt;
         }else{
-            wdgt->move(wdgt->getProjectile()->getPos().x(),wdgt->getProjectile()->getPos().y());
+            wdgt->move(wdgt->getEntity()->getPos().x(),wdgt->getEntity()->getPos().y());
             wdgt->show();
         }
     }

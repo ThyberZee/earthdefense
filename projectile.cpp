@@ -15,7 +15,7 @@ string Projectile::toString(){
 void Projectile::update(){
     pos.setY(pos.y() + 10*direction);
     if(pos.y() > 800 || pos.y() < 0){   //800 screen height;
-       // kill(); FIX SEGFAULT!!
+       // kill();  /SEGFAULTS ABOUND!!!
     }
 }
 

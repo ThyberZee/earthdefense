@@ -10,7 +10,6 @@ void GameModel::initializeGame(){
 
     QPoint point(270,500);
     player = new Player(point);
-    //loadGame("savefilename");
 }
 
 void GameModel::reset(){
@@ -61,7 +60,7 @@ void GameModel::saveGame(string filename){
     outfile.close();
 }
 
-
+//load game.  duh
 void GameModel::loadGame(string filename){
     string type;
     int x;
