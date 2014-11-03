@@ -80,11 +80,15 @@ void InGame::updateView() {
                                         entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
                                         10,                                      //BULLET_WIDTH
                                         30));
+                temp->setAttribute(Qt::WA_TranslucentBackground, true);
 
 
                 //check for type in order to set proper image.  right now just sets text
                 if(temp->getProjectile()->toString().find("projectile") == 0){
-                    temp->setText("P");
+                    //temp->setText("P");
+                    // MATT EXPERIMENT
+                    QPixmap projectile(":/resources/images/projectile.png");
+                    temp->setPixmap(projectile);
                 }else{
                     temp->setText("E");
                 }
