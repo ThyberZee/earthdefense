@@ -1,9 +1,4 @@
 #include "ingame.h"
-#include "ui_ingame.h"
-#include <QLabel>
-#include <QTimer>
-#include <iostream>
-#include <typeinfo>
 
 using namespace std;
 

@@ -14,3 +14,5 @@ PlayerWidget::PlayerWidget(QWidget *parent) :QLabel(parent)
     setPixmap(image);
     setScaledContents(true);
 }
+
+PlayerWidget::~PlayerWidget() { }

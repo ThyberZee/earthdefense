@@ -15,6 +15,7 @@ private:
 
 public:
     explicit PlayerWidget(QWidget *parent = 0);
+    ~PlayerWidget();
 
     Player* getPlayer() { return player; }
 

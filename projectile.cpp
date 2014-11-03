@@ -1,6 +1,4 @@
 #include "projectile.h"
-#include "sstream"
-#include <QPoint>
 
 Projectile::Projectile(QPoint p, int v): Entity(p), velocity(v) {}
 
@@ -18,3 +16,5 @@ void Projectile::update(){
     pos.setY(pos.y() -10);
     if(pos.y() > 800){this->kill();} //800 screen height;
 }
+
+Projectile::~Projectile() { }

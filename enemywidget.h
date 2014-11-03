@@ -16,6 +16,7 @@ private:
 
 public:
     explicit EnemyWidget(QWidget *parent = 0, Enemy* init_enemy = nullptr);
+    ~EnemyWidget();
 
     Enemy* getEnemy() { return enemy; }
 

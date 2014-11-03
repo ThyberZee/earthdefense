@@ -4,3 +4,6 @@ ProjectileWidget::ProjectileWidget(QWidget *parent, Projectile* init_projectile)
 {
 }
 
+ProjectileWidget::~ProjectileWidget() {
+
+}

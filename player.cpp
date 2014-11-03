@@ -34,3 +34,5 @@ void Player::update()
         break;
     }
 }
+
+Player::~Player() { }

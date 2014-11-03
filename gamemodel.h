@@ -1,10 +1,13 @@
 #ifndef GAMEMODEL_H
 #define GAMEMODEL_H
 
+#include <QDebug>
+#include <QWidget>
 #include <string>
 #include <vector>
-#include <QWidget>
-
+#include "projectile.h"
+#include "gamemodel.h"
+#include "enemy.h"
 #include "player.h"
 #include "entity.h"
 

@@ -19,3 +19,5 @@ void Enemy::update()
     pos.setX(9);
     pos.setY(9);
 }
+
+Enemy::~Enemy() { }

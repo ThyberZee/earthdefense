@@ -1,13 +1,4 @@
-#include <vector>
-#include <string>
-#include <QDebug>
-
-#include "projectile.h"
 #include "gamemodel.h"
-#include "entity.h"
-#include "enemy.h"
-#include "player.h"
-
 
 GameModel GameModel::instance;
 

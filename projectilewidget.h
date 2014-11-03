@@ -14,6 +14,7 @@ private:
 
 public:
     explicit ProjectileWidget(QWidget *parent = 0, Projectile *init_projectile = nullptr);
+    ~ProjectileWidget();
 
     Projectile* getProjectile() { return projectile; }
 

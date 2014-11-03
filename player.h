@@ -9,6 +9,7 @@ private:
     int direction; // 0 for not moving, -1 for left, and 1 for right;
 public:
     Player(QPoint point): Entity(point) {}
+    ~Player();
 
     string toString();
     void save(ofstream& file);

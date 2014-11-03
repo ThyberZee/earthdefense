@@ -1,6 +1,7 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
+#include "sstream"
 #include "entity.h"
 #include <QPoint>
 
@@ -10,6 +11,7 @@ private:
     int velocity;
 public:
     Projectile(QPoint p, int v);
+    ~Projectile();
     string toString();
     void save(ofstream& outfile);
     void update();
