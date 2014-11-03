@@ -76,56 +76,7 @@ void InGame::updateView() {
              100, 100));
     pl->show();
 
-    /* Update BulletWidget and EnemyWidget Postions */
-//    for (Entity* entity_obj : entities) {
 
-//        /////////////////////IF WIDGET IS PROJECTILE///////////////////////
-//        if (entity_obj->toString().find("projectile")){ // if i is of type Projectile...
-//            if (entity_obj->getJustCreated()) {         // returns true if the projectile was JUST created
-//                ProjectileWidget* temp = new ProjectileWidget(this, dynamic_cast<Projectile*>(entity_obj));
-//                pr.push_back(temp);
-//                entity_obj->setJustCreated(false);
-//            }
-
-//            for (size_t j = 0; j < pr.size(); j++) {
-//                ProjectileWidget* bullet = pr.at(j);
-//                bullet->setGeometry(QRect(bullet->getProjectile()->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
-//                                          bullet->getProjectile()->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
-//                                          10,                                      //BULLET_WIDTH
-//                                          30));                                    //BULLET_HEIGHT
-//                bullet->show();
-//                if (bullet->getProjectile()->isAlive() == false) {   // If the bullet goes off the screen
-//                    delete bullet;
-//                    pr.erase(pr.begin() + j);                               // delete the widget out of the pr vector
-
-//                }
-//            }
-
-
-//        //////////////////////IF WIDGET IS ENEMY//////////////////////////
-//        } else if (entity_obj->toString().find("enemy")) {
-//            if (entity_obj->getJustCreated()) {
-//                EnemyWidget* temp = new EnemyWidget(this, dynamic_cast<Enemy*>(entity_obj));
-//                en.push_back(temp);
-//                entity_obj->setJustCreated(false);
-//            }
-
-//            for (size_t i = 0; i < en.size(); i++) {
-//                EnemyWidget* enemy = en.at(i);
-//                enemy->setGeometry(QRect(enemy->getEnemy()->getPos().x(),
-//                                          enemy->getEnemy()->getPos().y(),
-//                                          100,      //ENEMY_WIDTH
-//                                          100));    //ENEMY_HEIGHT
-//                enemy->show();
-//                if (enemy->getEnemy()->getPos().x() < 0 || enemy->getEnemy()->getPos().x() > 640 || // If the enemy goes off the screen in any
-//                    enemy->getEnemy()->getPos().y() < 0 || enemy->getEnemy()->getPos().y() > 800)   // way shape or form....
-//                {
-//                    enemy->getEnemy()->kill();  // kill it (underlying object)
-//                    en.erase(en.begin() + i);                // and erase it (EnemyWidget in vector en)
-//                }
-//            }
-//        }
-//    }
 
     for(Entity* entity:entities){
         if(entity->getJustCreated()){
