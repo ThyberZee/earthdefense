@@ -43,6 +43,7 @@ public:
     Player* getPlayer(){return player;}
     vector<Entity*> getEntities(){return entities;}
     int getScore(){ return score;}
+    void setScore(int s){score = s;}
 
 
     /***  singleton implementation ****/

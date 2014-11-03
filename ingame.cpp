@@ -100,7 +100,7 @@ void InGame::updateView() {
     for(size_t i = 0; i < ewidgets.size(); i++){
         EntityWidget *wdgt = ewidgets.at(i);
         if (wdgt->getEntity()->isAlive() == false){     //destroy widget if corresponding entity is dead
-            entities.erase(entities.begin()+i);
+            ewidgets.erase(ewidgets.begin()+i);
             delete wdgt;
         }else{
             wdgt->move(wdgt->getEntity()->getPos().x(),wdgt->getEntity()->getPos().y());

@@ -30,8 +30,8 @@ public:
     bool getJustCreated(){return justCreated;}
     void setJustCreated(bool b){justCreated = b;}
 
-    void kill() {alive = false;}
 
+    virtual void kill() {alive = false;}
     virtual void update() = 0;
     virtual string toString() = 0;
     virtual void save(ofstream& outfile) = 0;
