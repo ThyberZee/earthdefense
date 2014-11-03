@@ -16,7 +16,7 @@ public:
     explicit ProjectileWidget(QWidget *parent = 0, Entity *init_projectile = nullptr);
     ~ProjectileWidget();
 
-    Entity* getProjectile() { return projectile; }
+    Entity* getEntity() { return projectile; }
 
     //getters, setters
     QPixmap getImage() { return image; }

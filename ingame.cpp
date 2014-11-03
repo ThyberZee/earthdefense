@@ -12,7 +12,7 @@ InGame::InGame(QMainWindow *parent) :
     GameModel::getInstance().initializeGame();
     fpsTimer = new QTimer(this);
 
-    //Timer->setInterval(1000/30.0); // Original 30 frames
+    //fpsTimer->setInterval(1000/30.0); // Original 30 frames
     fpsTimer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
 
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
@@ -48,9 +48,9 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
 void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
-    if (ev->key() == 0x01000012){ //left key pressed
+    if (ev->key() == 0x01000012){ //left key released
         GameModel::getInstance().getPlayer()->setDir(0);
-    }else if (ev->key() == 0x01000014){ //left key pressed
+    }else if (ev->key() == 0x01000014){ //left key released
         GameModel::getInstance().getPlayer()->setDir(0);
     }
 }
@@ -84,9 +84,9 @@ void InGame::updateView() {
 
 
                 //check for type in order to set proper image.  right now just sets text
-                if(temp->getProjectile()->toString().find("projectile") == 0){
-                    //temp->setText("P");
-                    // MATT EXPERIMENT
+
+
+                if(temp->getEntity()->toString().find("projectile") == 0){
                     QPixmap projectile(":/resources/images/projectile.png");
                     temp->setPixmap(projectile);
                 }else{
@@ -103,11 +103,11 @@ void InGame::updateView() {
 
     for(size_t i = 0; i < ewidgets.size(); i++){
         EntityWidget *wdgt = ewidgets.at(i);
-        if (wdgt->getProjectile()->isAlive() == false){
+        if (wdgt->getEntity()->isAlive() == false){     //destroy widget if corresponding entity is dead
             entities.erase(entities.begin()+i);
             delete wdgt;
         }else{
-            wdgt->move(wdgt->getProjectile()->getPos().x(),wdgt->getProjectile()->getPos().y());
+            wdgt->move(wdgt->getEntity()->getPos().x(),wdgt->getEntity()->getPos().y());
             wdgt->show();
         }
     }

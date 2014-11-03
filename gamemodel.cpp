@@ -10,8 +10,6 @@ void GameModel::initializeGame(){
     // TODO: MATT create pixmap here to aid with line 11;
     QPoint point(270,800 - 100); // need to change to variable
     player = new Player(point);
-
-    //loadGame("savefilename");
 }
 
 void GameModel::reset(){
@@ -29,7 +27,7 @@ void GameModel::reset(){
 
 void GameModel::update(){
     player->update();
-    for(int i = 0; i < entities.size(); i++){
+    for(size_t i = 0; i < entities.size(); i++){
         Entity* e = entities.at(i);
         //kill the dead entities
         if (e->isAlive() == false){
@@ -62,12 +60,12 @@ void GameModel::saveGame(string filename){
     outfile.close();
 }
 
-
+//load game.  duh
 void GameModel::loadGame(string filename){
     string type;
     int x;
     int y;
-    int dir;    //for projectiles. will be zero for player and enemy
+    int dir;    //direction is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename);
     while(infile){
