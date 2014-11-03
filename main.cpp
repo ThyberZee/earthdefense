@@ -16,12 +16,10 @@ bool unitTest(){
     GameModel::getInstance().saveGame("savefilename");
     qDebug(GameModel::getInstance().state().c_str());
 
-    GameModel::getInstance().reset();
+    // GameModel::getInstance().reset();
 
     GameModel::getInstance().loadGame("savefilename");
     GameModel::getInstance().saveGame("savefilename2");
-
-<<<<<<< HEAD
 
     HighScore::getInstance()->load();
     HighScore::getInstance()->addScore(99999, "MSW");
@@ -32,10 +30,6 @@ bool unitTest(){
     qDebug(HighScore::getInstance()->state().c_str());
     HighScore::getInstance()->reset();
 
-
-=======
-    //GameModel::getInstance().reset();
->>>>>>> c8cef68b1addd1170e3746a40b55c337c3e13dd6
     return true;
 }
 
