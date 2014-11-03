@@ -55,25 +55,17 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 }
 
 void InGame::updateView() {
+    qDebug(GameModel::getInstance().state().c_str());
     vector<Entity*> entities = GameModel::getInstance().getEntities();
 
-    /* Jared to Josh -> I think this needs to go into Game model,
-     *being driven by the master timer in the model (which drives the model)
-     *pretty much the model takes care of itself, the view just taps into it.
-     *The only thing in the model that the view can change is in the functions
-     *above: key events and the initialization of the game model in the constructor.
-     *The view will have its own Timer driving it, calling this function (updateView).
-     *   ---open to discussion :}
-     */
     GameModel::getInstance().update();
 
 
     /* Update PlayerWidget Position ---- MIGHT HAVE TO IMPLEMENT SAME AS BELOW WHEN WE INTRODUCE MULTIPLAYER SINCE THERE WILL BE MORE THAN
      *                                   ONE PLAYER ON THE SCREEN AT ONE TIME */
-    pl->setGeometry(QRect(
-             pl->getPlayer()->getPos().x(),
-             pl->getPlayer()->getPos().y(),
-             100, 100));
+    pl->setGeometry(QRect(pl->getPlayer()->getPos().x(),
+                          pl->getPlayer()->getPos().y(),
+                          100, 100));
     pl->show();
 
 
@@ -98,7 +90,7 @@ void InGame::updateView() {
 
                 temp->show();
 
-                entity->setJustCreated(false);      //make sure we know that entity is no longer new.
+                entity->setJustCreated(false);  //make sure we know that entity is no longer new.
         }
     }
 

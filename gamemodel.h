@@ -34,7 +34,7 @@ public:
 
     void update();
 
-    Entity* create(string type, int x, int y);
+    Entity* create(string type, int x, int y, int dir=-1);
     Entity* getById(int id);
     Entity* destroy(int id);
 

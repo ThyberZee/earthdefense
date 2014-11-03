@@ -13,6 +13,7 @@ bool unitTest(){
     GameModel::getInstance().create("enemy",100,100);
     GameModel::getInstance().create("enemy",200,200);
     GameModel::getInstance().create("enemy",300,300);
+    GameModel::getInstance().create("projectile",57,801,1);
     GameModel::getInstance().saveGame("savefilename");
     qDebug(GameModel::getInstance().state().c_str());
 

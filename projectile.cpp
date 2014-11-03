@@ -1,6 +1,6 @@
 #include "projectile.h"
 
-Projectile::Projectile(QPoint p, int v): Entity(p), velocity(v) {}
+Projectile::Projectile(QPoint p, int d): Entity(p), direction(d) {}
 
 void Projectile::save(ofstream &outfile){
     outfile << toString() << endl;
@@ -8,13 +8,15 @@ void Projectile::save(ofstream &outfile){
 
 string Projectile::toString(){
     stringstream ss;
-    ss << "projectile " << pos.x() << " " << pos.y();
+    ss << "projectile " << pos.x() << " " << pos.y() << " " << direction;
     return ss.str();
 }
 
 void Projectile::update(){
-    pos.setY(pos.y() -10);
-    if(pos.y() > 800){this->kill();} //800 screen height;
+    pos.setY(pos.y() + 10*direction);
+    if(pos.y() > 800 || pos.y() < 0){   //800 screen height;
+        //kill();  FIX SEGFAULT!!
+    }
 }
 
 Projectile::~Projectile() { }

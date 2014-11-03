@@ -3,7 +3,7 @@
 string Player::toString()
 {
     stringstream ss;
-    ss << "player " << pos.x() << " " << pos.y();
+    ss << "player " << pos.x() << " " << pos.y() << " " << 0;
     return ss.str();
 }
 
