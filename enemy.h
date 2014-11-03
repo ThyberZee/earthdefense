@@ -5,9 +5,11 @@
 
 class Enemy : public Entity
 {
+private:
+    QPoint target;
 public:
     static int score;
-    Enemy(QPoint point): Entity(point) {}
+    Enemy(QPoint point): Entity(point), target(QPoint(rand()%500,rand()%500)) {}  //sets target to random point
     ~Enemy();
 
     string toString();

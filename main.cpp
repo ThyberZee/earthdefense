@@ -10,9 +10,9 @@
 
 bool unitTest(){
     GameModel::getInstance().initializeGame();
-    GameModel::getInstance().create("enemy",1,2);
-    GameModel::getInstance().create("enemy",2,3);
-    GameModel::getInstance().create("enemy",34,5);
+    GameModel::getInstance().create("enemy",100,100);
+    GameModel::getInstance().create("enemy",200,200);
+    GameModel::getInstance().create("enemy",300,300);
     GameModel::getInstance().saveGame("savefilename");
     qDebug(GameModel::getInstance().state().c_str());
 
@@ -21,7 +21,7 @@ bool unitTest(){
     GameModel::getInstance().loadGame("savefilename");
     GameModel::getInstance().saveGame("savefilename2");
 
-    GameModel::getInstance().reset();
+    //GameModel::getInstance().reset();
     return true;
 }
 

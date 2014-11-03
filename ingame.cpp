@@ -30,7 +30,7 @@ InGame::~InGame()
 }
 
 void InGame::keyPressEvent(QKeyEvent *ev){
-    //JOSH EXPERIMENT
+
     if (ev->key() == 0x01000012){ //left key pressed
         GameModel::getInstance().getPlayer()->setDir(-1);
 
@@ -38,8 +38,8 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         GameModel::getInstance().getPlayer()->setDir(1);
 
     }else if (ev->key() == 0x20){ // space key pressed
-        int x = GameModel::getInstance().getPlayer()->getPos().x();
-        int y = GameModel::getInstance().getPlayer()->getPos().y();
+        int x = GameModel::getInstance().getPlayer()->getPos().x() + 50;
+        int y = GameModel::getInstance().getPlayer()->getPos().y() - 10;
 
         GameModel::getInstance().create("projectile", x, y);
     }
@@ -129,23 +129,31 @@ void InGame::updateView() {
 
     for(Entity* entity:entities){
         if(entity->getJustCreated()){
-            EntityWidget* temp = new EntityWidget(this, dynamic_cast<Projectile*>(entity));
-            ewidgets.push_back(temp);
+                EntityWidget* temp = new EntityWidget(this, dynamic_cast<Entity*>(entity));
+                ewidgets.push_back(temp);
 
-            temp->setText("projectile");
+                temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
+                                        entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
+                                        10,                                      //BULLET_WIDTH
+                                        30));
 
-            temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
-                                    entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
-                                    10,                                      //BULLET_WIDTH
-                                    30));
 
-            temp->show();
+                //check for type in order to set proper image.  right now just sets text
+                if(temp->getProjectile()->toString().find("projectile") == 0){
+                    temp->setText("P");
+                }else{
+                    temp->setText("E");
+                }
 
-            entity->setJustCreated(false);      //make sure we know that entity is no longer new.
+                temp->show();
+
+                entity->setJustCreated(false);      //make sure we know that entity is no longer new.
         }
     }
 
-    for(size_t i = 0; i < ewidgets.size(); ++i){
+    //update each remaining widget
+
+    for(size_t i = 0; i < ewidgets.size(); i++){
         EntityWidget *wdgt = ewidgets.at(i);
         if (wdgt->getProjectile()->isAlive() == false){
             entities.erase(entities.begin()+i);
@@ -155,19 +163,5 @@ void InGame::updateView() {
             wdgt->show();
         }
     }
-/*
-    for(QObject* qobj: this->children()){
-        EntityWidget* wdgt = dynamic_cast<EntityWidget *>(qobj);
-        if(wdgt->getProjectile()->isAlive() == false){
-            delete wdgt;
-        }
-
-    }
-
-    for(QObject* qobj: this->children()){
-        EntityWidget* wdgt = dynamic_cast<EntityWidget *>(qobj);
-        wdgt->move(wdgt->getProjectile()->getPos().x(),wdgt->getProjectile()->getPos().y());
-        wdgt->show();
-    }*/
 }
 

@@ -3,12 +3,15 @@
 GameModel GameModel::instance;
 
 GameModel::GameModel(){
-    initializeGame();
+   //initializeGame();
 }
 
 void GameModel::initializeGame(){
+
     QPoint point(270,500);
     player = new Player(point);
+
+    //loadGame("savefilename");
 }
 
 void GameModel::reset(){
