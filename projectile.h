@@ -8,7 +8,7 @@
 class Projectile : public Entity
 {
 private:
-    int velocity;
+    int direction;
 public:
     Projectile(QPoint p, int v);
     ~Projectile();

@@ -29,13 +29,15 @@ void GameModel::reset(){
 
 void GameModel::update(){
     player->update();
-    for(Entity* e: entities){
+    for(int i = 0; i < entities.size(); i++){
+        Entity* e = entities.at(i);
         //kill the dead entities
         if (e->isAlive() == false){
-            delete destroy(e->getId());
+            entities.erase(entities.begin()+i);
+            delete e;
+        }else{
+            e->update();    //update the rest
         }
-        //update the rest
-        e->update();
     }
 }
 
@@ -65,20 +67,22 @@ void GameModel::loadGame(string filename){
     string type;
     int x;
     int y;
+    int dir;    //for projectiles. will be zero for player and enemy
 
     ifstream infile(filename);
     while(infile){
         infile >> type;
         infile >> x;
         infile >> y;
+        infile >> dir;
 
-        create(type,x,y);
+        create(type,x,y,dir);
     }
     infile.close();
 }
 
 //return entity object of type specified.  returns null by default
-Entity *GameModel::create(string type, int x, int y){
+Entity *GameModel::create(string type, int x, int y, int dir){
 
     if(type == "player"){
         delete player;
@@ -93,7 +97,7 @@ Entity *GameModel::create(string type, int x, int y){
         return e;
     }else if(type == "projectile"){
         QPoint tempPoint(x,y);
-        Projectile* p = new Projectile(tempPoint,50);
+        Projectile* p = new Projectile(tempPoint,dir);
         entities.push_back(p);
 
         return p;

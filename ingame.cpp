@@ -55,6 +55,7 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 }
 
 void InGame::updateView() {
+    qDebug(GameModel::getInstance().state().c_str());
     vector<Entity*> entities = GameModel::getInstance().getEntities();
 
     GameModel::getInstance().update();
@@ -62,10 +63,9 @@ void InGame::updateView() {
 
     /* Update PlayerWidget Position ---- MIGHT HAVE TO IMPLEMENT SAME AS BELOW WHEN WE INTRODUCE MULTIPLAYER SINCE THERE WILL BE MORE THAN
      *                                   ONE PLAYER ON THE SCREEN AT ONE TIME */
-    pl->setGeometry(QRect(
-             pl->getPlayer()->getPos().x(),
-             pl->getPlayer()->getPos().y(),
-             100, 100));
+    pl->setGeometry(QRect(pl->getPlayer()->getPos().x(),
+                          pl->getPlayer()->getPos().y(),
+                          100, 100));
     pl->show();
 
 
@@ -90,7 +90,7 @@ void InGame::updateView() {
 
                 temp->show();
 
-                entity->setJustCreated(false);      //make sure we know that entity is no longer new.
+                entity->setJustCreated(false);  //make sure we know that entity is no longer new.
         }
     }
 
