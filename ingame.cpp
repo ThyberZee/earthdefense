@@ -12,7 +12,7 @@ InGame::InGame(QMainWindow *parent) :
     GameModel::getInstance().initializeGame();
     fpsTimer = new QTimer(this);
 
-    //Timer->setInterval(1000/30.0); // Original 30 frames
+    //fpsTimer->setInterval(1000/30.0); // Original 30 frames
     fpsTimer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
 
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
@@ -47,9 +47,9 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
 void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
-    if (ev->key() == 0x01000012){ //left key pressed
+    if (ev->key() == 0x01000012){ //left key released
         GameModel::getInstance().getPlayer()->setDir(0);
-    }else if (ev->key() == 0x01000014){ //left key pressed
+    }else if (ev->key() == 0x01000014){ //left key released
         GameModel::getInstance().getPlayer()->setDir(0);
     }
 }

@@ -20,6 +20,7 @@ private:
     Player* player;
     int window_height;
     int window_window;
+    int score;
 
 public:
     GameModel();
@@ -41,6 +42,7 @@ public:
     //getters and setters
     Player* getPlayer(){return player;}
     vector<Entity*> getEntities(){return entities;}
+    int getScore(){ return score;}
 
 
     /***  singleton implementation ****/

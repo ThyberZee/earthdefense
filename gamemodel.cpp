@@ -10,7 +10,6 @@ void GameModel::initializeGame(){
 
     QPoint point(270,500);
     player = new Player(point);
-
     //loadGame("savefilename");
 }
 
@@ -29,7 +28,7 @@ void GameModel::reset(){
 
 void GameModel::update(){
     player->update();
-    for(int i = 0; i < entities.size(); i++){
+    for(size_t i = 0; i < entities.size(); i++){
         Entity* e = entities.at(i);
         //kill the dead entities
         if (e->isAlive() == false){
@@ -67,7 +66,7 @@ void GameModel::loadGame(string filename){
     string type;
     int x;
     int y;
-    int dir;    //for projectiles. will be zero for player and enemy
+    int dir;    //direction is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename);
     while(infile){
