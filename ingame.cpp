@@ -57,14 +57,6 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 void InGame::updateView() {
     vector<Entity*> entities = GameModel::getInstance().getEntities();
 
-    /* Jared to Josh -> I think this needs to go into Game model,
-     *being driven by the master timer in the model (which drives the model)
-     *pretty much the model takes care of itself, the view just taps into it.
-     *The only thing in the model that the view can change is in the functions
-     *above: key events and the initialization of the game model in the constructor.
-     *The view will have its own Timer driving it, calling this function (updateView).
-     *   ---open to discussion :}
-     */
     GameModel::getInstance().update();
 
 
@@ -78,9 +70,9 @@ void InGame::updateView() {
 
 
 
-    for(Entity* entity:entities){
+    for(Entity* entity : entities){
         if(entity->getJustCreated()){
-                EntityWidget* temp = new EntityWidget(this, dynamic_cast<Entity*>(entity));
+                EntityWidget* temp = new EntityWidget(this, entity);
                 ewidgets.push_back(temp);
 
                 temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
