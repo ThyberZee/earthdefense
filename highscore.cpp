@@ -7,32 +7,30 @@ HighScore* HighScore::instance = nullptr;
 // called sometime before it is needed
 bool HighScore::load() {
     if (fileDoesNotExist())   // If the highscore file is not found,
-    {   createFile();     }   // Create it.
+    {   createDefault();     }   // Create it.
 
     ifstream scorefile;               // load the "scores" file
     scorefile.open("scores");
 
     if (scorefile) {                        // If the scores file loaded without having issues, do the following
         for ( size_t i = 0; i < 5; ++i) {   // Load 5 scores into a vector<Score*>
-            //Score score;
-
             unsigned int value;     scorefile >> value;
             std::string initials;   scorefile >> initials;
-
-            //Score score(value, initials);
-            addScore(value, initials);                // and add it to the vector of scores
+            addScore(value, initials);      // and add it to the vector of scores
         }
-        save();
+
+        scorefile.close();                  // Close the file
         return true;                        // aaand... done!
     } else {
         return false;
     }
 }
 
-Score HighScore::newScore(unsigned int value, std::string& initials) {
+// Not sure why this even is here...
+/*Score HighScore::newScore(unsigned int value, std::string& initials) {
     Score score(value, initials);
     return score;
-}
+}*/
 
 // If file exists, return true
 bool HighScore::fileDoesNotExist()
@@ -42,8 +40,8 @@ bool HighScore::fileDoesNotExist()
     return stat(SCOREFILE.c_str(), &buf) != 1;
 }
 
-// Creates a file containing default high scores
-void HighScore::createFile() {
+// Creates a file containing default high scores ONLY WHEN THE FILE DOES NOT EXIST
+void HighScore::createDefault() {
     ofstream scorefile;
     scorefile.open("scores");
 
@@ -75,6 +73,21 @@ void HighScore::addScore(unsigned int newValue, std::string newInitials) {
         save();
     }
 
+}
+
+std::string HighScore::state() {
+    std::stringstream ss;
+
+    ifstream scorefile;                     // load the "scores" file
+    scorefile.open("scores");
+
+    for (size_t i = 0; i < scores.size(); ++i)
+    {
+        Score& s = scores.at(i);
+        ss << s.toString() << "\n";
+    }
+
+    return ss.str();
 }
 
 HighScore::~HighScore() {

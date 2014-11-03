@@ -8,8 +8,11 @@
 #include <fstream>
     using std::ifstream;
     using std::ofstream;
+#include <sstream>
+    using std::stringstream;
 
 #include "score.h"
+
 
 ///////////////////////////////////////////////
 
@@ -35,12 +38,14 @@ public:
 
     // METHODS
     bool load();                            // load from highscore file (highscores)
-    void createFile();                      // create a file that contains default high scores.
+    void createDefault();                   // create a file that contains default high scores.
     bool fileDoesNotExist();                // check to see if there are issues with the high scores file.
-    void save();                           // overwrite highscore file (highscores)
-    void sort() { std::sort(scores.begin(), scores.end(), std::greater<Score>()); }
-    void addScore(unsigned int newValue, std::string newInitials);
-    Score newScore(unsigned int value, std::string& initials);
+    void save();                            // overwrite highscore file (highscores)
+    void sort() { std::sort(scores.begin(), scores.end(), std::greater<Score>()); } // sort the scores in descending order
+    void addScore(unsigned int newValue, std::string newInitials);                  // add a score to the highscore file
+    void reset() { scores.clear(); }        // clear the contents of the scores array
+    std::string state();
+    // Score newScore(unsigned int value, std::string& initials);
 
 
 /***** singleton implementation ****/
