@@ -10,6 +10,7 @@
 #include <typeinfo>
 #include "ui_ingame.h"
 #include "playerwidget.h"
+
 #include "enemywidget.h"
 #include "projectilewidget.h"
 
