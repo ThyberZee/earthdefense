@@ -18,6 +18,7 @@ InGame::InGame(QMainWindow *parent) :
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
 
     pl = new PlayerWidget(this);
+    pl->setAttribute(Qt::WA_TranslucentBackground, true);
 
     pl->show();
     fpsTimer->start();
@@ -70,9 +71,9 @@ void InGame::updateView() {
 
 
 
-    for(Entity* entity:entities){
+    for(Entity* entity : entities){
         if(entity->getJustCreated()){
-                EntityWidget* temp = new EntityWidget(this, dynamic_cast<Entity*>(entity));
+                EntityWidget* temp = new EntityWidget(this, entity);
                 ewidgets.push_back(temp);
 
                 temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
