@@ -18,6 +18,7 @@ InGame::InGame(QMainWindow *parent) :
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
 
     pl = new PlayerWidget(this);
+    pl->setAttribute(Qt::WA_TranslucentBackground, true);
 
     pl->show();
     fpsTimer->start();
