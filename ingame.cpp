@@ -13,11 +13,10 @@ InGame::InGame(QMainWindow *parent) :
     fpsTimer = new QTimer(this);
 
     //Timer->setInterval(1000/30.0); // Original 30 frames
-    fpsTimer->setInterval(1000/30.0); // EXPERIMENT: 60 frames
+    fpsTimer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
 
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
 
-    //Josh experiment
     pl = new PlayerWidget(this);
 
     pl->show();
@@ -132,22 +131,48 @@ void InGame::updateView() {
         if(entity->getJustCreated()){
 
             if (entity->toString().find("projectile")){
-                ProjectileWidget* temp = new ProjectileWidget(this, dynamic_cast<Projectile*>(entity));
+                EntityWidget* temp = new EntityWidget(this, dynamic_cast<Projectile*>(entity));
+                ewidgets.push_back(temp);
+
                 temp->setText("projectile");
+
                 temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
                                                          entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
                                                          10,                                      //BULLET_WIDTH
                                                        30));
                 temp->show();
                 entity->setJustCreated(false);      //make sure we know that entity is no longer new.
+            }else if(entity->toString().find("enemy")){
+                //do something
+            }else if(entity->toString().find("player")){
+                //do something else
             }
         }
     }
+
+    for(size_t i = 0; i < ewidgets.size(); ++i){
+        EntityWidget *wdgt = ewidgets.at(i);
+        if (wdgt->getProjectile()->isAlive() == false){
+            entities.erase(entities.begin()+i);
+            delete wdgt;
+        }else{
+            wdgt->move(wdgt->getProjectile()->getPos().x(),wdgt->getProjectile()->getPos().y());
+            wdgt->show();
+        }
+    }
 /*
-    for(QLabel* qobj: ui->children()){
-        ProjectileWidget* wdgt = dynamic_cast<ProjectileWidget *>(qobj);
-        wdgt->get->updatePosition();
-        wdgt->move(wdgt->getObject()->getX(),wdgt->getObject()->getY());
+    for(QObject* qobj: this->children()){
+        EntityWidget* wdgt = dynamic_cast<EntityWidget *>(qobj);
+        if(wdgt->getProjectile()->isAlive() == false){
+            delete wdgt;
+        }
+
+    }
+
+    for(QObject* qobj: this->children()){
+        EntityWidget* wdgt = dynamic_cast<EntityWidget *>(qobj);
+        wdgt->move(wdgt->getProjectile()->getPos().x(),wdgt->getProjectile()->getPos().y());
         wdgt->show();
     }*/
 }
+

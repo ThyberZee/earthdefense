@@ -20,6 +20,8 @@ bool unitTest(){
 
     GameModel::getInstance().loadGame("savefilename");
     GameModel::getInstance().saveGame("savefilename2");
+
+    GameModel::getInstance().reset();
     return true;
 }
 
