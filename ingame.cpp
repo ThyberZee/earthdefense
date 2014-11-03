@@ -129,24 +129,19 @@ void InGame::updateView() {
 
     for(Entity* entity:entities){
         if(entity->getJustCreated()){
+            EntityWidget* temp = new EntityWidget(this, dynamic_cast<Projectile*>(entity));
+            ewidgets.push_back(temp);
 
-            if (entity->toString().find("projectile")){
-                EntityWidget* temp = new EntityWidget(this, dynamic_cast<Projectile*>(entity));
-                ewidgets.push_back(temp);
+            temp->setText("projectile");
 
-                temp->setText("projectile");
+            temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
+                                    entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
+                                    10,                                      //BULLET_WIDTH
+                                    30));
 
-                temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
-                                                         entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
-                                                         10,                                      //BULLET_WIDTH
-                                                       30));
-                temp->show();
-                entity->setJustCreated(false);      //make sure we know that entity is no longer new.
-            }else if(entity->toString().find("enemy")){
-                //do something
-            }else if(entity->toString().find("player")){
-                //do something else
-            }
+            temp->show();
+
+            entity->setJustCreated(false);      //make sure we know that entity is no longer new.
         }
     }
 
