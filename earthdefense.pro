@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     score.cpp \
     projectilewidget.cpp \
     enemywidget.cpp \
-    entitywidget.cpp
+    entitywidget.cpp \
+    inputmanager.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
