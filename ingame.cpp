@@ -56,8 +56,13 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 }
 
 void InGame::updateView() {
-    qDebug(GameModel::getInstance().state().c_str());
+    //set score label
+    QLabel* scorelabel = ui->scorelbl;
+    QString s = QString::number(GameModel::getInstance().getScore());
 
+    scorelabel->setText(s);
+
+    qDebug(GameModel::getInstance().state().c_str());
     GameModel::getInstance().update();
     vector<Entity*> entities = GameModel::getInstance().getEntities();
 
@@ -68,7 +73,6 @@ void InGame::updateView() {
                           pl->getPlayer()->getPos().y(),
                           100, 100));
     pl->show();
-
 
 
     for(Entity* entity : entities){
@@ -83,9 +87,7 @@ void InGame::updateView() {
                 temp->setAttribute(Qt::WA_TranslucentBackground, true);
 
 
-                //check for type in order to set proper image.  right now just sets text
-
-
+                //check for type in order to set proper image
                 if(temp->getEntity()->toString().find("projectile") == 0){
                     QPixmap projectile(":/resources/images/projectile.png");
                     temp->setPixmap(projectile);
@@ -94,7 +96,6 @@ void InGame::updateView() {
                 }
 
                 temp->show();
-
                 entity->setJustCreated(false);  //make sure we know that entity is no longer new.
         }
     }

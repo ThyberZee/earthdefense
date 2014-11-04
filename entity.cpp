@@ -12,5 +12,5 @@ Entity::Entity(QPoint newPos)
 }
 
 Entity::~Entity(){
-    delete box;
+    delete box; //why box has to be a pointer, I don't know
 }
