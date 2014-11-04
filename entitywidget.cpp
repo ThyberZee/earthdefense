@@ -8,6 +8,7 @@ EntityWidget::EntityWidget(QWidget *parent, Entity* init_projectile) : QLabel(pa
 {
 }
 
+
 EntityWidget::~EntityWidget() {
 
 }

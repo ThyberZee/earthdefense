@@ -14,7 +14,7 @@ private:
 
 public:
     explicit EntityWidget(QWidget *parent = 0, Entity *init_projectile = nullptr);
-    ~EntityWidget();
+     ~EntityWidget();
 
     Entity* getEntity() { return projectile; }
 
