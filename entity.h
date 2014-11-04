@@ -7,6 +7,7 @@
 #include <string>
 #include <QPoint>
 #include <QRect>
+#include <QSize>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ class Entity
 protected:
     QPoint pos;
     //QRect box;
+
     int ID;
     bool alive, justCreated;
 

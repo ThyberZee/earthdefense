@@ -1,5 +1,10 @@
 #include "player.h"
 
+Player::Player(QPoint point): Entity(point){
+    //box = QRect(pos, QPoint(pos.x()+100,pos.y()+100));
+    //box = QRect(pos, QSize(100,100));
+}
+
 string Player::toString()
 {
     stringstream ss;

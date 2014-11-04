@@ -1,6 +1,8 @@
 #include "projectile.h"
 
-Projectile::Projectile(QPoint p, int d): Entity(p), direction(d) {}
+Projectile::Projectile(QPoint p, int d): Entity(p), direction(d) {
+   // box = QRect(pos, QSize(10,30));
+}
 
 void Projectile::save(ofstream &outfile){
     outfile << toString() << endl;

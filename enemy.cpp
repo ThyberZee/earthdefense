@@ -2,6 +2,12 @@
 
 int Enemy::score = 100;
 
+Enemy::Enemy(QPoint point): Entity(point){
+    target = QPoint(rand()%500,rand()%500);
+    cooldown= rand()% 500;
+    //box = QRect(pos, QSize(30,30));   //sets box to be 30 by 30 with upper left corner at position
+}
+
 string Enemy::toString()
 {
     stringstream ss;

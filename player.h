@@ -8,7 +8,7 @@ class Player : public Entity
 private:
     int direction; // 0 for not moving, -1 for left, and 1 for right;
 public:
-    Player(QPoint point): Entity(point) {}
+    Player(QPoint point);
     ~Player();
 
     string toString();
@@ -20,7 +20,5 @@ public:
 
     QPoint getPos(){return pos;}
     void setPoint(QPoint p){pos = p;}
-
-
 };
 #endif // PLAYER_H
