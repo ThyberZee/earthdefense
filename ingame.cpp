@@ -57,9 +57,9 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
 void InGame::updateView() {
     qDebug(GameModel::getInstance().state().c_str());
-    vector<Entity*> entities = GameModel::getInstance().getEntities();
 
     GameModel::getInstance().update();
+    vector<Entity*> entities = GameModel::getInstance().getEntities();
 
 
     /* Update PlayerWidget Position ---- MIGHT HAVE TO IMPLEMENT SAME AS BELOW WHEN WE INTRODUCE MULTIPLAYER SINCE THERE WILL BE MORE THAN

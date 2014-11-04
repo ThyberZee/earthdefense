@@ -15,7 +15,7 @@ class Entity
 {
 protected:
     QPoint pos;
-    //QRect box;
+    QRect* box;     //making this a pointer removes weird errors  dont know why
 
     int ID;
     bool alive, justCreated;
@@ -32,6 +32,7 @@ public:
     bool getJustCreated(){return justCreated;}
     void setJustCreated(bool b){justCreated = b;}
 
+    QRect* getBox(){return box;}
 
     virtual void kill() {alive = false;}
     virtual void update() = 0;

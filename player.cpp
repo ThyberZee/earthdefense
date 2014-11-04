@@ -1,7 +1,7 @@
 #include "player.h"
 
 Player::Player(QPoint point): Entity(point){
-    //box = QRect(pos, QPoint(pos.x()+100,pos.y()+100));
+    box = new QRect(pos, QPoint(pos.x()+100,pos.y()+100));
     //box = QRect(pos, QSize(100,100));
 }
 
@@ -20,6 +20,7 @@ void Player::save(ofstream& outfile)
 //updates player position based on direction travelled;
 void Player::update()
 {
+    box->moveTo(pos.x(),pos.y());
     switch(direction){
     case 0:
         break;

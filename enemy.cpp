@@ -5,7 +5,7 @@ int Enemy::score = 100;
 Enemy::Enemy(QPoint point): Entity(point){
     target = QPoint(rand()%500,rand()%500);
     cooldown= rand()% 500;
-    //box = QRect(pos, QSize(30,30));   //sets box to be 30 by 30 with upper left corner at position
+    box = new QRect(pos, QSize(30,30));   //sets box to be 30 by 30 with upper left corner at position
 }
 
 string Enemy::toString()
@@ -22,6 +22,7 @@ void Enemy::save(ofstream& outfile)
 
 void Enemy::update()
 {
+    box->moveTo(pos.x(),pos.y());
     if(QPoint(pos.x(),pos.y()) == target){
         target = QPoint(rand( )% 500,rand( )% 500);     //if current position equals target, create new random target
     }else{
@@ -42,9 +43,14 @@ void Enemy::update()
 
     //decrement cooldown; if 0, shoot and reset to random val;
     if(--cooldown == 0){
-        GameModel::getInstance().create("projectile",pos.x(),pos.y(),1);
+        GameModel::getInstance().create("projectile",pos.x(),pos.y()+30,1);
         cooldown = rand() % 1000;
     }
+}
+
+void Enemy::kill(){
+    alive = false;
+    GameModel::getInstance().setScore(GameModel::getInstance().getScore() + score); //increment game score by score value
 }
 
 Enemy::~Enemy() { }

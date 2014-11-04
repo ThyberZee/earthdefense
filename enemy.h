@@ -17,6 +17,7 @@ public:
     string toString();
     void save(ofstream& outfile);
     void update();
+    void kill();
 
 };
 

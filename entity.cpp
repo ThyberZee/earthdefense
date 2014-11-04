@@ -7,8 +7,10 @@ Entity::Entity(QPoint newPos)
     pos = newPos;
     justCreated = alive = true;
     ID = nextId++;
-    //box = QRect();
+    //box = new QRect();
 
 }
 
-Entity::~Entity(){}
+Entity::~Entity(){
+    delete box;
+}
