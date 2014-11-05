@@ -18,10 +18,12 @@ protected:
     QRect* box;     //making this a pointer removes weird errors  dont know why
 
     int ID;
+    // width and height waz heer
     bool alive, justCreated;
 
 public:
     static int nextId;
+    int width, height;
 
     Entity(QPoint point);
     ~Entity();

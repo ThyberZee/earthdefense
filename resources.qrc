@@ -5,5 +5,6 @@
         <file>resources/images/Logo.png</file>
         <file>resources/images/Player.png</file>
         <file>resources/images/projectile.png</file>
+        <file>resources/images/alien1.png</file>
     </qresource>
 </RCC>

@@ -1,7 +1,10 @@
 #include "player.h"
 
 Player::Player(QPoint point): Entity(point){
-    box = new QRect(pos, QPoint(pos.x()+100,pos.y()+100));
+    width  = 100;
+    height = 100;
+    box = new QRect(pos, QPoint(pos.x()+width, pos.y()+width));
+
     //box = QRect(pos, QSize(100,100));
 }
 

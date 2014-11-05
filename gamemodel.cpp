@@ -8,7 +8,8 @@ GameModel::GameModel(){
 
 void GameModel::initializeGame(){
     // TODO: MATT create pixmap here to aid with line 11;
-    QPoint point(270,800 - 100); // need to change to variable
+    // QPixmap tempPlayer();
+    QPoint point(270,700); // need to change to variable
     player = new Player(point);
 }
 

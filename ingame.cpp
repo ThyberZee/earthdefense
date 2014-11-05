@@ -82,17 +82,17 @@ void InGame::updateView() {
 
                 temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
                                         entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
-                                        10,                                      //BULLET_WIDTH
-                                        30));
+                                        entity->width,                                      //BULLET_WIDTH
+                                        entity->height));
                 temp->setAttribute(Qt::WA_TranslucentBackground, true);
-
 
                 //check for type in order to set proper image
                 if(temp->getEntity()->toString().find("projectile") == 0){
                     QPixmap projectile(":/resources/images/projectile.png");
                     temp->setPixmap(projectile);
                 }else{
-                    temp->setText("E");
+                    QPixmap theAlien(":/resources/images/alien1.png");
+                    temp->setPixmap(theAlien);
                 }
 
                 temp->show();

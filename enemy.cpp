@@ -3,9 +3,16 @@
 int Enemy::score = 100;
 
 Enemy::Enemy(QPoint point): Entity(point){
+    width  = 50;
+    height = 50;
     target = QPoint(rand()%500,rand()%500);
     cooldown= rand()% 500;
-    box = new QRect(pos, QSize(30,30));   //sets box to be 30 by 30 with upper left corner at position
+    box = new QRect(pos, QSize(50,50));   //sets box to be 30 by 30 with upper left corner at position
+    
+    // MATT IDEA
+    /*
+        
+    */
 }
 
 string Enemy::toString()
@@ -43,7 +50,8 @@ void Enemy::update()
 
     //decrement cooldown; if 0, shoot and reset to random val;
     if(--cooldown == 0){
-        GameModel::getInstance().create("projectile",pos.x(),pos.y()+30,1);
+        QPixmap projectile();
+        GameModel::getInstance().create("projectile", pos.x(), pos.y()+height, 1);
         cooldown = rand() % 1000;
     }
 }

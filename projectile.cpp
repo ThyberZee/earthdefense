@@ -2,6 +2,8 @@
 #include "gamemodel.h"
 
 Projectile::Projectile(QPoint p, int d): Entity(p), direction(d) {
+   width  = 10;
+   height = 30;
    box = new QRect(pos, QSize(10,30));
 }
 
