@@ -40,7 +40,11 @@ void Host::clientDisconnected()
 
 void Host::on_serverDisconnected()
 {
-     //handle disconnects
+     if(client){
+
+     }else{
+         player2 = true;
+     }
 }
 
 void Host::on_connectionSucceeded()

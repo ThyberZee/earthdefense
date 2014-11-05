@@ -16,6 +16,7 @@ private:
     int connectCount;
     bool client;
     std::string message;
+    bool player2;
 
 public:
     explicit Host(QObject *parent = 0);
@@ -30,6 +31,7 @@ public slots:
     void on_serverDisconnected();
     void on_connectionSucceeded();
     std::string getMessage() {return message;}
+    bool getPlayer2(){return player2;}
 
 };
 
