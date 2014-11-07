@@ -17,10 +17,13 @@ bool unitTest(){
     GameModel::getInstance().saveGame("savefilename");
     qDebug(GameModel::getInstance().state().c_str());
 
+
     // GameModel::getInstance().reset();
 
     GameModel::getInstance().loadGame("savefilename");
     GameModel::getInstance().saveGame("savefilename2");
+
+    GameModel::getInstance().reset();
 
     HighScore::getInstance()->load();
     HighScore::getInstance()->addScore(99999, "MSW");

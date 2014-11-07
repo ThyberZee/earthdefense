@@ -19,8 +19,9 @@ private:
     vector<Entity*> entities;
     Player* player;
     int window_height;
-    int window_window;
+    int window_width;
     int score;
+    int spawnCountDown;
 
 public:
     GameModel();

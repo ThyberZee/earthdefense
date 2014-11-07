@@ -7,10 +7,9 @@ GameModel::GameModel(){
 }
 
 void GameModel::initializeGame(){
-    // TODO: MATT create pixmap here to aid with line 11;
-    // QPixmap tempPlayer();
     QPoint point(270,700); // need to change to variable
     player = new Player(point);
+    spawnCountDown = rand() % 1000 + 1;  //set a countdown to random int from 1 to 100
 }
 
 void GameModel::reset(){
@@ -19,13 +18,17 @@ void GameModel::reset(){
     delete player;
     player = nullptr;
 
-    //delete all entities
+    //delete all entities, then empties array
     for(Entity* e: entities){
         delete e;
     }
     entities.clear();
 }
 
+/*this is the most important function of the model.  It first updates the player,
+ *then checks all of the enemies that called their kill function last frame, deleting
+ *them and removing them from the vector.  Otherwise, it just updates the entity
+ */
 void GameModel::update(){
     player->update();
     for(size_t i = 0; i < entities.size(); i++){
@@ -36,6 +39,11 @@ void GameModel::update(){
             delete e;
         }else{
             e->update();    //update the rest
+        }
+
+        if(--spawnCountDown <= 0){
+            create("enemy",rand()%500,rand()%500);
+            spawnCountDown = rand() % 1000;
         }
     }
 }
@@ -50,7 +58,11 @@ string GameModel::state(){
     return ss.str();
 }
 
-//save state of all entities
+/* save game state into file.  Format as follows:
+ * entity0_type x y dir
+ * entity1_type x y dir
+ * etc.
+ */
 void GameModel::saveGame(string filename){
     ofstream outfile(filename);
     for(Entity* e: entities){
@@ -88,18 +100,21 @@ Entity *GameModel::create(string type, int x, int y, int dir){
         player = new Player(QPoint(x,y));
 
         return player;
+
     }else if(type == "enemy"){
         QPoint tempPoint(x,y);
         Enemy* e = new Enemy(tempPoint);
         entities.push_back(e);
 
         return e;
+
     }else if(type == "projectile"){
         QPoint tempPoint(x,y);
         Projectile* p = new Projectile(tempPoint,dir);
         entities.push_back(p);
 
         return p;
+
     }else{
         return NULL;
     }

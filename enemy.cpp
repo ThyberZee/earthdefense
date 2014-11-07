@@ -52,7 +52,7 @@ void Enemy::update()
     if(--cooldown == 0){
         QPixmap projectile();
         GameModel::getInstance().create("projectile", pos.x(), pos.y()+height, 1);
-        cooldown = rand() % 1000;
+        cooldown = rand() % 300;
     }
 }
 
