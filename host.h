@@ -16,9 +16,13 @@ private:
     int connectCount;
     bool client;
     std::string message;
+    bool player2;
 
 public:
     explicit Host(QObject *parent = 0);
+
+    std::string getMessage() {return message;}
+    bool getPlayer2(){return player2;}
 
 signals:
 
@@ -29,7 +33,6 @@ public slots:
     void changeClient(bool tempClient){client = tempClient;}
     void on_serverDisconnected();
     void on_connectionSucceeded();
-    std::string getMessage() {return message;}
 
 };
 
