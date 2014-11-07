@@ -36,11 +36,16 @@ void Host::clientDisconnected()
     QTcpSocket *sock = dynamic_cast<QTcpSocket*>(sender());
     sock->deleteLater();
     --connectCount;
+    player2 = false;
 }
 
 void Host::on_serverDisconnected()
 {
-     //handle disconnects
+     if(client){
+
+     }else{
+         player2 = true;
+     }
 }
 
 void Host::on_connectionSucceeded()

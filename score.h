@@ -15,11 +15,11 @@ public:
     {}
 
 // ACCESSORS
-    unsigned int getValue()              const { return value;       }
-    std::string getInitials()   const { return initials;    }
+    unsigned int getValue()          const { return value;       }
+    std::string  getInitials()       const { return initials;    }
 
 // MUTATORS
-    void setValue   (unsigned int value)    { this->value    = value;    }
+    void setValue   (unsigned int value)   { this->value    = value;    }
     void setInitials(std::string initials) { this->initials = initials; }
 
     std::string toString() { return std::to_string(value) + " " + initials; }
