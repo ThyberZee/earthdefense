@@ -18,6 +18,7 @@ class GameModel {
 private:
     vector<Entity*> entities;
     Player* player;
+    Player* player2;
     int window_height;
     int window_width;
     int score;
@@ -47,7 +48,7 @@ public:
     void setScore(int s){score = s;}
 
 
-    /***  singleton implementation ****/
+    /***  singleton implementation ***/
 private:
     static GameModel instance;
 public:

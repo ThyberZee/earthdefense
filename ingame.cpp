@@ -1,4 +1,5 @@
 #include "ingame.h"
+#include "host.h"
 
 using namespace std;
 
@@ -7,7 +8,7 @@ InGame::InGame(QMainWindow *parent) :
     ui(new Ui::InGame)
 {
     ui->setupUi(this);
-
+    //qDebug() << Host::getInstance().getMessage();
     //start gamemodel
     GameModel::getInstance().initializeGame();
     fpsTimer = new QTimer(this);
@@ -22,7 +23,6 @@ InGame::InGame(QMainWindow *parent) :
 
     pl->show();
     fpsTimer->start();
-
 }
 
 InGame::~InGame()
@@ -62,7 +62,7 @@ void InGame::updateView() {
 
     scorelabel->setText(s);
 
-    qDebug(GameModel::getInstance().state().c_str());
+    //qDebug(GameModel::getInstance().state().c_str());
     GameModel::getInstance().update();
     vector<Entity*> entities = GameModel::getInstance().getEntities();
 
