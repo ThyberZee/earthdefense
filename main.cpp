@@ -15,7 +15,7 @@ bool unitTest(){
     GameModel::getInstance().create("enemy",300,300);
     GameModel::getInstance().create("projectile",57,801,1);
     GameModel::getInstance().saveGame("savefilename");
-    qDebug(GameModel::getInstance().state().c_str());
+    qDebug() << GameModel::getInstance().state().c_str();
 
 
     // GameModel::getInstance().reset();
@@ -27,11 +27,11 @@ bool unitTest(){
 
     HighScore::getInstance()->load();
     HighScore::getInstance()->addScore(99999, "MSW");
-    qDebug(HighScore::getInstance()->state().c_str());
+    qDebug() << HighScore::getInstance()->state().c_str();
     HighScore::getInstance()->reset();
 
     HighScore::getInstance()->load();
-    qDebug(HighScore::getInstance()->state().c_str());
+    qDebug() << HighScore::getInstance()->state().c_str();
     HighScore::getInstance()->reset();
 
     return true;

@@ -62,7 +62,7 @@ void InGame::updateView() {
 
     scorelabel->setText(s);
 
-    qDebug(GameModel::getInstance().state().c_str());
+    qDebug() << GameModel::getInstance().state().c_str();
     GameModel::getInstance().update();
     vector<Entity*> entities = GameModel::getInstance().getEntities();
 
