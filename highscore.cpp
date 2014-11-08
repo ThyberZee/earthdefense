@@ -50,14 +50,15 @@ void HighScore::createDefault() {
     scorefile.close();
 }
 
-
+// Completely writes the five scores stored in the vector<Scores>, scores
+// to a highscore file, aptly named 'scores'
 void HighScore::save() {
-    ofstream scorefile;
+    ofstream scorefile;                         // Open 'scores' file
     scorefile.open("scores");
 
-    for (size_t i = 0; i < 5; ++i) {
-        Score& s = scores.at(i);
-        scorefile << s.toString() << "\n";
+    for (size_t i = 0; i < 5; ++i) {            // For the 5 scores in the file,
+        Score& s = scores.at(i);                // grab each
+        scorefile << s.toString() << "\n";      // and write to the file buffer
     }
     scorefile.close();
 }
@@ -75,6 +76,7 @@ void HighScore::addScore(unsigned int newValue, std::string newInitials) {
 
 }
 
+// unit test exclusive
 std::string HighScore::state() {
     std::stringstream ss;
 
