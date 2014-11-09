@@ -17,9 +17,12 @@ Host::Host(QObject *parent) :
 }
 
 bool Host::start(){
-    server->listen(QHostAddress::Any, 5000);
-    connect(server, SIGNAL(newConnection()), this, SLOT(clientConnected()));
-    //qDebug() << server->localPort();
+    if(server->listen(QHostAddress::Any, 5000)){
+        connect(server, SIGNAL(newConnection()), this, SLOT(clientConnected()));
+        //qDebug() << server->localPort();
+        return true;
+    }
+    return false;
 }
 
 void Host::sendMessage(QString message){
@@ -27,13 +30,16 @@ void Host::sendMessage(QString message){
         QTcpSocket *anotherSock = dynamic_cast<QTcpSocket*>(obj);
         if (anotherSock != NULL){
             anotherSock->write(message.toLocal8Bit());
-        }  \
+        }
     }
 }
+
+
 
 /* * * * * * * * * * *
  *      SLOTS        *
  * * * * * * * * * * */
+
 void Host::clientConnected()
 {
     QTcpSocket *sock = server->nextPendingConnection();

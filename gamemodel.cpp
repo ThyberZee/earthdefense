@@ -29,7 +29,7 @@ void GameModel::reset(){
  *then checks all of the enemies that called their kill function last frame, deleting
  *them and removing them from the vector.  Otherwise, it just updates the entity
  */
-void GameModel::update(){
+void GameModel::masterUpdate(){
     player->update();
     for(size_t i = 0; i < entities.size(); i++){
         Entity* e = entities.at(i);
@@ -40,12 +40,19 @@ void GameModel::update(){
         }else{
             e->update();    //update the rest
         }
-
-        if(--spawnCountDown <= 0){
-            create("enemy",rand()%500,rand()%500);
-            spawnCountDown = rand() % 1000;
-        }
     }
+    //random spawning of enemies
+    if(--spawnCountDown <= 0){
+        create("enemy",rand()%500,rand()%500);
+        spawnCountDown = rand() % 300;
+    }
+}
+
+void GameModel::slaveUpdate(){
+    player->update();
+    string message = Host::getInstance().getMessage().toStdString();
+    //stringstream stream <<
+
 }
 
 //return a string representation of game state including pos data for each entity
@@ -59,8 +66,8 @@ string GameModel::state(){
 }
 
 /* save game state into file.  Format as follows:
- * entity0_type x y dir
- * entity1_type x y dir
+ * entity0_type id x y dir
+ * entity1_type id x y dir
  * etc.
  */
 void GameModel::saveGame(string filename){
@@ -76,6 +83,7 @@ void GameModel::saveGame(string filename){
 //load game.  duh
 void GameModel::loadGame(string filename){
     string type;
+    int id;
     int x;
     int y;
     int dir;    //direction is for projectiles. will be zero for player and enemy
@@ -83,6 +91,7 @@ void GameModel::loadGame(string filename){
     ifstream infile(filename);
     while(infile){
         infile >> type;
+        infile >> id;       //this is ignored for loading, but is critical for network;
         infile >> x;
         infile >> y;
         infile >> dir;
@@ -130,6 +139,8 @@ Entity* GameModel::getById(int id) {
     }
     return NULL;
 }
+
+
 
 //removes entity from entities if it exitsts, but DOES NOT DELETE
 Entity* GameModel::destroy(int id) {

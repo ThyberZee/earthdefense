@@ -3,13 +3,16 @@
 
 #include <QDebug>
 #include <QWidget>
-#include <string>
+#include <QString>
 #include <vector>
+#include <sstream>
+#include "host.h"
 #include "projectile.h"
 #include "gamemodel.h"
 #include "enemy.h"
 #include "player.h"
 #include "entity.h"
+#include "sstream"
 
 using namespace std;
 
@@ -35,7 +38,8 @@ public:
     void loadGame(string filename);
     void saveGame(string filename);
 
-    void update();
+    void masterUpdate();
+    void slaveUpdate();
 
     Entity* create(string type, int x, int y, int dir=-1);
     Entity* getById(int id);

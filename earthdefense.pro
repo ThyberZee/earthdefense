@@ -26,8 +26,6 @@ SOURCES += main.cpp\
            playerwidget.cpp \
 	   host.cpp \
     score.cpp \
-    projectilewidget.cpp \
-    enemywidget.cpp \
     entitywidget.cpp \
     inputmanager.cpp
 
@@ -42,8 +40,6 @@ HEADERS  += mainwindow.h \
             playerwidget.h \
 	    host.h \
     score.h \
-    projectilewidget.h \
-    enemywidget.h \
     entitywidget.h \
     objectobserver.h \
     worldobserver.h

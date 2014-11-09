@@ -13,7 +13,7 @@ void Projectile::save(ofstream &outfile){
 
 string Projectile::toString(){
     stringstream ss;
-    ss << "projectile " << pos.x() << " " << pos.y() << " " << direction;
+    ss << "projectile " << ID << " " << pos.x() << " " << pos.y() << " " << direction;
     return ss.str();
 }
 
@@ -41,6 +41,7 @@ void Projectile::update(){
             }
         }
         /*
+        // kill player
         QRect* otherbox = GameModel::getInstance().getPlayer()->getBox();
         if(box->intersects(*otherbox)){
             this->kill();

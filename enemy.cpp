@@ -18,7 +18,7 @@ Enemy::Enemy(QPoint point): Entity(point){
 string Enemy::toString()
 {
     stringstream ss;
-    ss << "enemy " << pos.x() << " " << pos.y() << " " << 0;
+    ss << "enemy " << ID << " " << pos.x() << " " << pos.y() << " " << 0;
     return ss.str();
 }
 

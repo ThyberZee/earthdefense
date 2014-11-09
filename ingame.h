@@ -9,11 +9,9 @@
 #include <iostream>
 #include <typeinfo>
 #include "ui_ingame.h"
-#include "playerwidget.h"
 
+#include "playerwidget.h"
 #include "entitywidget.h"
-#include "enemywidget.h"
-#include "projectilewidget.h"
 
 namespace Ui {
 class InGame;
@@ -36,8 +34,7 @@ private slots:
 private:
     Ui::InGame *ui;
     PlayerWidget *pl;               // Pointer to the Player Widget in model
-    vector<ProjectileWidget*> pr;   // Pointer to the vector of Projectile Widgets, which contain pointers to the underlying objects in the model
-    vector<EnemyWidget*> en;        // Pointer to the vector of Enemy Widgets       '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
     vector<EntityWidget*> ewidgets;
     QTimer *fpsTimer;               // Timer that drives the InGame UI
 
