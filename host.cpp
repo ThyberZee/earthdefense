@@ -1,34 +1,61 @@
 #include "host.h"
+#include <QDebug>
+Host Host::instance;
 
 Host::Host(QObject *parent) :
     QObject(parent)
 {
-    socket = new QTcpSocket(this);
-    if(client){
-        connect(socket, &QTcpSocket::readyRead, this, &Host::dataReceived);
-        connect(socket, &QTcpSocket::disconnected, this, &Host::on_serverDisconnected);
-        connect(socket, &QTcpSocket::connected, this, &Host::on_connectionSucceeded);
-        connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(on_socketError(QAbstractSocket::SocketError)));
-    }
+    server = new QTcpServer(this);
+    connect(server, SIGNAL(newConnection()), this, SLOT(clientConnected()));
+/*
+    connect(socket, &QTcpSocket::readyRead, this, &Host::dataReceived);
+    connect(socket, &QTcpSocket::disconnected, this, &Host::on_serverDisconnected);
+    connect(socket, &QTcpSocket::connected, this, &Host::on_connectionSucceeded);
+    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(on_socketError(QAbstractSocket::SocketError)));
+*/
 
 }
 
+bool Host::start(){
+    server->listen(QHostAddress::Any, 5000);
+    connect(server, SIGNAL(newConnection()), this, SLOT(clientConnected()));
+    //qDebug() << server->localPort();
+}
+
+void Host::sendMessage(QString message){
+    for (QObject *obj : server->children()) {
+        QTcpSocket *anotherSock = dynamic_cast<QTcpSocket*>(obj);
+        if (anotherSock != NULL){
+            anotherSock->write(message.toLocal8Bit());
+        }  \
+    }
+}
+
+/* * * * * * * * * * *
+ *      SLOTS        *
+ * * * * * * * * * * */
 void Host::clientConnected()
 {
     QTcpSocket *sock = server->nextPendingConnection();
     connect(sock, &QTcpSocket::disconnected, this, &Host::clientDisconnected);
     connect(sock, &QTcpSocket::readyRead, this, &Host::dataReceived);
-    --connectCount;
+    connect(sock, &QTcpSocket::disconnected, this, &Host::on_serverDisconnected);
+    ++connectCount;
+
+    qDebug() << QString("connection!");
 }
 
 void Host::dataReceived()
 {
     message = "";
-    // Commenting these two lines out for now
-    /*
-    QString str = sock->readLine();
-    message += str;
-    */
+    QTcpSocket *sock = dynamic_cast<QTcpSocket*>(sender());
+
+    qDebug() << "Received data from socket!";
+    while (sock->canReadLine()) {
+        QString str = sock->readLine();
+        message += str;
+    }
+    qDebug() << message;
 }
 
 void Host::clientDisconnected()
@@ -39,17 +66,14 @@ void Host::clientDisconnected()
     player2 = false;
 }
 
+//handle when connection is lost.
 void Host::on_serverDisconnected()
 {
-     if(client){
-
-     }else{
-         player2 = true;
-     }
+    qDebug() << "connection lost";
 }
 
 void Host::on_connectionSucceeded()
 {
-    //handle when connection is successful
+    qDebug() << "conection successful";
 }
 

@@ -3,8 +3,9 @@
 
 #include <QObject>
 #include <QTcpServer>
+#include <QAbstractSocket>
 #include <QTcpSocket>
-#include <string>
+#include <QString>
 
 class Host : public QObject
 {
@@ -15,13 +16,14 @@ private:
     QTcpSocket* socket;
     int connectCount;
     bool client;
-    std::string message;
+    QString message;
     bool player2;
 
 public:
     explicit Host(QObject *parent = 0);
-
-    std::string getMessage() {return message;}
+    bool start();
+    QString getMessage() {return message;}
+    void sendMessage(QString message);
     bool getPlayer2(){return player2;}
 
 signals:
@@ -30,10 +32,17 @@ public slots:
     void clientConnected();
     void dataReceived();
     void clientDisconnected();
-    void changeClient(bool tempClient){client = tempClient;}
     void on_serverDisconnected();
     void on_connectionSucceeded();
 
+
+//singleton magic.  I'm waving my hands!
+private:
+    static Host instance;
+public:
+    static Host &getInstance() {
+        return instance;
+    }
 };
 
 #endif // HOST_H

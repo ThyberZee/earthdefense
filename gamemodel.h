@@ -16,6 +16,7 @@ class GameModel {
 private:
     vector<Entity*> entities;
     Player* player;
+    Player* player2;
     int window_height, window_width; //these two variables set in intitializer
     int score, spawnCountDown;
 
@@ -42,7 +43,7 @@ public:
     void setScore(int s){score = s;}
 
 
-    /***  singleton implementation ****/
+    /***  singleton implementation ***/
 private:
     static GameModel instance;
     GameModel();

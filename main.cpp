@@ -6,6 +6,7 @@
 #include "gamemodel.h"
 #include "highscore.h"
 #include "enemy.h"
+#include "host.h"
 
 
 bool unitTest(){
@@ -27,12 +28,16 @@ bool unitTest(){
 
     HighScore::getInstance()->load();
     HighScore::getInstance()->addScore(99999, "MSW");
+
     qDebug() << HighScore::getInstance()->state().c_str();
     HighScore::getInstance()->reset();
 
     HighScore::getInstance()->load();
     qDebug() << HighScore::getInstance()->state().c_str();
+
     HighScore::getInstance()->reset();
+
+    Host::getInstance().start();
 
     return true;
 }
