@@ -45,7 +45,8 @@ HEADERS  += mainwindow.h \
     projectilewidget.h \
     enemywidget.h \
     entitywidget.h \
-    observer.h
+    objectobserver.h \
+    worldobserver.h
 
 FORMS    += mainwindow.ui \
             ingame.ui

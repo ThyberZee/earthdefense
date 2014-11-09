@@ -64,6 +64,7 @@ void InGame::updateView() {
 
     //qDebug(GameModel::getInstance().state().c_str());
     GameModel::getInstance().update();
+    //Host::getInstance().sendMessage(GameModel::get
     vector<Entity*> entities = GameModel::getInstance().getEntities();
 
 

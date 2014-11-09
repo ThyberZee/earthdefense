@@ -21,8 +21,9 @@ private:
 
 public:
     explicit Host(QObject *parent = 0);
-    bool listen();
+    bool start();
     QString getMessage() {return message;}
+    void sendMessage(QString message);
     bool getPlayer2(){return player2;}
 
 signals:

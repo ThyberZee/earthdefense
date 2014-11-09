@@ -34,7 +34,7 @@ bool unitTest(){
     //qDebug(HighScore::getInstance()->state().c_str());
     HighScore::getInstance()->reset();
 
-    qDebug(Host::getInstance().getMessage().c_str());
+    Host::getInstance().start();
 
     return true;
 }

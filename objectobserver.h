@@ -5,10 +5,10 @@
  *Has methods create, move, and destroy;
  */
 
-class Observer
+class ObjectObserver
 {
 public:
-    Observer();
+    ObjectObserver();
     virtual void create() = 0;
     virtual void destroy() = 0;
     virtual void move() = 0;
