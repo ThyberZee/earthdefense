@@ -22,7 +22,7 @@ class InGame : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit InGame(QMainWindow *parent = 0);
+    explicit InGame(QMainWindow *parent = 0, QString initLoadGameFile = 0);
     ~InGame();
 
 private slots:
@@ -31,12 +31,15 @@ private slots:
     void keyReleaseEvent(QKeyEvent *ev);
     void updateView();
     
+    void on_pushButton_clicked();
+
 private:
     Ui::InGame *ui;
     PlayerWidget *pl;               // Pointer to the Player Widget in model
 
     vector<EntityWidget*> ewidgets;
     QTimer *fpsTimer;               // Timer that drives the InGame UI
+    QString loadGameFile;
 
 };
 

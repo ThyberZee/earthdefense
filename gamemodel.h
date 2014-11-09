@@ -3,10 +3,12 @@
 
 #include <QDebug>
 #include <QWidget>
+
 #include <QString>
 #include <vector>
 #include <sstream>
 #include "host.h"
+
 #include "projectile.h"
 #include "gamemodel.h"
 #include "enemy.h"
@@ -22,20 +24,17 @@ private:
     vector<Entity*> entities;
     Player* player;
     Player* player2;
-    int window_height;
-    int window_width;
-    int score;
-    int spawnCountDown;
+    int window_height, window_width; //these two variables set in intitializer
+    int score, spawnCountDown;
 
 public:
-    GameModel();
     ~GameModel();
 
     void initializeGame();
     void reset();
 
     string state();
-    void loadGame(string filename);
+    void loadGame(QString filename);
     void saveGame(string filename);
 
     void masterUpdate();
@@ -55,6 +54,7 @@ public:
     /***  singleton implementation ***/
 private:
     static GameModel instance;
+    GameModel();
 public:
     static GameModel &getInstance() {
         return instance;

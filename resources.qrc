@@ -3,8 +3,16 @@
         <file>resources/fonts/galaga.ttf</file>
         <file>resources/images/Logo.png</file>
         <file>resources/images/Player.png</file>
-	<file>resources/images/projectile.png</file>
-	<file>resources/images/space.jpg</file>
-	<file>resources/images/alien1.png</file>
+        <file>resources/images/projectile.png</file>
+        <file>resources/images/space.jpg</file>
+        <file>resources/images/alien1.png</file>
+        <file>level1</file>
+        <file>level2</file>
+        <file>level3</file>
+        <file>level4</file>
+        <file>level5</file>
+        <file>level6</file>
+        <file>level7</file>
+        <file>savegame</file>
     </qresource>
 </RCC>
