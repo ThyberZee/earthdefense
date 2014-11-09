@@ -2,12 +2,10 @@
 
 GameModel GameModel::instance;
 
-GameModel::GameModel(){
-   //initializeGame();
-}
+GameModel::GameModel() : window_height(800), window_width(640) { }
 
 void GameModel::initializeGame(){
-    QPoint point(270,700); // need to change to variable
+    QPoint point((window_width/2) - 50 /*<---width of player widget*/  ,window_height - 100 /*<----width of player*/);
     player = new Player(point);
     spawnCountDown = rand() % 1000 + 1;  //set a countdown to random int from 1 to 100
 }
@@ -74,13 +72,13 @@ void GameModel::saveGame(string filename){
 }
 
 //load game.  duh
-void GameModel::loadGame(string filename){
+void GameModel::loadGame(QString filename){
     string type;
     int x;
     int y;
     int dir;    //direction is for projectiles. will be zero for player and enemy
 
-    ifstream infile(filename);
+    ifstream infile(filename.toStdString());
     while(infile){
         infile >> type;
         infile >> x;

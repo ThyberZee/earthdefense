@@ -2,13 +2,16 @@
 
 using namespace std;
 
-InGame::InGame(QMainWindow *parent) :
+InGame::InGame(QMainWindow *parent, QString initLoadGameFile) :
     QMainWindow(parent),
     ui(new Ui::InGame)
 {
     ui->setupUi(this);
 
     //start gamemodel
+    if (initLoadGameFile.size() != 0) {
+        GameModel::getInstance().loadGame(initLoadGameFile);
+    }
     GameModel::getInstance().initializeGame();
     fpsTimer = new QTimer(this);
 
@@ -18,7 +21,7 @@ InGame::InGame(QMainWindow *parent) :
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
 
     pl = new PlayerWidget(this);
-    pl->setAttribute(Qt::WA_TranslucentBackground, true);
+    pl->setAttribute(Qt::WA_TranslucentBackground, true); //Transparency!!! :D
 
     pl->show();
     fpsTimer->start();
@@ -114,3 +117,8 @@ void InGame::updateView() {
     }
 }
 
+
+void InGame::on_pushButton_clicked()
+{
+    GameModel::getInstance().saveGame("savegame");
+}

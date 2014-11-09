@@ -14,7 +14,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnNewGame_clicked()
 {
-    InGame* gameWindow = new InGame(this);
+    InGame* gameWindow = new InGame(this, "");
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
@@ -22,6 +22,10 @@ void MainWindow::on_btnNewGame_clicked()
 
 void MainWindow::on_btnLoadGame_clicked()
 {
+    InGame* gameWindow = new InGame(this, "savegame");
+    gameWindow->show();
+    gameWindow->setEnabled(true);
+    this->hide();
 
 }
 
