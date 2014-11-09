@@ -17,7 +17,7 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile) :
     fpsTimer = new QTimer(this);
 
     //fpsTimer->setInterval(1000/30.0); // Original 30 frames
-    fpsTimer->setInterval(1000/10.0); // EXPERIMENT: 60 frames
+    fpsTimer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
 
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
 
