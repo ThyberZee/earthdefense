@@ -17,7 +17,7 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile) :
     fpsTimer = new QTimer(this);
 
     //fpsTimer->setInterval(1000/30.0); // Original 30 frames
-    fpsTimer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
+    fpsTimer->setInterval(1000/10.0); // EXPERIMENT: 60 frames
 
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
 
@@ -62,14 +62,12 @@ void InGame::updateView() {
     //set score label
     QLabel* scorelabel = ui->scorelbl;
     QString s = QString::number(GameModel::getInstance().getScore());
-
     scorelabel->setText(s);
 
 
-    qDebug() << GameModel::getInstance().state().c_str();
-
-    GameModel::getInstance().masterUpdate();
+    client ? GameModel::getInstance().slaveUpdate() : GameModel::getInstance().masterUpdate();
     Host::getInstance().sendMessage(QString::fromStdString(GameModel::getInstance().state()));
+
     vector<Entity*> entities = GameModel::getInstance().getEntities();
 
 

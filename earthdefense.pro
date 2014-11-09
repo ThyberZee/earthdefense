@@ -27,7 +27,8 @@ SOURCES += main.cpp\
 	   host.cpp \
     score.cpp \
     entitywidget.cpp \
-    inputmanager.cpp
+    inputmanager.cpp \
+    utils.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
@@ -42,7 +43,8 @@ HEADERS  += mainwindow.h \
     score.h \
     entitywidget.h \
     objectobserver.h \
-    worldobserver.h
+    worldobserver.h \
+    utils.h
 
 FORMS    += mainwindow.ui \
             ingame.ui

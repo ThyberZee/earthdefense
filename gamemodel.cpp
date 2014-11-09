@@ -1,4 +1,5 @@
 #include "gamemodel.h"
+#include "utils.h"
 
 GameModel GameModel::instance;
 
@@ -47,9 +48,30 @@ void GameModel::masterUpdate(){
 }
 
 void GameModel::slaveUpdate(){
-    player->update();
     string message = Host::getInstance().getMessage().toStdString();
-    //stringstream stream <<
+    string type;
+    int ID, x, y, dir;
+
+    for(string line: split(message,'\n')){
+        stringstream stream(line);
+        stream >> type;
+        stream >> ID;
+        stream >> x;
+        stream >> y;
+        stream >> dir;
+
+        Entity* ent = getById(ID);
+        if(ent == NULL){
+            create(type,x,y,dir);
+        }else{
+            ent->setPos( QPoint(x,y));
+        }
+    }
+
+
+
+    player->update();
+
 
 }
 

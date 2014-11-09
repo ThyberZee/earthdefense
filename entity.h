@@ -29,6 +29,7 @@ public:
     ~Entity();
 
     QPoint getPos(){return pos;}
+    void setPos(QPoint p) {pos = p;}
     int getId(){return ID;}
     bool isAlive(){return alive;}
     bool getJustCreated(){return justCreated;}

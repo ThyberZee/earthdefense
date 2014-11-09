@@ -35,7 +35,9 @@ private slots:
 
 private:
     Ui::InGame *ui;
-    PlayerWidget *pl;               // Pointer to the Player Widget in model
+    PlayerWidget *pl;   // Pointer to the Player Widget in model
+
+    bool client;
 
     vector<EntityWidget*> ewidgets;
     QTimer *fpsTimer;               // Timer that drives the InGame UI

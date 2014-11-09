@@ -34,6 +34,12 @@ void Host::sendMessage(QString message){
     }
 }
 
+QString Host::getMessage(){
+    QString temp = message;
+    message = "";
+    return temp;
+}
+
 
 
 /* * * * * * * * * * *
@@ -61,7 +67,7 @@ void Host::dataReceived()
         QString str = sock->readLine();
         message += str;
     }
-    qDebug() << message;
+    //qDebug() << message;
 }
 
 void Host::clientDisconnected()
