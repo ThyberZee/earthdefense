@@ -86,12 +86,15 @@ string GameModel::state(){
 }
 
 /* save game state into file.  Format as follows:
+ * score
  * entity0_type id x y dir
  * entity1_type id x y dir
+ * player       id x y dir
  * etc.
  */
 void GameModel::saveGame(string filename){
     ofstream outfile(filename);
+    outfile << score << endl;
     for(Entity* e: entities){
         e->save(outfile);
     }
@@ -109,13 +112,14 @@ void GameModel::loadGame(QString filename){
     int dir;    //direction is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename.toStdString());
+
+    infile >> score;
     while(infile){
         infile >> type;
         infile >> id;       //this is ignored for loading, but is critical for network;
         infile >> x;
         infile >> y;
         infile >> dir;
-
         create(type,x,y,dir);
     }
     infile.close();
