@@ -8,7 +8,7 @@ GameModel::GameModel() : window_height(800), window_width(640) { }
 void GameModel::initializeGame(){
     QPoint point((window_width/2) - 50 /*<---width of player widget*/  ,window_height - 100 /*<----width of player*/);
     player = new Player(point);
-    spawnCountDown = rand() % 1000 + 1;  //set a countdown to random int from 1 to 100
+    spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
 }
 
 void GameModel::reset(){
@@ -47,12 +47,18 @@ void GameModel::masterUpdate(){
     }
 }
 
+/*
+ * this method is what updates by reading network data.
+ * it reads every line and updates the appropriate entities accordingly
+ */
 void GameModel::slaveUpdate(){
-    string message = Host::getInstance().getMessage().toStdString();
+    string message = Client::getInstance().getMessage().toStdString();
     string type;
     int ID, x, y, dir;
-
     for(string line: split(message,'\n')){
+
+        if(line == "") { continue; }
+
         stringstream stream(line);
         stream >> type;
         stream >> ID;
@@ -62,16 +68,18 @@ void GameModel::slaveUpdate(){
 
         Entity* ent = getById(ID);
         if(ent == NULL){
-            create(type,x,y,dir);
+            Entity* e = create(type,x,y,dir);
+            e->setId(ID);
+        }else if(type == "dead"){
+            ent->kill();
+        }else if(type == "player"){
+            continue;
         }else{
             ent->setPos( QPoint(x,y));
         }
     }
 
-
-
     player->update();
-
 
 }
 
@@ -79,7 +87,11 @@ void GameModel::slaveUpdate(){
 string GameModel::state(){
     stringstream ss;
     for(Entity* e:entities){
-        ss << e->toString() << endl;
+        if(!e->isAlive()){
+            ss << "dead " << e->getId() << endl;
+        }else{
+            ss << e->toString() << endl;
+        }
     }
     ss << player->toString() << endl;
     return ss.str();

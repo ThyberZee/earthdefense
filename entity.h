@@ -31,6 +31,7 @@ public:
     QPoint getPos(){return pos;}
     void setPos(QPoint p) {pos = p;}
     int getId(){return ID;}
+    void setId(int id){ID = id;}  //use sparingly
     bool isAlive(){return alive;}
     bool getJustCreated(){return justCreated;}
     void setJustCreated(bool b){justCreated = b;}

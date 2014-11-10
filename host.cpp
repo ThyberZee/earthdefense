@@ -6,14 +6,6 @@ Host::Host(QObject *parent) :
     QObject(parent)
 {
     server = new QTcpServer(this);
-    connect(server, SIGNAL(newConnection()), this, SLOT(clientConnected()));
-/*
-    connect(socket, &QTcpSocket::readyRead, this, &Host::dataReceived);
-    connect(socket, &QTcpSocket::disconnected, this, &Host::on_serverDisconnected);
-    connect(socket, &QTcpSocket::connected, this, &Host::on_connectionSucceeded);
-    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(on_socketError(QAbstractSocket::SocketError)));
-*/
-
 }
 
 bool Host::start(){

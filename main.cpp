@@ -37,8 +37,6 @@ bool unitTest(){
 
     HighScore::getInstance()->reset();
 
-    Host::getInstance().start();
-
     return true;
 }
 

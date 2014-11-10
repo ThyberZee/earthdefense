@@ -22,7 +22,7 @@ class InGame : public QMainWindow
     Q_OBJECT
     
 public:
-    explicit InGame(QMainWindow *parent = 0, QString initLoadGameFile = 0);
+    explicit InGame(QMainWindow *parent = 0, QString initLoadGameFile = 0, bool client = 0);
     ~InGame();
 
 private slots:
@@ -37,7 +37,7 @@ private:
     Ui::InGame *ui;
     PlayerWidget *pl;   // Pointer to the Player Widget in model
 
-    bool client;
+    bool client;    //shows whether the game is listening for multiplayer or not
 
     vector<EntityWidget*> ewidgets;
     QTimer *fpsTimer;               // Timer that drives the InGame UI

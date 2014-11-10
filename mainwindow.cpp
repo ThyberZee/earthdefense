@@ -14,7 +14,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnNewGame_clicked()
 {
-    InGame* gameWindow = new InGame(this, "");
+    bool isclient = ui->rbMultiplayer->isChecked();
+    InGame* gameWindow = new InGame(this, "", isclient);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
@@ -22,7 +23,8 @@ void MainWindow::on_btnNewGame_clicked()
 
 void MainWindow::on_btnLoadGame_clicked()
 {
-    InGame* gameWindow = new InGame(this, "savegame");
+    bool isclient = ui->rbMultiplayer->isChecked();
+    InGame* gameWindow = new InGame(this, "savegame", isclient);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();

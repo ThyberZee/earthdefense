@@ -1,37 +1,50 @@
 #include "ingame.h"
+#include "client.h"
 #include "host.h"
 
 using namespace std;
 
-InGame::InGame(QMainWindow *parent, QString initLoadGameFile) :
+InGame::InGame(QMainWindow *parent, QString initLoadGameFile, bool client) :
     QMainWindow(parent),
-    ui(new Ui::InGame)
+    ui(new Ui::InGame),
+    client(client)
 {
     ui->setupUi(this);
-    //qDebug() << Host::getInstance().getMessage();
+
     //start gamemodel
     if (initLoadGameFile.size() != 0) {
         GameModel::getInstance().loadGame(initLoadGameFile);
     }
     GameModel::getInstance().initializeGame();
-    fpsTimer = new QTimer(this);
 
-    //fpsTimer->setInterval(1000/30.0); // Original 30 frames
-    fpsTimer->setInterval(1000/60.0); // EXPERIMENT: 60 frames
-
-    connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
-
+    //init player widget
     pl = new PlayerWidget(this);
     pl->setAttribute(Qt::WA_TranslucentBackground, true); //Transparency!!! :D
-
     pl->show();
+
+    //start timer
+    fpsTimer = new QTimer(this);
+    fpsTimer->setInterval(1000/60.0);
+    connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
     fpsTimer->start();
+
+    //server-client setup
+    if(client){
+        Client::getInstance().connectToServer();
+    }else{
+        Host::getInstance().start();
+    }
 }
 
 InGame::~InGame()
 {
     delete ui;
 }
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * *
+ *               INPUT HANDLERS                  *
+ * * * * * * * * * * * * * * * * * * * * * * * * */
 
 void InGame::keyPressEvent(QKeyEvent *ev){
 
@@ -58,15 +71,23 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
     }
 }
 
+/* * * * * * * * * * * * * * * * * * * * *
+ *         MAIN UPDATE FUNCTION          *
+ * * * * * * * * * * * * * * * * * * * * */
+
 void InGame::updateView() {
     //set score label
     QLabel* scorelabel = ui->scorelbl;
     QString s = QString::number(GameModel::getInstance().getScore());
     scorelabel->setText(s);
 
-
-    client ? GameModel::getInstance().slaveUpdate() : GameModel::getInstance().masterUpdate();
-    Host::getInstance().sendMessage(QString::fromStdString(GameModel::getInstance().state()));
+    //update game depending on whether game is multiplayer or singlplayer;
+    if(client){
+        GameModel::getInstance().slaveUpdate();
+    }else{
+        GameModel::getInstance().masterUpdate();
+        Host::getInstance().sendMessage(QString::fromStdString(GameModel::getInstance().state()));
+    }
 
     vector<Entity*> entities = GameModel::getInstance().getEntities();
 

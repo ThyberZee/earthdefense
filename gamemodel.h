@@ -7,6 +7,8 @@
 #include <QString>
 #include <vector>
 #include <sstream>
+
+#include "client.h"
 #include "host.h"
 
 #include "projectile.h"
