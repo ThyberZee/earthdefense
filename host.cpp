@@ -51,7 +51,6 @@ void Host::clientConnected()
 
 void Host::dataReceived()
 {
-    message = "";
     QTcpSocket *sock = dynamic_cast<QTcpSocket*>(sender());
 
     qDebug() << "Received data from socket!";

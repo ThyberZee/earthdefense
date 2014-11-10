@@ -115,7 +115,7 @@ string GameModel::state(){
  */
 void GameModel::saveGame(string filename){
     ofstream outfile(filename);
-    outfile << score << endl;
+    outfile << "score " << score << endl;
     for(Entity* e: entities){
         e->save(outfile);
     }
@@ -134,14 +134,18 @@ void GameModel::loadGame(QString filename){
 
     ifstream infile(filename.toStdString());
 
-    infile >> score;
+    //infile >> score;
     while(infile){
         infile >> type;
-        infile >> id;       //this is ignored for loading, but is critical for network;
+        infile >> id;
+        if (type == "score"){
+            score = id;
+        }else{
         infile >> x;
         infile >> y;
         infile >> dir;
-        create(type,x,y,dir);
+            create(type,x,y,dir);
+        }
     }
     infile.close();
 }
