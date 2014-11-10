@@ -31,7 +31,7 @@ private slots:
     void keyReleaseEvent(QKeyEvent *ev);
     void updateView();
     
-    void on_pushButton_clicked();
+    void on_btnSaveGame_clicked();
 
 private:
     Ui::InGame *ui;

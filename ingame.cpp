@@ -140,7 +140,7 @@ void InGame::updateView() {
 }
 
 
-void InGame::on_pushButton_clicked()
+void InGame::on_btnSaveGame_clicked()
 {
     GameModel::getInstance().saveGame("savegame");
 }
