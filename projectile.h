@@ -7,7 +7,7 @@
 
 class Projectile : public Entity
 {
-private:
+protected:
     int direction;
 public:
     Projectile(QPoint p, int v);
