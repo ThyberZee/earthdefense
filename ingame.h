@@ -15,6 +15,8 @@
 #include "playerwidget.h"
 #include "entitywidget.h"
 
+#include "inputmanager.h"
+
 namespace Ui {
 class InGame;
 }
