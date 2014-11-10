@@ -66,14 +66,16 @@ void GameModel::slaveUpdate(){
         stream >> y;
         stream >> dir;
 
+        if(type=="player"){
+            continue;
+        }
+
         Entity* ent = getById(ID);
         if(ent == NULL){
             Entity* e = create(type,x,y,dir);
             e->setId(ID);
         }else if(type == "dead"){
             ent->kill();
-        }else if(type == "player"){
-            continue;
         }else{
             ent->setPos( QPoint(x,y));
         }
