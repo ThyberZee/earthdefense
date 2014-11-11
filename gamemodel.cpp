@@ -25,6 +25,26 @@ void GameModel::reset(){
     }
     entities.clear();
 }
+/************************
+ * For Advancing Levels *
+ ************************/
+bool GameModel::checkForNextLevel() {
+    for (Entity* i : entities){
+        if (i->toString().find("enemy") == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void GameModel::advanceLevel() {
+    currentLvl++;
+    QString filename = QString("Level") + QString(currentLvl);
+    loadGame(filename);
+    observer->advanceLevel();
+}
+
+
 
 void GameModel::gameOver(){
     observer->gameOver();
@@ -47,6 +67,12 @@ void GameModel::masterUpdate(){
             e->update();    //update the rest
         }
     }
+
+    /*Level Change*/
+    if (checkForNextLevel()){
+        advanceLevel();
+    }
+
     //random spawning of enemies
     if(--spawnCountDown <= 0){
         create("enemy",rand()%500,rand()%500);
@@ -128,10 +154,7 @@ void GameModel::saveGame(string filename){
 //load game.  duh
 void GameModel::loadGame(QString filename){
     string type;
-    int id;
-    int x;
-    int y;
-    int dir;    //direction is for projectiles. will be zero for player and enemy
+    int id, dir, x, y;      //direction is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename.toStdString());
     //QFile infile(QString(":/") + filename);
@@ -143,9 +166,9 @@ void GameModel::loadGame(QString filename){
         if (type == "score"){
             score = id;
         }else{
-        infile >> x;
-        infile >> y;
-        infile >> dir;
+            infile >> x;
+            infile >> y;
+            infile >> dir;
             create(type,x,y,dir);
         }
     }

@@ -11,11 +11,23 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, bool client) :
 {
     ui->setupUi(this);
 
+//    if (ui->gbDifficulty->rbEasy().isChecked()) { //attempt to set difficulty levels
+//        difficulty = 1;
+//    } else if (ui->gbDifficulty->rbMedium().isChecked()) {
+//        difficulty = 2;
+//    } else {
+//        difficulty = 3;
+//    }
+
     //start gamemodel
+
     GameModel::getInstance().setObserver(this);
     if (initLoadGameFile.size() != 0) {
         GameModel::getInstance().loadGame(initLoadGameFile);
     }
+
+    //GameModel.getInstance().setDifficulty(difficulty);
+
     GameModel::getInstance().initializeGame();
 
     //init player widget
@@ -149,14 +161,18 @@ void InGame::updateView() {
 }
 
 void InGame::gameOver(){
-    fpsTimer->stop();
+    //fpsTimer->stop();
+}
+
+void InGame::advanceLevel() {
+    ui->lblLevel->setText(QString(GameModel::getInstance().getCurrentLvl()));
 }
 
 /* * * * * * * * * * * *
  *       SLOTS         *
  * * * * * * * * * * * */
 
-void InGame::on_pushButton_clicked()
+void InGame::on_btnSaveGame_clicked()
 {
     GameModel::getInstance().saveGame("savegame");
 }

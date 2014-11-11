@@ -14,6 +14,7 @@
 
 #include "playerwidget.h"
 #include "entitywidget.h"
+#include "worldobserver.h"
 
 #include "inputmanager.h"
 
@@ -36,7 +37,8 @@ private slots:
     void keyReleaseEvent(QKeyEvent *ev);
     void updateView();
     
-    void on_pushButton_clicked();
+    void on_btnSaveGame_clicked();
+    void advanceLevel();
 
 private:
     Ui::InGame *ui;
@@ -48,6 +50,7 @@ private:
     vector<EntityWidget*> ewidgets;
     QTimer* fpsTimer;               // Timer that drives the InGame UI
     QString loadGameFile;
+    int difficulty;
 
 };
 

@@ -6,13 +6,11 @@
         <file>resources/images/projectile.png</file>
         <file>resources/images/space.jpg</file>
         <file>resources/images/alien1.png</file>
-        <file>level1</file>
-        <file>level2</file>
-        <file>level3</file>
-        <file>level4</file>
-        <file>level5</file>
-        <file>level6</file>
-        <file>level7</file>
-        <file>savegame</file>
+        <file>resources/images/trackingmissle.png</file>
+        <file>resources/Levels/Level1</file>
+        <file>resources/Levels/Level2</file>
+        <file>resources/Levels/Level3</file>
+        <file>resources/Levels/Level4</file>
+        <file>resources/Levels/Level5</file>
     </qresource>
 </RCC>

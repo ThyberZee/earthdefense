@@ -21,3 +21,4 @@ vector<string> split(string text, char c){
     }
     return parsed;
 }
+
