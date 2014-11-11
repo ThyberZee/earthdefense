@@ -4,10 +4,10 @@
 
 using namespace std;
 
-InGame::InGame(QMainWindow *parent, QString initLoadGameFile, bool client, int initDifficulty) :
+InGame::InGame(QMainWindow *parent, QString initLoadGameFile, string netstat, int initDifficulty) :
     QMainWindow(parent),
     ui(new Ui::InGame),
-    client(client),
+    netstatus(netstat),
     difficulty(initDifficulty)
 {
     ui->setupUi(this);
@@ -35,9 +35,9 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, bool client, int i
     fpsTimer->start();
 
     //server-client setup
-    if(client){
+    if(netstat == "client"){
         Client::getInstance().connectToServer();
-    }else{
+    }else if(netstat == "host"){
         Host::getInstance().start();
     }
 }
@@ -56,11 +56,11 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
     if (ev->key() == 0x01000012){ //left key pressed
         GameModel::getInstance().getPlayer()->setDir(-1);
-        InputManager::getInstance()->keyDown("left");
+        //InputManager::getInstance().keyDown("left");
 
     }else if (ev->key() == 0x01000014){ //right key pressed
         GameModel::getInstance().getPlayer()->setDir(1);
-        InputManager::getInstance()->keyDown("right");
+        //InputManager::getInstance().keyDown("right");
 
 
     }else if (ev->key() == 0x20){ // space key pressed
@@ -68,7 +68,7 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         int y = GameModel::getInstance().getPlayer()->getPos().y() - 10;
 
         GameModel::getInstance().create("projectile", x, y);
-        InputManager::getInstance()->keyDown("fire");
+        //InputManager::getInstance().keyDown("fire");
     }
 }
 
@@ -76,12 +76,12 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
     if (ev->key() == 0x01000012){ // left key released
         GameModel::getInstance().getPlayer()->setDir(0);     // OLD
-        InputManager::getInstance()->keyUp("left");              // NEW
+        //InputManager::getInstance().keyUp("left");              // NEW
     }else if (ev->key() == 0x01000014){ // right key released
         GameModel::getInstance().getPlayer()->setDir(0);     // OLD
-        InputManager::getInstance()->keyUp("right");             // NEW
+        //InputManager::getInstance().keyUp("right");             // NEW
     }else if (ev->key() == 0x20){ // space key released
-        InputManager::getInstance()->keyUp("fire");
+        //InputManager::getInstance().keyUp("fire");
     }
 }
 
@@ -95,12 +95,14 @@ void InGame::updateView() {
     QString s = QString::number(GameModel::getInstance().getScore());
     scorelabel->setText(s);
 
-    //update game depending on whether game is multiplayer or singlplayer;
-    if(client){
+    //update game depending on whether game is multiplayer or singlplayer, host or client;
+    if(netstatus == "client"){
         GameModel::getInstance().slaveUpdate();
     }else{
         GameModel::getInstance().masterUpdate();
-        Host::getInstance().sendMessage(QString::fromStdString(GameModel::getInstance().state()));
+        if(netstatus == "host"){
+            Host::getInstance().sendMessage(QString::fromStdString(GameModel::getInstance().state()));
+        }
     }
 
     vector<Entity*> entities = GameModel::getInstance().getEntities();

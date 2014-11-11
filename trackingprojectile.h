@@ -8,6 +8,7 @@ class TrackingProjectile : public Projectile
 {
 public:
     TrackingProjectile(QPoint p, int d);
+    string toString();
     void update();
 };
 

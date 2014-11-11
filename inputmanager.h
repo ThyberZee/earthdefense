@@ -1,11 +1,10 @@
 #ifndef INPUTMANAGER_H
 #define INPUTMANAGER_H
-
-#endif // INPUTMANAGER_H
-
-#include <string>
-
 /////////////////////////////////////
+#include <string>
+#include <QDebug>
+
+
 
 class InputManager
 {
@@ -16,18 +15,18 @@ private:
 public:
     void keyDown(std::string key);
     void keyUp(std::string key);
+    bool state(std::string key);
 
 
 /***** singleton implementation ****/
 private:
-    static InputManager *instance;
+    static InputManager instance;
 
 public:
-    static InputManager* getInstance() {
-        if (instance == nullptr) {
-            instance = new InputManager();
-        }
-
+    static InputManager getInstance() {
         return instance;
     }
 };
+
+
+#endif // INPUTMANAGER_H

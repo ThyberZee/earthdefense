@@ -50,8 +50,9 @@ void Enemy::update()
 
     //decrement cooldown; if 0, shoot and reset to random val;
     if(--cooldown == 0){
-        //QPixmap projectile();
-        GameModel::getInstance().create("trackingprojectile", pos.x(), pos.y()+height, 1);
+        string type;
+        (rand() % 2 <= 1) ? type = "projectile" : type = "trackingprojectile";
+        GameModel::getInstance().create(type, pos.x(), pos.y()+height, 1);
         cooldown = rand() % 300;
     }
 }

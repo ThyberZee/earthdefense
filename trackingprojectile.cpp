@@ -40,3 +40,9 @@ void TrackingProjectile::update(){
         }*/
     }
 }
+
+string TrackingProjectile::toString(){
+    stringstream ss;
+    ss << "trackingprojectile " << ID << " " << pos.x() << " " << pos.y() << " " << direction;
+    return ss.str();
+}

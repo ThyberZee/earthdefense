@@ -88,7 +88,7 @@
      <string>Load Game</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="rbMultiplayer">
+   <widget class="QRadioButton" name="rbJoinGame">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -117,7 +117,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton">
+   <widget class="QRadioButton" name="rbHostGame">
     <property name="geometry">
      <rect>
       <x>420</x>
