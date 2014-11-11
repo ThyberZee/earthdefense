@@ -8,6 +8,7 @@
 class WorldObserver
 {
 public:
+    virtual void gameOver() = 0;
 };
 
 #endif // WORLDOBSERVER_H

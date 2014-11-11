@@ -12,11 +12,13 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, bool client) :
     ui->setupUi(this);
 
     //start gamemodel
-    GameModel::getInstance().initializeGame();
 
+    GameModel::getInstance().setObserver(this);
     if (initLoadGameFile.size() != 0) {
         GameModel::getInstance().loadGame(initLoadGameFile);
     }
+
+    GameModel::getInstance().initializeGame();
 
     //init player widget
     pl = new PlayerWidget(this);
@@ -140,6 +142,13 @@ void InGame::updateView() {
     }
 }
 
+void InGame::gameOver(){
+    fpsTimer->stop();
+}
+
+/* * * * * * * * * * * *
+ *       SLOTS         *
+ * * * * * * * * * * * */
 
 void InGame::on_btnSaveGame_clicked()
 {

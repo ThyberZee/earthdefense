@@ -5,12 +5,14 @@ GameModel GameModel::instance;
 
 GameModel::GameModel() : window_height(800), window_width(640) { }
 
+//initialize game
 void GameModel::initializeGame(){
     QPoint point((window_width/2) - 50 /*<---width of player widget*/  ,window_height - 100 /*<----width of player*/);
     player = new Player(point);
     spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
 }
 
+//reset game
 void GameModel::reset(){
 
     //reset player
@@ -42,6 +44,11 @@ void GameModel::advanceLevel() {
 }
 
 
+
+void GameModel::gameOver(){
+    observer->gameOver();
+    //reset();
+}
 
 /*this is the most important function of the model.  It first updates the player,
  *then checks all of the enemies that called their kill function last frame, deleting
@@ -148,17 +155,15 @@ void GameModel::loadGame(QString filename){
     int id, dir, x, y;      //direction is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename.toStdString());
-
     while(infile){
         infile >> type;
-        infile >> id;       //this is ignored for loading, but is critical for network;
-        infile >> x;
-        infile >> y;
-        infile >> dir;
-
-        if(type == "score"){
-            score == id;
+        infile >> id;
+        if (type == "score"){
+            score = id;
         }else{
+            infile >> x;
+            infile >> y;
+            infile >> dir;
             create(type,x,y,dir);
         }
     }

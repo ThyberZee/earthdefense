@@ -2,6 +2,7 @@
 #include <QDebug>
 #include "client.h"
 
+//singleton magic
 Client Client::instance;
 
 Client::Client(QObject *parent) :
@@ -10,7 +11,6 @@ Client::Client(QObject *parent) :
     socket = new QTcpSocket(this);
     connect(socket, SIGNAL(readyRead()), this, SLOT(dataReceived()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(serverDisconnected()));
-
 }
 
 void Client::connectToServer()
@@ -40,14 +40,13 @@ QString Client::getMessage(){
  * * * * * * */
 
 void Client::dataReceived() {
-    message = "";
     while (socket->canReadLine()) {
         message += socket->readLine();
     }
-    qDebug() << message;
+    //qDebug() << message;
 }
 
 void Client::serverDisconnected()
 {
-    qDebug() << "disconnected!";
+    qDebug() << "Client: server disconnected!";
 }
