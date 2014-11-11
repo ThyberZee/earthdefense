@@ -40,13 +40,12 @@ void Projectile::update(){
                 }
             }
         }
-        /*
+
         // kill player
         QRect* otherbox = GameModel::getInstance().getPlayer()->getBox();
-        if(box->intersects(*otherbox)){
-            this->kill();
-            GameModel::getInstance().reset();
-        }*/
+        if(box->intersects(*otherbox) && direction == 1){
+            GameModel::getInstance().gameOver();
+        }
     }
 }
 

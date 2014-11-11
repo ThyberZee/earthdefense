@@ -17,12 +17,15 @@
 #include "player.h"
 #include "entity.h"
 #include "sstream"
+#include "worldobserver.h"
 
 using namespace std;
 
 //abstract game model class
 class GameModel {
 private:
+    WorldObserver* observer;
+
     vector<Entity*> entities;
     Player* player;
     Player* player2;
@@ -33,6 +36,7 @@ public:
     ~GameModel();
 
     void initializeGame();
+    void gameOver();
     void reset();
 
     string state();
@@ -47,11 +51,12 @@ public:
     Entity* destroy(int id);
 
     //getters and setters
-    Player* getPlayer(){return player;}
+    Player* getPlayer(){ return player;}
+    Player* getPlayer2(){ return player2;}
     vector<Entity*> getEntities(){return entities;}
     int getScore(){ return score;}
     void setScore(int s){score = s;}
-
+    void setObserver(WorldObserver* o){observer = o;}
 
     /***  singleton implementation ***/
 private:

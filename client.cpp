@@ -40,14 +40,13 @@ QString Client::getMessage(){
  * * * * * * */
 
 void Client::dataReceived() {
-    message = "";
     while (socket->canReadLine()) {
         message += socket->readLine();
     }
-    qDebug() << message;
+    //qDebug() << message;
 }
 
 void Client::serverDisconnected()
 {
-    qDebug() << "disconnected!";
+    qDebug() << "Client: server disconnected!";
 }

@@ -5,12 +5,14 @@ GameModel GameModel::instance;
 
 GameModel::GameModel() : window_height(800), window_width(640) { }
 
+//initialize game
 void GameModel::initializeGame(){
     QPoint point((window_width/2) - 50 /*<---width of player widget*/  ,window_height - 100 /*<----width of player*/);
     player = new Player(point);
     spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
 }
 
+//reset game
 void GameModel::reset(){
 
     //reset player
@@ -22,6 +24,11 @@ void GameModel::reset(){
         delete e;
     }
     entities.clear();
+}
+
+void GameModel::gameOver(){
+    observer->gameOver();
+    //reset();
 }
 
 /*this is the most important function of the model.  It first updates the player,

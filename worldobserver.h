@@ -8,10 +8,8 @@
 class WorldObserver
 {
 public:
-    ObjectObserver();
-    virtual void create() = 0;
-    virtual void sendMessage() = 0;
-    virtual void readMessage() = 0;
+    //virtual void create() = 0;
+    virtual void gameOver() = 0;
 };
 
 #endif // WORLDOBSERVER_H
