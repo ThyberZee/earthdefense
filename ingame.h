@@ -39,6 +39,7 @@ private slots:
 private:
     Ui::InGame *ui;
     PlayerWidget *pl;   // Pointer to the Player Widget in model
+    PlayerWidget *pl2;
 
     bool client;    //shows whether the game is listening for multiplayer or not
 
