@@ -115,6 +115,7 @@ string GameModel::state(){
  */
 void GameModel::saveGame(string filename){
     ofstream outfile(filename);
+    //QFile outfile(QString(":/") + filename);
     outfile << "score " << score << endl;
     for(Entity* e: entities){
         e->save(outfile);
@@ -133,6 +134,7 @@ void GameModel::loadGame(QString filename){
     int dir;    //direction is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename.toStdString());
+    //QFile infile(QString(":/") + filename);
 
     //infile >> score;
     while(infile){

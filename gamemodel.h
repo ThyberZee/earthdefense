@@ -4,6 +4,8 @@
 #include <QDebug>
 #include <QWidget>
 
+#include <QFile>
+
 #include <QString>
 #include <vector>
 #include <sstream>
