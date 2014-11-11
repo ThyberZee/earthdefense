@@ -2,6 +2,7 @@
 #include <QDebug>
 #include "client.h"
 
+//singleton magic
 Client Client::instance;
 
 Client::Client(QObject *parent) :
@@ -10,7 +11,6 @@ Client::Client(QObject *parent) :
     socket = new QTcpSocket(this);
     connect(socket, SIGNAL(readyRead()), this, SLOT(dataReceived()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(serverDisconnected()));
-
 }
 
 void Client::connectToServer()
