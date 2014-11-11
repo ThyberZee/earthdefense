@@ -4,20 +4,13 @@
 
 using namespace std;
 
-InGame::InGame(QMainWindow *parent, QString initLoadGameFile, bool client) :
+InGame::InGame(QMainWindow *parent, QString initLoadGameFile, bool client, int initDifficulty) :
     QMainWindow(parent),
     ui(new Ui::InGame),
-    client(client)
+    client(client),
+    difficulty(initDifficulty)
 {
     ui->setupUi(this);
-
-//    if (ui->gbDifficulty->rbEasy().isChecked()) { //attempt to set difficulty levels
-//        difficulty = 1;
-//    } else if (ui->gbDifficulty->rbMedium().isChecked()) {
-//        difficulty = 2;
-//    } else {
-//        difficulty = 3;
-//    }
 
     //start gamemodel
 
@@ -26,7 +19,7 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, bool client) :
         GameModel::getInstance().loadGame(initLoadGameFile);
     }
 
-    //GameModel.getInstance().setDifficulty(difficulty);
+    GameModel::getInstance().setDifficulty(difficulty);
 
     GameModel::getInstance().initializeGame();
 

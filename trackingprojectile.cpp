@@ -9,7 +9,7 @@ void TrackingProjectile::update(){
     }else if(pos.x() < GameModel::getInstance().getPlayer()->getPos().x()){
         pos.setX(pos.x() + 3);
     }
-    pos.setY(pos.y() + 10*direction);
+    pos.setY(pos.y() + (GameModel::getInstance().getDifficulty()*4)*direction);
     box->moveTo(pos.x(),pos.y());
     if(pos.y() > 800 || pos.y() < 0){   //800 screen height;
         kill();

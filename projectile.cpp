@@ -18,9 +18,9 @@ string Projectile::toString(){
 }
 
 void Projectile::update(){
-    pos.setY(pos.y() + 10*direction);
+    pos.setY(pos.y() + (GameModel::getInstance().getDifficulty()*4)*direction);
     box->moveTo(pos.x(),pos.y());
-    if(pos.y() > 800 || pos.y() < 0){   //800 screen height;
+    if(pos.y() > GameModel::getInstance().getWinHeight() || pos.y() < 0){
         kill();
     }else{
         for(Entity *entity: GameModel::getInstance().getEntities()){

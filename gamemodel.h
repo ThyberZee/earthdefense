@@ -14,6 +14,7 @@
 #include "host.h"
 
 #include "projectile.h"
+#include "trackingprojectile.h"
 #include "gamemodel.h"
 #include "enemy.h"
 #include "player.h"
@@ -56,24 +57,25 @@ public:
     Entity* destroy(int id);
 
     //getters and setters
-    Player*         getPlayer(){ return player;}
-    Player*         getPlayer2(){ return player2;}
-    vector<Entity*> getEntities(){return entities;}
-    int             getScore(){ return score;}
+    Player*         getPlayer()     { return player;}
+    Player*         getPlayer2()    { return player2;}
+    vector<Entity*> getEntities()   { return entities;}
+    int             getScore()      { return score;}
     int             getCurrentLvl() { return currentLvl; }
+    int             getDifficulty() { return difficulty; }
+    int             getWinHeight()  { return window_height; }
+    int             getWinWidth()   { return window_width; }
 
-    void setScore(int s){score = s;}
-    void setObserver(WorldObserver* o){observer = o;}
-    void setDifficulty(int i) { difficulty = i; }
+    void setScore(int s)                { score = s; }
+    void setObserver(WorldObserver* o)  { observer = o; }
+    void setDifficulty(int i)           { difficulty = i; }
 
     /***  singleton implementation ***/
 private:
     static GameModel instance;
     GameModel();
 public:
-    static GameModel &getInstance() {
-        return instance;
-    }
+    static GameModel &getInstance() { return instance; }
 };
 
 #endif // GAMEMODEL_H

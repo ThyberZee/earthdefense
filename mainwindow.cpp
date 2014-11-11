@@ -15,7 +15,17 @@ MainWindow::~MainWindow()
 void MainWindow::on_btnNewGame_clicked()
 {
     bool isclient = ui->rbMultiplayer->isChecked();
-    InGame* gameWindow = new InGame(this, "", isclient);
+
+    int initDifficulty;
+    if (ui->cbDifficulty->currentIndex() == 0) {
+        initDifficulty = 1;
+    } else if (ui->cbDifficulty->currentIndex() == 1) {
+        initDifficulty = 2;
+    } else {
+        initDifficulty = 3;
+    }
+
+    InGame* gameWindow = new InGame(this, "", isclient, initDifficulty);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
@@ -41,3 +51,8 @@ void MainWindow::on_rbMultiplayer_clicked()
 
 }
 
+
+void MainWindow::on_rbEasy_clicked()
+{
+
+}

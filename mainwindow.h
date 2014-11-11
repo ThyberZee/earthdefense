@@ -30,6 +30,8 @@ private slots:
     void on_rbSinglePlayer_clicked();
     void on_rbMultiplayer_clicked();
 
+    void on_rbEasy_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
