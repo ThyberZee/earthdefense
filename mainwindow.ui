@@ -39,7 +39,7 @@
    <widget class="QPushButton" name="btnNewGame">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>70</x>
       <y>90</y>
       <width>201</width>
       <height>81</height>
@@ -65,8 +65,8 @@
    <widget class="QPushButton" name="btnLoadGame">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>200</y>
+      <x>360</x>
+      <y>90</y>
       <width>201</width>
       <height>81</height>
      </rect>
@@ -91,8 +91,8 @@
    <widget class="QRadioButton" name="rbMultiplayer">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>360</y>
+      <x>230</x>
+      <y>210</y>
       <width>141</width>
       <height>41</height>
      </rect>
@@ -104,8 +104,8 @@
    <widget class="QRadioButton" name="rbSinglePlayer">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>310</y>
+      <x>50</x>
+      <y>210</y>
       <width>141</width>
       <height>41</height>
      </rect>
@@ -120,67 +120,40 @@
    <widget class="QRadioButton" name="radioButton">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>410</y>
+      <x>420</x>
+      <y>210</y>
       <width>141</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Host Game</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="gbDifficulty">
+   <widget class="QComboBox" name="cbDifficulty">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>320</y>
+      <x>220</x>
+      <y>310</y>
       <width>161</width>
-      <height>131</height>
+      <height>31</height>
      </rect>
     </property>
-    <property name="title">
-     <string>GroupBox</string>
-    </property>
-    <widget class="QRadioButton" name="rbEasy">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>116</width>
-       <height>22</height>
-      </rect>
-     </property>
+    <item>
      <property name="text">
       <string>Easy</string>
      </property>
-    </widget>
-    <widget class="QRadioButton" name="rbMedium">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>116</width>
-       <height>22</height>
-      </rect>
-     </property>
+    </item>
+    <item>
      <property name="text">
       <string>Medium</string>
      </property>
-    </widget>
-    <widget class="QRadioButton" name="rbHard">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>90</y>
-       <width>116</width>
-       <height>22</height>
-      </rect>
-     </property>
+    </item>
+    <item>
      <property name="text">
       <string>Hard</string>
      </property>
-    </widget>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

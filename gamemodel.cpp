@@ -194,6 +194,13 @@ Entity *GameModel::create(string type, int x, int y, int dir){
 
         return p;
 
+    }else if (type == "trackingprojectile"){
+        QPoint tempPoint(x, y);
+        TrackingProjectile* p = new TrackingProjectile(tempPoint, dir);
+        entities.push_back(p);
+
+        return p;
+
     }else{
         return NULL;
     }
