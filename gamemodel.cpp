@@ -39,8 +39,9 @@ bool GameModel::checkForNextLevel() {
 
 void GameModel::advanceLevel() {
     currentLvl++;
-    loadGame(QString("Level" + currentLvl));
-    qDebug() << "Advanced Level";
+    QString filename = QString("Level") + QString(currentLvl);
+    loadGame(filename);
+    observer->advanceLevel();
 }
 
 

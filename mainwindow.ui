@@ -130,6 +130,58 @@
      <string>Host Game</string>
     </property>
    </widget>
+   <widget class="QGroupBox" name="gbDifficulty">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>320</y>
+      <width>161</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>GroupBox</string>
+    </property>
+    <widget class="QRadioButton" name="rbEasy">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>116</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Easy</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rbMedium">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>116</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Medium</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rbHard">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>116</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Hard</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

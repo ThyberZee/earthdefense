@@ -30,7 +30,7 @@ private:
     Player* player;
     Player* player2;
     int window_height, window_width; //these two variables set in intitializer
-    int score, spawnCountDown, currentLvl;
+    int score, spawnCountDown, currentLvl, difficulty;
 
 public:
     ~GameModel();
@@ -54,12 +54,15 @@ public:
     Entity* destroy(int id);
 
     //getters and setters
-    Player* getPlayer(){ return player;}
-    Player* getPlayer2(){ return player2;}
+    Player*         getPlayer(){ return player;}
+    Player*         getPlayer2(){ return player2;}
     vector<Entity*> getEntities(){return entities;}
-    int getScore(){ return score;}
+    int             getScore(){ return score;}
+    int             getCurrentLvl() { return currentLvl; }
+
     void setScore(int s){score = s;}
     void setObserver(WorldObserver* o){observer = o;}
+    void setDifficulty(int i) { difficulty = i; }
 
     /***  singleton implementation ***/
 private:

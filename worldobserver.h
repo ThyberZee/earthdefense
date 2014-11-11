@@ -9,6 +9,7 @@ class WorldObserver
 {
 public:
     virtual void gameOver() = 0;
+    virtual void advanceLevel() = 0;
 };
 
 #endif // WORLDOBSERVER_H

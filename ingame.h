@@ -36,6 +36,7 @@ private slots:
     void updateView();
     
     void on_btnSaveGame_clicked();
+    void advanceLevel();
 
 private:
     Ui::InGame *ui;
@@ -46,6 +47,7 @@ private:
     vector<EntityWidget*> ewidgets;
     QTimer* fpsTimer;               // Timer that drives the InGame UI
     QString loadGameFile;
+    int difficulty;
 
 };
 
