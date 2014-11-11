@@ -1,20 +1,14 @@
-// MATT WILSON: "Probably should put this class in a header file."
-class InputManager{
-    //Q_OBJECT
-    //QObject
-    bool left;
-    bool right;
-    bool fire;
+#include <inputmanager.h>
 
-   //getters
-    /* MATT WILSON
-    bool getLeft()      const { return left;  }
-    bool getRight()     const { return right; }
-    bool getFireState() const { return fire;  }
-    */
+InputManager* InputManager::instance = nullptr;
 
-   //slots for keydown and keyup.  When keydown, set appropriate bool to true, when keyup set to false
+void InputManager::keyUp(std::string key) {
+         if (key == "left")  { left = true;  }
+    else if (key == "right") { right = true; }
+    else if (key == "fire")  { fire = true;  }
+}
 
-
-   //singleton magic
-};
+void InputManager::keyDown(std::string key) {
+         if (key == "left")  { left = false;  }
+    else if (key == "right") { right = false; }
+}

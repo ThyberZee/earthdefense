@@ -27,10 +27,10 @@ SOURCES += main.cpp\
 	   host.cpp \
     score.cpp \
     entitywidget.cpp \
-    inputmanager.cpp \
     utils.cpp \
     client.cpp \
-    trackingprojectile.cpp
+    trackingprojectile.cpp \
+    inputmanager.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
@@ -48,7 +48,8 @@ HEADERS  += mainwindow.h \
     worldobserver.h \
     utils.h \
     client.h \
-    trackingprojectile.h
+    trackingprojectile.h \
+    inputmanager.h
 
 FORMS    += mainwindow.ui \
             ingame.ui

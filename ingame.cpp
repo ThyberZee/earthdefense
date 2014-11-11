@@ -63,24 +63,32 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
     if (ev->key() == 0x01000012){ //left key pressed
         GameModel::getInstance().getPlayer()->setDir(-1);
+        InputManager::getInstance()->keyDown("left");
 
     }else if (ev->key() == 0x01000014){ //right key pressed
         GameModel::getInstance().getPlayer()->setDir(1);
+        InputManager::getInstance()->keyDown("right");
+
 
     }else if (ev->key() == 0x20){ // space key pressed
         int x = GameModel::getInstance().getPlayer()->getPos().x() + 50;
         int y = GameModel::getInstance().getPlayer()->getPos().y() - 10;
 
         GameModel::getInstance().create("projectile", x, y);
+        InputManager::getInstance()->keyDown("fire");
     }
 }
 
 void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
-    if (ev->key() == 0x01000012){ //left key released
-        GameModel::getInstance().getPlayer()->setDir(0);
-    }else if (ev->key() == 0x01000014){ //left key released
-        GameModel::getInstance().getPlayer()->setDir(0);
+    if (ev->key() == 0x01000012){ // left key released
+        GameModel::getInstance().getPlayer()->setDir(0);     // OLD
+        InputManager::getInstance()->keyUp("left");              // NEW
+    }else if (ev->key() == 0x01000014){ // right key released
+        GameModel::getInstance().getPlayer()->setDir(0);     // OLD
+        InputManager::getInstance()->keyUp("right");             // NEW
+    }else if (ev->key() == 0x20){ // space key released
+        InputManager::getInstance()->keyUp("fire");
     }
 }
 
