@@ -12,12 +12,13 @@
 
 #include "playerwidget.h"
 #include "entitywidget.h"
+#include "worldobserver.h"
 
 namespace Ui {
 class InGame;
 }
 
-class InGame : public QMainWindow
+class InGame : public QMainWindow, WorldObserver
 {
     Q_OBJECT
     

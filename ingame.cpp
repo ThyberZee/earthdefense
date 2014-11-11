@@ -12,10 +12,11 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, bool client) :
     ui->setupUi(this);
 
     //start gamemodel
+    GameModel::getInstance().initializeGame();
+
     if (initLoadGameFile.size() != 0) {
         GameModel::getInstance().loadGame(initLoadGameFile);
     }
-    GameModel::getInstance().initializeGame();
 
     //init player widget
     pl = new PlayerWidget(this);

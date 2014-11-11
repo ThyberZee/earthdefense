@@ -27,7 +27,7 @@ private:
     Player* player;
     Player* player2;
     int window_height, window_width; //these two variables set in intitializer
-    int score, spawnCountDown;
+    int score, spawnCountDown, currentLvl;
 
 public:
     ~GameModel();
@@ -38,6 +38,9 @@ public:
     string state();
     void loadGame(QString filename);
     void saveGame(string filename);
+
+    bool checkForNextLevel();
+    void advanceLevel();
 
     void masterUpdate();
     void slaveUpdate();

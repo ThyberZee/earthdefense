@@ -23,6 +23,25 @@ void GameModel::reset(){
     }
     entities.clear();
 }
+/************************
+ * For Advancing Levels *
+ ************************/
+bool GameModel::checkForNextLevel() {
+    for (Entity* i : entities){
+        if (i->toString().find("enemy") == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void GameModel::advanceLevel() {
+    currentLvl++;
+    loadGame(QString("Level" + currentLvl));
+    qDebug() << "Advanced Level";
+}
+
+
 
 /*this is the most important function of the model.  It first updates the player,
  *then checks all of the enemies that called their kill function last frame, deleting
@@ -40,6 +59,12 @@ void GameModel::masterUpdate(){
             e->update();    //update the rest
         }
     }
+
+    /*Level Change*/
+    if (checkForNextLevel()){
+        advanceLevel();
+    }
+
     //random spawning of enemies
     if(--spawnCountDown <= 0){
         create("enemy",rand()%500,rand()%500);
@@ -108,7 +133,7 @@ string GameModel::state(){
  */
 void GameModel::saveGame(string filename){
     ofstream outfile(filename);
-    outfile << score << endl;
+    outfile << "score " << score << endl;
     for(Entity* e: entities){
         e->save(outfile);
     }
@@ -120,21 +145,22 @@ void GameModel::saveGame(string filename){
 //load game.  duh
 void GameModel::loadGame(QString filename){
     string type;
-    int id;
-    int x;
-    int y;
-    int dir;    //direction is for projectiles. will be zero for player and enemy
+    int id, dir, x, y;      //direction is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename.toStdString());
 
-    infile >> score;
     while(infile){
         infile >> type;
         infile >> id;       //this is ignored for loading, but is critical for network;
         infile >> x;
         infile >> y;
         infile >> dir;
-        create(type,x,y,dir);
+
+        if(type == "score"){
+            score == id;
+        }else{
+            create(type,x,y,dir);
+        }
     }
     infile.close();
 }
