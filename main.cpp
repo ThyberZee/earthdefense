@@ -46,6 +46,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    if(!unitTest()) { return 0;         } // If the unit test fails, then quit;
+    if(!unitTest()) { return 1;         } // If the unit test fails, then quit;
     else            { return a.exec();  } // else, run the program.
 }
