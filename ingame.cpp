@@ -56,10 +56,12 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
     if (ev->key() == 0x01000012){ //left key pressed
         GameModel::getInstance().getPlayer()->setDir(-1);
+        if(netstatus == "client") {Client::getInstance().sendMessage("left down");}
         //InputManager::getInstance().keyDown("left");
 
     }else if (ev->key() == 0x01000014){ //right key pressed
         GameModel::getInstance().getPlayer()->setDir(1);
+        if(netstatus == "client") {Client::getInstance().sendMessage("right down");}
         //InputManager::getInstance().keyDown("right");
 
 
@@ -68,6 +70,7 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         int y = GameModel::getInstance().getPlayer()->getPos().y() - 10;
 
         GameModel::getInstance().create("projectile", x, y);
+        if(netstatus == "client") {Client::getInstance().sendMessage("fire down");}
         //InputManager::getInstance().keyDown("fire");
     }
 }
@@ -76,11 +79,14 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
     if (ev->key() == 0x01000012){ // left key released
         GameModel::getInstance().getPlayer()->setDir(0);     // OLD
+         if(netstatus == "client") {Client::getInstance().sendMessage("fire up");}
         //InputManager::getInstance().keyUp("left");              // NEW
     }else if (ev->key() == 0x01000014){ // right key released
         GameModel::getInstance().getPlayer()->setDir(0);     // OLD
+         if(netstatus == "client") {Client::getInstance().sendMessage("fire up");}
         //InputManager::getInstance().keyUp("right");             // NEW
     }else if (ev->key() == 0x20){ // space key released
+         if(netstatus == "client") {Client::getInstance().sendMessage("fire up");}
         //InputManager::getInstance().keyUp("fire");
     }
 }
