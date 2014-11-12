@@ -26,6 +26,7 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, bool client, int i
     //init player widget
     pl = new PlayerWidget(this);
     pl->setAttribute(Qt::WA_TranslucentBackground, true); //Transparency!!! :D
+    GameModel::getInstance().getPlayer()->setDir(0);
     pl->show();
 
     //start timer
@@ -167,5 +168,15 @@ void InGame::advanceLevel() {
 
 void InGame::on_btnSaveGame_clicked()
 {
+
     GameModel::getInstance().saveGame("savegame");
+}
+
+
+void InGame::on_btnLoadGame_clicked()
+{
+}
+
+void InGame::on_btnStartOver_clicked()
+{
 }

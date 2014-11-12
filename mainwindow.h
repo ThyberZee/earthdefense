@@ -22,7 +22,7 @@ public:
     QTcpServer* server;
     int connectCount;
     
-private slots:
+public  slots:
 
 
     void on_btnNewGame_clicked();
