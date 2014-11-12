@@ -18,7 +18,7 @@ void TrackingProjectile::update(){
 
             if(entity == this){
                  continue;    //prevents comparing self to self
-            }else if (entity->toString().find("projectile") != 0){
+            }else if (entity->toString().find("projectile") == 0){
                     continue;   //prevents comparaing to other projectiles
             }else if (entity->toString().find("enemy") == 0){
 
