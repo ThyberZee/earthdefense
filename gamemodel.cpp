@@ -3,7 +3,7 @@
 
 GameModel GameModel::instance;
 
-GameModel::GameModel() : window_height(800), window_width(640) { }
+GameModel::GameModel() : window_height(700), window_width(640) { }
 
 //initialize game
 void GameModel::initializeGame(){
@@ -26,6 +26,8 @@ void GameModel::reset(){
     }
     entities.clear();
 }
+
+
 /************************
  * For Advancing Levels *
  ************************/
@@ -41,7 +43,7 @@ bool GameModel::checkForNextLevel() {
 void GameModel::advanceLevel() {
     currentLvl++;
     QString filename = QString("Level") + QString(currentLvl);
-    loadGame(filename);
+    loadGame(QString(filename));
     observer->advanceLevel();
 }
 
@@ -50,6 +52,7 @@ void GameModel::advanceLevel() {
 void GameModel::gameOver(){
     observer->gameOver();
     //reset();
+
 }
 
 /*this is the most important function of the model.  It first updates the player,

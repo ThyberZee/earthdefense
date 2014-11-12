@@ -4,14 +4,14 @@
 TrackingProjectile::TrackingProjectile(QPoint p, int d): Projectile(p,d){}
 
 void TrackingProjectile::update(){
-    if(pos.x() > GameModel::getInstance().getPlayer()->getPos().x()){
+    if(pos.x() > GameModel::getInstance().getPlayer()->getPos().x() + 50){
         pos.setX(pos.x() - 3);
-    }else if(pos.x() < GameModel::getInstance().getPlayer()->getPos().x()){
+    }else{
         pos.setX(pos.x() + 3);
     }
-    pos.setY(pos.y() + (GameModel::getInstance().getDifficulty()*4)*direction);
+    pos.setY(pos.y() + (GameModel::getInstance().getDifficulty()*4 /* sets speed of bullet according to difficulty level */)*direction);
     box->moveTo(pos.x(),pos.y());
-    if(pos.y() > 800 || pos.y() < 0){   //800 screen height;
+    if(pos.y() > 700 || pos.y() < 0){   //700 screen height;
         kill();
     }else{
         for(Entity *entity: GameModel::getInstance().getEntities()){

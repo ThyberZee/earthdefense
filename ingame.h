@@ -17,6 +17,7 @@
 #include "worldobserver.h"
 
 #include "inputmanager.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class InGame;
@@ -40,6 +41,10 @@ private slots:
     void on_btnSaveGame_clicked();
     void advanceLevel();
 
+    void on_btnLoadGame_clicked();
+
+    void on_btnStartOver_clicked();
+
 private:
     Ui::InGame *ui;
     PlayerWidget *pl;   // Pointer to the Player Widget in model
@@ -56,3 +61,4 @@ private:
 };
 
 #endif // INGAME_H
+
