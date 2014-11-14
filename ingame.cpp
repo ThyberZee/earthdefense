@@ -183,8 +183,16 @@ void InGame::on_btnSaveGame_clicked()
 
 void InGame::on_btnLoadGame_clicked()
 {
+
 }
 
 void InGame::on_btnStartOver_clicked()
 {
+    this->hide();
+    this->fpsTimer->stop();
+    GameModel::getInstance().reset();
+    GameModel::getInstance().initializeGame();
+    InGame* newGameScreen = new InGame(this, "", client, difficulty);
+    newGameScreen->show();
+    newGameScreen->setEnabled(true);
 }
