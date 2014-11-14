@@ -7,7 +7,7 @@ GameModel::GameModel() : window_height(700), window_width(640) { }
 
 //initialize game
 void GameModel::initializeGame(){
-    QPoint point((window_width/2) - 50 /*<---width of player widget*/  ,window_height - 100 /*<----width of player*/);
+    QPoint point((window_width/2) - 25 /*<---width of player widget*/  ,window_height - 50 /*<----width of player*/);
     player = new Player(point);
     entities.push_back(player);
     spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
@@ -25,6 +25,7 @@ void GameModel::reset(){
         delete e;
     }
     entities.clear();
+    score = 0;
     currentLvl = 0;
 }
 

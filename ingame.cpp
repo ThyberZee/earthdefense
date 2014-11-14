@@ -68,7 +68,7 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
 
     }else if (ev->key() == 0x20){ // space key pressed
-        int x = GameModel::getInstance().getPlayer()->getPos().x() + 50;
+        int x = GameModel::getInstance().getPlayer()->getPos().x() + 22;
         int y = GameModel::getInstance().getPlayer()->getPos().y() - 10;
 
         GameModel::getInstance().create("projectile", x, y);
@@ -99,9 +99,8 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
 void InGame::updateView() {
     //set score label
-    QLabel* scorelabel = ui->scorelbl;
     QString s = QString::number(GameModel::getInstance().getScore());
-    scorelabel->setText(s);
+    ui->scorelbl->setText(s);
 
     //update game depending on whether game is multiplayer or singlplayer, host or client;
     if(netstatus == "client"){
@@ -120,7 +119,7 @@ void InGame::updateView() {
      *                                   ONE PLAYER ON THE SCREEN AT ONE TIME */
     pl->setGeometry(QRect(pl->getPlayer()->getPos().x(),
                           pl->getPlayer()->getPos().y(),
-                          100, 100));
+                          50, 50));
     pl->show();
 
 
@@ -129,9 +128,9 @@ void InGame::updateView() {
                 EntityWidget* temp = new EntityWidget(this, entity);
                 ewidgets.push_back(temp);
 
-                temp->setGeometry(QRect(entity->getPos().x(),   //initially halfway across the player object, so player.x() + player.width/2 (pl)
-                                        entity->getPos().y(),   //should be a constant distance...probably HEIGHT_OF_BULLET + 1, so it starts just above pl
-                                        entity->width,                                      //BULLET_WIDTH
+                temp->setGeometry(QRect(entity->getPos().x(),
+                                        entity->getPos().y(),
+                                        entity->width,
                                         entity->height));
                 temp->setAttribute(Qt::WA_TranslucentBackground, true);
 
@@ -139,10 +138,10 @@ void InGame::updateView() {
                 if(temp->getEntity()->toString().find("projectile") == 0){
                     QPixmap projectile(":/resources/images/projectile.png");
                     temp->setPixmap(projectile);
-                }else if(temp->getEntity()->toString().find("trackingprojectile") == 0){
-                    QPixmap theAlien(":/resources/images/trackingmissile.png");
-                    temp->setPixmap(theAlien);
-                }else{
+                }else if (temp->getEntity()->toString().find("trackingprojectile") == 0){
+                    QPixmap tprojectile(":/resources/images/trackingmissle.png");
+                    temp->setPixmap(tprojectile);
+                } else if (temp->getEntity()->toString().find("enemy") == 0){
                     QPixmap theAlien(":/resources/images/basicenemy.png");
                     temp->setPixmap(theAlien);
                 }
@@ -167,7 +166,7 @@ void InGame::updateView() {
 }
 
 void InGame::gameOver(){
-    //fpsTimer->stop();
+    fpsTimer->stop();
 }
 
 void InGame::advanceLevel() {
