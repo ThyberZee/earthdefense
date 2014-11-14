@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     utils.cpp \
     client.cpp \
     trackingprojectile.cpp \
-    inputmanager.cpp
+    inputmanager.cpp \
+    trackingenemy.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
@@ -49,7 +50,8 @@ HEADERS  += mainwindow.h \
     utils.h \
     client.h \
     trackingprojectile.h \
-    inputmanager.h
+    inputmanager.h \
+    trackingenemy.h
 
 FORMS    += mainwindow.ui \
             ingame.ui
