@@ -40,6 +40,7 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, string netstat, in
         Client::getInstance().connectToServer();
     }else if(netstat == "host"){
         Host::getInstance().start();
+
     }
 }
 
