@@ -9,7 +9,6 @@ public:
     TrackingEnemy(QPoint point);
     void update();
     string toString();
-    void update();
 };
 
 #endif // TRACKINGENEMY_H

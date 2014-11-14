@@ -12,5 +12,10 @@
         <file>resources/Levels/Level3</file>
         <file>resources/Levels/Level4</file>
         <file>resources/Levels/Level5</file>
+        <file>resources/images/basicenemy.png</file>
+        <file>resources/images/basicmissle.png</file>
+        <file>resources/images/playership1.png</file>
+        <file>resources/images/playership2.png</file>
+        <file>resources/images/trackingenemy.png</file>
     </qresource>
 </RCC>
