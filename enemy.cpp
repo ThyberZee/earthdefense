@@ -5,7 +5,7 @@ int Enemy::score = 100;
 Enemy::Enemy(QPoint point): Entity(point){
     width  = 50;
     height = 50;
-    target = QPoint(rand()%640,rand()%700);
+    target = QPoint(rand()%640,rand()%500);
     cooldown= rand()% 500;
     box = new QRect(pos, QSize(50,50));   //sets box to be 30 by 30 with upper left corner at position
     
@@ -51,7 +51,7 @@ void Enemy::update()
     //decrement cooldown; if 0, shoot and reset to random val;
     if(--cooldown == 0){
         string type;
-        (rand() % 2 <= 1) ? type = "projectile" : type = "trackingprojectile";
+        (rand() % 2 == 0) ? type = "projectile" : type = "trackingprojectile";
         GameModel::getInstance().create(type, pos.x(), pos.y()+height, 1);
         cooldown = rand() % 300;
     }
