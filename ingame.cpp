@@ -98,9 +98,8 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
 void InGame::updateView() {
     //set score label
-    QLabel* scorelabel = ui->scorelbl;
     QString s = QString::number(GameModel::getInstance().getScore());
-    scorelabel->setText(s);
+    ui->scorelbl->setText(s);
 
     //update game depending on whether game is multiplayer or singlplayer, host or client;
     if(netstatus == "client"){
