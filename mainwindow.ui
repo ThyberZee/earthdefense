@@ -91,24 +91,30 @@
    <widget class="QRadioButton" name="rbMultiplayer">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>200</x>
       <y>210</y>
-      <width>141</width>
+      <width>191</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color:yellow</string>
+    </property>
     <property name="text">
-     <string>Join Game</string>
+     <string>Join Multiplayer Game</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="rbSinglePlayer">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>30</x>
       <y>210</y>
       <width>141</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:yellow</string>
     </property>
     <property name="text">
      <string>Single Player</string>
@@ -122,12 +128,15 @@
      <rect>
       <x>420</x>
       <y>210</y>
-      <width>141</width>
+      <width>191</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color:yellow</string>
+    </property>
     <property name="text">
-     <string>Host Game</string>
+     <string>Host Multiplayer Game</string>
     </property>
    </widget>
    <widget class="QComboBox" name="cbDifficulty">

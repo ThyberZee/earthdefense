@@ -24,6 +24,7 @@ void GameModel::reset(){
         delete e;
     }
     entities.clear();
+    currentLvl = 0;
 }
 
 
