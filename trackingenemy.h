@@ -6,7 +6,8 @@
 class TrackingEnemy : public Enemy
 {
 public:
-    TrackingEnemy();
+    TrackingEnemy(QPoint point);
+    void update();
     string toString();
     void update();
 };
