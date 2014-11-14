@@ -192,7 +192,7 @@ void InGame::on_btnStartOver_clicked()
     this->fpsTimer->stop();
     GameModel::getInstance().reset();
     GameModel::getInstance().initializeGame();
-    InGame* newGameScreen = new InGame(this, "", client, difficulty);
+    InGame* newGameScreen = new InGame(this, "", netstatus, difficulty);
     newGameScreen->show();
     newGameScreen->setEnabled(true);
 }
