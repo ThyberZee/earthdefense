@@ -54,6 +54,11 @@ InGame::~InGame()
  *               INPUT HANDLERS                  *
  * * * * * * * * * * * * * * * * * * * * * * * * */
 
+// Matt, Can you try to abstract input handling away from the slots and into the
+// model?  basicall, instead of acting directly on a keydown or up, just call the
+// appropriate method in the input manager to set the flag.  Then, inside the model
+// check the input managers state, and perform the appropriate action.
+
 void InGame::keyPressEvent(QKeyEvent *ev){
 
     if (ev->key() == 0x01000012){ //left key pressed
@@ -74,6 +79,8 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         GameModel::getInstance().create("projectile", x, y);
         if(netstatus == "client") {Client::getInstance().sendMessage("fire down");}
         //InputManager::getInstance().keyDown("fire");
+
+
     }
 }
 
@@ -101,6 +108,8 @@ void InGame::updateView() {
     //set score label
     QString s = QString::number(GameModel::getInstance().getScore());
     ui->scorelbl->setText(s);
+
+
 
     //update game depending on whether game is multiplayer or singlplayer, host or client;
     if(netstatus == "client"){
