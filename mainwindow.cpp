@@ -14,7 +14,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnNewGame_clicked()
 {
-    bool isclient = ui->rbMultiplayer->isChecked();
+    string netstat;
+    if(ui->rbHostGame->isChecked()){
+        netstat = "host";
+    }else if(ui->rbJoinGame->isChecked()){
+        netstat = "client";
+    }else{
+        netstat = "single";
+    }
+
 
     int initDifficulty;
     if (ui->cbDifficulty->currentIndex() == 0) {
@@ -25,7 +33,7 @@ void MainWindow::on_btnNewGame_clicked()
         initDifficulty = 3;
     }
 
-    InGame* gameWindow = new InGame(this, "", isclient, initDifficulty);
+    InGame* gameWindow = new InGame(this, "", netstat, initDifficulty);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
@@ -33,8 +41,16 @@ void MainWindow::on_btnNewGame_clicked()
 
 void MainWindow::on_btnLoadGame_clicked()
 {
-    bool isclient = ui->rbMultiplayer->isChecked();
-    InGame* gameWindow = new InGame(this, "savegame", isclient);
+    string netstat;
+    if(ui->rbHostGame->isChecked()){
+        netstat = "host";
+    }else if(ui->rbJoinGame->isChecked()){
+        netstat = "client";
+    }else{
+        netstat = "single";
+    }
+
+    InGame* gameWindow = new InGame(this, "savegame", netstat);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();

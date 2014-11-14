@@ -1,7 +1,9 @@
 *.swp
 *.pro.user
+*.pro.user*
 *.o
 *.autosave
 earthdefense
 .netrc
+.netrc~
 .gitignore~

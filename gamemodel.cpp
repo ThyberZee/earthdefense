@@ -9,6 +9,7 @@ GameModel::GameModel() : window_height(700), window_width(640) { }
 void GameModel::initializeGame(){
     QPoint point((window_width/2) - 50 /*<---width of player widget*/  ,window_height - 100 /*<----width of player*/);
     player = new Player(point);
+    entities.push_back(player);
     spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
 }
 
@@ -16,8 +17,8 @@ void GameModel::initializeGame(){
 void GameModel::reset(){
 
     //reset player
-    delete player;
-    player = nullptr;
+    /*delete player;
+    player = nullptr;*/
 
     //delete all entities, then empties array
     for(Entity* e: entities){
@@ -60,7 +61,7 @@ void GameModel::gameOver(){
  *them and removing them from the vector.  Otherwise, it just updates the entity
  */
 void GameModel::masterUpdate(){
-    player->update();
+    //player->update();
     for(size_t i = 0; i < entities.size(); i++){
         Entity* e = entities.at(i);
         //kill the dead entities
@@ -132,7 +133,7 @@ string GameModel::state(){
             ss << e->toString() << endl;
         }
     }
-    ss << player->toString() << endl;
+    //ss << player->toString() << endl;
     return ss.str();
 }
 
@@ -145,12 +146,13 @@ string GameModel::state(){
  */
 void GameModel::saveGame(string filename){
     ofstream outfile(filename);
+    //QFile outfile(QString(":/") + filename);
     outfile << "score " << score << endl;
     for(Entity* e: entities){
         e->save(outfile);
     }
 
-    player->save(outfile);
+    //player->save(outfile);
     outfile.close();
 }
 
@@ -160,6 +162,9 @@ void GameModel::loadGame(QString filename){
     int id, dir, x, y;      //direction is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename.toStdString());
+    //QFile infile(QString(":/") + filename);
+
+    //infile >> score;
     while(infile){
         infile >> type;
         infile >> id;
@@ -179,7 +184,7 @@ void GameModel::loadGame(QString filename){
 Entity *GameModel::create(string type, int x, int y, int dir){
 
     if(type == "player"){
-        delete player;
+        QPoint tempPoint(x,y);
         player = new Player(QPoint(x,y));
 
         return player;
@@ -239,5 +244,5 @@ GameModel::~GameModel(){
     for(Entity* e: entities){
         delete e;
     }
-    delete player;
+    // delete player;
 }

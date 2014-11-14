@@ -28,7 +28,7 @@ class InGame : public QMainWindow, public WorldObserver
     Q_OBJECT
     
 public:
-    explicit InGame(QMainWindow *parent = 0, QString initLoadGameFile = 0, bool client = 0, int initDifficulty = 0);
+    explicit InGame(QMainWindow *parent = 0, QString initLoadGameFile = 0, string netstat = 0, int initDifficulty = 0);
     void gameOver();
     ~InGame();
 
@@ -48,9 +48,10 @@ private slots:
 private:
     Ui::InGame *ui;
     PlayerWidget *pl;   // Pointer to the Player Widget in model
-    PlayerWidget *pl2;
+    PlayerWidget *pl2;  // Pointer to other player.  only used if multiplayer;
 
     bool client;    //shows whether the game is listening for multiplayer or not
+    string netstatus;   //shows whether game is singleplayer, hosting, or listening.
 
     vector<EntityWidget*> ewidgets;
     QTimer* fpsTimer;               // Timer that drives the InGame UI

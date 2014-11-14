@@ -3,6 +3,7 @@
 Player::Player(QPoint point): Entity(point){
     width  = 100;
     height = 100;
+    direction = 0;
     box = new QRect(pos, QPoint(pos.x()+width, pos.y()+width));
 
     //box = QRect(pos, QSize(100,100));
@@ -24,6 +25,7 @@ void Player::save(ofstream& outfile)
 void Player::update()
 {
     box->moveTo(pos.x(),pos.y());
+
     switch(direction){
     case 0:
         break;
