@@ -1,6 +1,6 @@
 #include "trackingenemy.h"
 
-TrackingEnemy::TrackingEnemy()
+TrackingEnemy::TrackingEnemy(QPoint point): Enemy(point)
 {
 }
 

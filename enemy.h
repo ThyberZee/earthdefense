@@ -6,7 +6,7 @@
 
 class Enemy : public Entity
 {
-private:
+protected:
     QPoint target;
     int cooldown;  //this var will countdown every frame;  when its zero, the enemy will shoot
 public:
