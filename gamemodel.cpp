@@ -118,9 +118,7 @@ void GameModel::slaveUpdate(){
             ent->setPos( QPoint(x,y));
         }
     }
-
     player->update();
-
 }
 
 //return a string representation of game state including pos data for each entity

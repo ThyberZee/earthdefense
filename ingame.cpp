@@ -139,8 +139,11 @@ void InGame::updateView() {
                 if(temp->getEntity()->toString().find("projectile") == 0){
                     QPixmap projectile(":/resources/images/projectile.png");
                     temp->setPixmap(projectile);
+                }else if(temp->getEntity()->toString().find("trackingprojectile") == 0){
+                    QPixmap theAlien(":/resources/images/trackingmissile.png");
+                    temp->setPixmap(theAlien);
                 }else{
-                    QPixmap theAlien(":/resources/images/alien1.png");
+                    QPixmap theAlien(":/resources/images/basicenemy.png");
                     temp->setPixmap(theAlien);
                 }
 
