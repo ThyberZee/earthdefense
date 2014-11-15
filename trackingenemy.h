@@ -2,7 +2,7 @@
 #define TRACKINGENEMY_H
 #include "enemy.h"
 
-class TrackingEnemy : public Enemy
+class TrackingEnemy : Enemy
 {
 public:
     TrackingEnemy(QPoint point);
