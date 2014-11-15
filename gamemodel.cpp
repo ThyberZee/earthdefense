@@ -35,7 +35,7 @@ void GameModel::reset(){
  ************************/
 bool GameModel::checkForNextLevel() {
     for (Entity* i : entities){
-        if (i->toString().find("enemy") == 0) {
+        if (i->toString().find("enemy") == 0 || i->toString().find("trackingenemy") == 0) {
             return false;
         }
     }
@@ -80,7 +80,7 @@ void GameModel::masterUpdate(){
     }
 
     //random spawning of enemies
-    if(--spawnCountDown <= 0){
+    if(--spawnCountDown <= 0 and currentLvl > 3){
         if (rand()%2 == 0) {
             create("enemy",rand()%500,rand()%500);
         } else {
