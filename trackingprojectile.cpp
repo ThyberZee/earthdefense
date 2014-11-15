@@ -4,7 +4,7 @@
 TrackingProjectile::TrackingProjectile(QPoint p, int d): Projectile(p,d){}
 
 void TrackingProjectile::update(){
-    if(pos.x() > GameModel::getInstance().getPlayer()->getPos().x() + 45){
+    if(pos.x() > GameModel::getInstance().getPlayer()->getPos().x() + 20){
         pos.setX(pos.x() - GameModel::getInstance().getDifficulty());
     }else{
         pos.setX(pos.x() + GameModel::getInstance().getDifficulty()); // The horizontal movement of tproj. are determined by difficulty lvl
