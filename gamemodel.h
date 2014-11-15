@@ -13,6 +13,7 @@
 #include "client.h"
 #include "host.h"
 
+#include "trackingenemy.h"
 #include "projectile.h"
 #include "trackingprojectile.h"
 #include "gamemodel.h"
@@ -21,7 +22,6 @@
 #include "entity.h"
 #include "sstream"
 #include "worldobserver.h"
-#include "trackingenemy.h"
 
 using namespace std;
 
