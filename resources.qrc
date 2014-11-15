@@ -18,5 +18,10 @@
         <file>resources/images/trackingenemy.png</file>
         <file>resources/images/world.jpg</file>
         <file>resources/images/awesome.jpg</file>
+        <file>resources/images/Explosion0.png</file>
+        <file>resources/images/Explosion1.png</file>
+        <file>resources/images/Explosion2.png</file>
+        <file>resources/images/Explosion3.png</file>
+        <file>resources/images/Explosion4.png</file>
     </qresource>
 </RCC>
