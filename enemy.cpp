@@ -1,3 +1,4 @@
+#include "gamemodel.h"      //not standard practice, but trut me
 #include "enemy.h"
 
 int Enemy::score = 100;

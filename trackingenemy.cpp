@@ -1,3 +1,4 @@
+#include "gamemodel.h"      // trust me -- josh
 #include "trackingenemy.h"
 
 TrackingEnemy::TrackingEnemy(QPoint point): Enemy(point)
