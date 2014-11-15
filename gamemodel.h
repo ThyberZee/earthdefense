@@ -21,6 +21,7 @@
 #include "entity.h"
 #include "sstream"
 #include "worldobserver.h"
+#include "trackingenemy.h"
 
 using namespace std;
 

@@ -205,7 +205,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:blue</string>
+    <string notr="true">color:darkorange</string>
    </property>
    <property name="text">
     <string>High Score</string>
@@ -235,7 +235,7 @@
     <cursorShape>ArrowCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:blue</string>
+    <string notr="true">color:darkorange</string>
    </property>
    <property name="text">
     <string>0</string>

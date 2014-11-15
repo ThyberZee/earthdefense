@@ -5,7 +5,7 @@ int Enemy::score = 100;
 Enemy::Enemy(QPoint point): Entity(point){
     width  = 40;
     height = 40;
-    target = QPoint(rand()%640,rand()%500);
+    target = QPoint(rand()%640,rand()%400 + 50); //We want it to stay off of the top of the screen
     cooldown= rand()% 500;
     box = new QRect(pos, QSize(40,40));   //sets box to be 40 by 40 with upper left corner at position
 }

@@ -18,11 +18,7 @@ string Projectile::toString(){
 }
 
 void Projectile::update(){
-    if (direction == -1){
-        pos.setY(pos.y() + (GameModel::getInstance().getDifficulty()*5)*direction);
-    } else {
-        pos.setY(pos.y() + (GameModel::getInstance().getDifficulty()*2)*direction);
-    }
+    pos.setY(pos.y() + (GameModel::getInstance().getDifficulty()*4)*direction);
     box->moveTo(pos.x(),pos.y());
     if(pos.y() > GameModel::getInstance().getWinHeight() || pos.y() < 0){
         kill();

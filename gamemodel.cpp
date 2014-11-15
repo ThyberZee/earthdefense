@@ -81,7 +81,11 @@ void GameModel::masterUpdate(){
 
     //random spawning of enemies
     if(--spawnCountDown <= 0){
-        create("enemy",rand()%500,rand()%500);
+        if (rand()%2 == 0) {
+            create("enemy",rand()%500,rand()%500);
+        } else {
+            create("trackingenemy", rand()%500, rand()%500);
+        }
         spawnCountDown = rand() % 300;
     }
 }
@@ -208,6 +212,13 @@ Entity *GameModel::create(string type, int x, int y, int dir){
         entities.push_back(p);
 
         return p;
+
+    }else if (type == "trackingenemy"){
+        QPoint tempPoint(x,y);
+        TrackingEnemy* e = new TrackingEnemy(tempPoint);
+        entities.push_back(e);
+
+        return e;
 
     }else{
         return NULL;

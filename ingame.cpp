@@ -106,9 +106,7 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
 void InGame::updateView() {
     //set score label
-    QString s = QString::number(GameModel::getInstance().getScore());
-    ui->scorelbl->setText(s);
-
+    ui->scorelbl->setText(QString::number(GameModel::getInstance().getScore()));
 
 
     //update game depending on whether game is multiplayer or singlplayer, host or client;
@@ -121,15 +119,16 @@ void InGame::updateView() {
         }
     }
 
-    vector<Entity*> entities = GameModel::getInstance().getEntities();
-
-
     /* Update PlayerWidget Position ---- MIGHT HAVE TO IMPLEMENT SAME AS BELOW WHEN WE INTRODUCE MULTIPLAYER SINCE THERE WILL BE MORE THAN
      *                                   ONE PLAYER ON THE SCREEN AT ONE TIME */
     pl->setGeometry(QRect(pl->getPlayer()->getPos().x(),
                           pl->getPlayer()->getPos().y(),
                           50, 50));
     pl->show();
+
+
+
+    vector<Entity*> entities = GameModel::getInstance().getEntities();
 
 
     for(Entity* entity : entities){
@@ -147,12 +146,15 @@ void InGame::updateView() {
                 if(temp->getEntity()->toString().find("projectile") == 0){
                     QPixmap projectile(":/resources/images/projectile.png");
                     temp->setPixmap(projectile);
-                }else if (temp->getEntity()->toString().find("trackingprojectile") == 0){
+                } else if (temp->getEntity()->toString().find("trackingprojectile") == 0){
                     QPixmap trprojectile(":/resources/images/trackingmissle.png");
                     temp->setPixmap(trprojectile);
                 } else if (temp->getEntity()->toString().find("enemy") == 0){
-                    QPixmap theAlien(":/resources/images/basicenemy.png");
-                    temp->setPixmap(theAlien);
+                    QPixmap enemy(":/resources/images/alien1.png");
+                    temp->setPixmap(enemy);
+                } else if (temp->getEntity()->toString().find("trackingenemy") == 0) {
+                    QPixmap trenemy(":/resources/images/trackingenemy.png");
+                    temp->setPixmap(trenemy);
                 }
                 temp->setScaledContents(true);
                 temp->show();
