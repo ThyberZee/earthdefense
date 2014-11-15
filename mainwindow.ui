@@ -34,6 +34,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QRadioButton" name="rbHostGame">
+        <property name="styleSheet">
+         <string notr="true">color:yellow</string>
+        </property>
+        <property name="text">
+         <string>Host Multiplayer Game</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QRadioButton" name="rbJoinGame">
         <property name="styleSheet">
          <string notr="true">color:yellow</string>
@@ -44,12 +54,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="rbHostGame">
-        <property name="styleSheet">
-         <string notr="true">color:yellow</string>
-        </property>
+       <widget class="QLineEdit" name="leIP">
         <property name="text">
-         <string>Host Multiplayer Game</string>
+         <string>localhost</string>
         </property>
        </widget>
       </item>

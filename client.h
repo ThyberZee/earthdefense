@@ -15,7 +15,7 @@ private:
 public:
     explicit Client(QObject *parent = 0);
 
-    void connectToServer();
+    void connectToServer(QString ip);
     QString getMessage();
     void sendMessage(QString msg);
     

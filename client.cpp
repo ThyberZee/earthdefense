@@ -13,9 +13,9 @@ Client::Client(QObject *parent) :
     connect(socket, SIGNAL(disconnected()), this, SLOT(serverDisconnected()));
 }
 
-void Client::connectToServer()
+void Client::connectToServer(QString ip)
 {
-    socket->connectToHost("localhost", 5000);
+    socket->connectToHost(ip, 5000);
     if (!socket->waitForConnected())  {
         qDebug() << "cannot connect";
         return;

@@ -4,11 +4,12 @@
 
 using namespace std;
 
-InGame::InGame(QMainWindow *parent, QString initLoadGameFile, string netstat, int initDifficulty) :
+InGame::InGame(QMainWindow *parent, QString initLoadGameFile, QString netstat, int initDifficulty, QString initIp) :
     QMainWindow(parent),
     ui(new Ui::InGame),
     netstatus(netstat),
-    difficulty(initDifficulty)
+    difficulty(initDifficulty),
+    ip(initIp)
 {
     ui->setupUi(this);
 
@@ -37,7 +38,7 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, string netstat, in
 
     //server-client setup
     if(netstat == "client"){
-        Client::getInstance().connectToServer();
+        Client::getInstance().connectToServer(ip);
     }else if(netstat == "host"){
         Host::getInstance().start();
 
@@ -200,7 +201,7 @@ void InGame::on_btnStartOver_clicked()
     this->fpsTimer->stop();
     GameModel::getInstance().reset();
     GameModel::getInstance().initializeGame();
-    InGame* newGameScreen = new InGame(this, "", netstatus, difficulty);
+    InGame* newGameScreen = new InGame(this, "", netstatus, difficulty, ip);
     newGameScreen->show();
     newGameScreen->setEnabled(true);
 }

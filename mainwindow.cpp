@@ -14,11 +14,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnNewGame_clicked()
 {
-    string netstat;
+    QString initIp, netstat;
     if(ui->rbHostGame->isChecked()){
         netstat = "host";
     }else if(ui->rbJoinGame->isChecked()){
         netstat = "client";
+        initIp = ui->leIP->text();
     }else{
         netstat = "single";
     }
@@ -33,7 +34,7 @@ void MainWindow::on_btnNewGame_clicked()
         initDifficulty = 3;
     }
 
-    InGame* gameWindow = new InGame(this, "", netstat, initDifficulty);
+    InGame* gameWindow = new InGame(this, "", netstat, initDifficulty, initIp);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
@@ -41,16 +42,27 @@ void MainWindow::on_btnNewGame_clicked()
 
 void MainWindow::on_btnLoadGame_clicked()
 {
-    string netstat;
+    QString netstat, initIp;
+
     if(ui->rbHostGame->isChecked()){
         netstat = "host";
     }else if(ui->rbJoinGame->isChecked()){
         netstat = "client";
+        initIp = ui->leIP->text();
     }else{
         netstat = "single";
     }
 
-    InGame* gameWindow = new InGame(this, "savegame", netstat);
+    int initDifficulty;
+    if (ui->cbDifficulty->currentIndex() == 0) {
+        initDifficulty = 1;
+    } else if (ui->cbDifficulty->currentIndex() == 1) {
+        initDifficulty = 2;
+    } else {
+        initDifficulty = 3;
+    }
+
+    InGame* gameWindow = new InGame(this, "savegame", netstat, initDifficulty, initIp);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
