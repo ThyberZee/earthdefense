@@ -1,12 +1,10 @@
 #include "player.h"
 
 Player::Player(QPoint point): Entity(point){
-    width  = 100;
-    height = 100;
+    width  = 50;
+    height = 50;
     direction = 0;
     box = new QRect(pos, QPoint(pos.x()+width, pos.y()+width));
-
-    //box = QRect(pos, QSize(100,100));
 }
 
 string Player::toString()
@@ -31,8 +29,8 @@ void Player::update()
         break;
 
     case 1: // Move Right
-        if ( (pos.x() <= 640 - 100)) // game width - player width;  might want to replace with variables.
-        { pos.setX(pos.x() + 5); }
+        if ( (pos.x() <= 640 - 50)) // game width - player width;  might want to replace with variables.
+        { pos.setX(pos.x() + 5); }  // would have a file of ONLY constants where we define all these things...but no time now :)
 
         break;
 

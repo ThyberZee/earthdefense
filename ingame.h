@@ -41,8 +41,6 @@ private slots:
     void on_btnSaveGame_clicked();
     void advanceLevel();
 
-    void on_btnLoadGame_clicked();
-
     void on_btnStartOver_clicked();
 
 private:

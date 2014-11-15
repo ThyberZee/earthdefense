@@ -140,13 +140,13 @@ void InGame::updateView() {
                     QPixmap projectile(":/resources/images/projectile.png");
                     temp->setPixmap(projectile);
                 }else if (temp->getEntity()->toString().find("trackingprojectile") == 0){
-                    QPixmap projectile(":/resources/images/trackingmissile.png");
-                    temp->setPixmap(projectile);
+                    QPixmap trprojectile(":/resources/images/trackingmissle.png");
+                    temp->setPixmap(trprojectile);
                 } else if (temp->getEntity()->toString().find("enemy") == 0){
                     QPixmap theAlien(":/resources/images/alien1.png");
                     temp->setPixmap(theAlien);
                 }
-
+                temp->setScaledContents(true);
                 temp->show();
                 entity->setJustCreated(false);  //make sure we know that entity is no longer new.
         }
@@ -182,12 +182,6 @@ void InGame::on_btnSaveGame_clicked()
 {
 
     GameModel::getInstance().saveGame("savegame");
-}
-
-
-void InGame::on_btnLoadGame_clicked()
-{
-
 }
 
 void InGame::on_btnStartOver_clicked()
