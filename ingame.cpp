@@ -128,11 +128,11 @@ void InGame::updateView() {
     pl->show();
 
 
-
+    //grab all entities and proceed to update their corresponding sprites.
     vector<Entity*> entities = GameModel::getInstance().getEntities();
 
-
     for(Entity* entity : entities){
+        //if the ent is new, create new sprite;
         if(entity->getJustCreated()){
                 EntityWidget* temp = new EntityWidget(this, entity);
                 ewidgets.push_back(temp);
@@ -168,7 +168,15 @@ void InGame::updateView() {
     for(size_t i = 0; i < ewidgets.size(); i++){
         EntityWidget *wdgt = ewidgets.at(i);
         if (wdgt->getEntity()->isAlive() == false){     //destroy widget if corresponding entity is dead
+            //explosions!!!
             ewidgets.erase(ewidgets.begin()+i);
+
+            /*
+            if( dynamic_cast<PlayerWidget*>(wdgt) == 0){
+                //Work your magic, Sam!!
+            }
+            */
+
             delete wdgt;
         }else{
             wdgt->move(wdgt->getEntity()->getPos().x(),wdgt->getEntity()->getPos().y());

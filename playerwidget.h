@@ -12,6 +12,7 @@ private:
     //pointer to GameModel player
     Player* player;
     QPixmap image;
+    int explosionCount;
 
 public:
     explicit PlayerWidget(QWidget *parent = 0);
@@ -21,6 +22,8 @@ public:
 
     //getters, setters
     QPixmap getImage() { return image; }
+    int getExpCount() { return explosionCount; }
+    void incExpCount(){ explosionCount++;}
     
 signals:
     
