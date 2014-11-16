@@ -10,7 +10,7 @@
 
 
 bool unitTest(){
-    GameModel::getInstance().initializeGame();
+    GameModel::getInstance().initializeGame("single");
     GameModel::getInstance().create("enemy",100,100);
     GameModel::getInstance().create("enemy",200,200);
     GameModel::getInstance().create("enemy",300,300);

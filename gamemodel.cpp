@@ -3,14 +3,19 @@
 
 GameModel GameModel::instance;
 
-GameModel::GameModel() : window_height(700), window_width(640) { }
+GameModel::GameModel(): window_height(700), window_width(640) { }
 
 //initialize game
-void GameModel::initializeGame(){
+void GameModel::initializeGame(string netstatus){
     QPoint point((window_width/2) - 25 /*<---width of player widget*/  ,window_height - 50 /*<----width of player*/);
     player = new Player(point);
     entities.push_back(player);
     spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
+
+    if(netstatus == "host"){
+        player2 = new Player(QPoint(window_width/2-25, window_height - 50));
+        entities.push_back(player2);
+    }
 }
 
 //reset game

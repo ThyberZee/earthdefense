@@ -21,14 +21,22 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, QString netstat, i
     }
 
     GameModel::getInstance().setDifficulty(difficulty);
-
-    GameModel::getInstance().initializeGame();
+    GameModel::getInstance().initializeGame(netstat.toStdString());
 
     //init player widget
-    pl = new PlayerWidget(this);
+    Player* p = GameModel::getInstance().getPlayer();
+    pl = new PlayerWidget(p,this);
     pl->setAttribute(Qt::WA_TranslucentBackground, true); //Transparency!!! :D
     GameModel::getInstance().getPlayer()->setDir(0);
     pl->show();
+
+    if(netstat == "host"){
+        Player* p = GameModel::getInstance().getPlayer2();
+        pl2 = new PlayerWidget(p,this);
+        pl2->setAttribute(Qt::WA_TranslucentBackground, true); //Transparency!!! :D
+        GameModel::getInstance().getPlayer2()->setDir(0);
+        pl2->show();
+    }
 
     //start timer
     fpsTimer = new QTimer(this);
@@ -80,8 +88,6 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         GameModel::getInstance().create("projectile", x, y);
         if(netstatus == "client") {Client::getInstance().sendMessage("fire down");}
         //InputManager::getInstance().keyDown("fire");
-
-
     }
 }
 
@@ -113,20 +119,13 @@ void InGame::updateView() {
     //update game depending on whether game is multiplayer or singlplayer, host or client;
     if(netstatus == "client"){
         GameModel::getInstance().slaveUpdate();
+
     }else{
         GameModel::getInstance().masterUpdate();
         if(netstatus == "host"){
             Host::getInstance().sendMessage(QString::fromStdString(GameModel::getInstance().state()));
         }
     }
-
-    /* Update PlayerWidget Position ---- MIGHT HAVE TO IMPLEMENT SAME AS BELOW WHEN WE INTRODUCE MULTIPLAYER SINCE THERE WILL BE MORE THAN
-     *                                   ONE PLAYER ON THE SCREEN AT ONE TIME */
-    pl->setGeometry(QRect(pl->getPlayer()->getPos().x(),
-                          pl->getPlayer()->getPos().y(),
-                          50, 50));
-    pl->show();
-
 
     //grab all entities and proceed to update their corresponding sprites.
     vector<Entity*> entities = GameModel::getInstance().getEntities();
@@ -144,7 +143,10 @@ void InGame::updateView() {
                 temp->setAttribute(Qt::WA_TranslucentBackground, true);
 
                 //check for type in order to set proper image
-                if(temp->getEntity()->toString().find("projectile") == 0){
+                if(temp->getEntity()->toString().find("player") == 0){
+                    QPixmap player(":/resources/images/Player.png");
+                    temp->setPixmap(player);
+                }else if(temp->getEntity()->toString().find("projectile") == 0){
                     QPixmap projectile(":/resources/images/projectile.png");
                     temp->setPixmap(projectile);
                 } else if (temp->getEntity()->toString().find("trackingprojectile") == 0){
@@ -208,7 +210,7 @@ void InGame::on_btnStartOver_clicked()
     this->hide();
     this->fpsTimer->stop();
     GameModel::getInstance().reset();
-    GameModel::getInstance().initializeGame();
+    GameModel::getInstance().initializeGame(netstatus.toStdString());
     InGame* newGameScreen = new InGame(this, "", netstatus, difficulty, ip);
     newGameScreen->show();
     newGameScreen->setEnabled(true);

@@ -1,12 +1,9 @@
 #include "playerwidget.h"
 
-PlayerWidget::PlayerWidget(QWidget *parent) :QLabel(parent)
+PlayerWidget::PlayerWidget(Player* p, QWidget *parent) :QLabel(parent)
 {
     explosionCount = 0;
-    player = GameModel::getInstance().getPlayer();
-    image = QPixmap(":/resources/images/Player.png");
-    setPixmap(image);
-    setScaledContents(true);
+    player = p;
 }
 
 PlayerWidget::~PlayerWidget() {

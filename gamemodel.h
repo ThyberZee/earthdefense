@@ -29,7 +29,6 @@ using namespace std;
 class GameModel {
 private:
     WorldObserver* observer;
-
     vector<Entity*> entities;
     Player* player;
     Player* player2;
@@ -39,7 +38,7 @@ private:
 public:
     ~GameModel();
 
-    void initializeGame();
+    void initializeGame(string netstatus);
     void gameOver();
     void reset();
 
