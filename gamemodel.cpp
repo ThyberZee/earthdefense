@@ -25,10 +25,6 @@ void GameModel::initializeGame(string netstatus){
 //reset game
 void GameModel::reset(){
 
-    //reset player
-    /*delete player;
-    player = nullptr;*/
-
     //delete all entities, then empties array
     for(Entity* e: entities){
         delete e;
@@ -126,7 +122,6 @@ void GameModel::slaveUpdate(){
     string type;
     int ID, x, y, dir;
     for(string line: split(message,'\n')){
-
         if(line == "") { continue; }
 
         stringstream stream(line);
@@ -158,7 +153,6 @@ string GameModel::state(){
             ss << e->toString() << endl;
         }
     }
-    //ss << player->toString() << endl;
     return ss.str();
 }
 
@@ -177,7 +171,6 @@ void GameModel::saveGame(string filename){
         e->save(outfile);
     }
 
-    //player->save(outfile);
     outfile.close();
 }
 
@@ -209,10 +202,10 @@ void GameModel::loadGame(QString filename){
 Entity *GameModel::create(string type, int x, int y, int dir){
 
     if(type == "player"){
-        QPoint tempPoint(x,y);
-        player = new Player(QPoint(x,y));
+        Player* p = new Player(QPoint(x,y));
+        //player = new Player(QPoint(x,y));
 
-        return player;
+        return p;
 
     }else if(type == "enemy"){
         QPoint tempPoint(x,y);
@@ -276,5 +269,4 @@ GameModel::~GameModel(){
     for(Entity* e: entities){
         delete e;
     }
-    // delete player;
 }
