@@ -7,14 +7,18 @@ GameModel::GameModel(): window_height(700), window_width(640) { }
 
 //initialize game
 void GameModel::initializeGame(string netstatus){
-    QPoint point((window_width/2) - 25 /*<---width of player widget*/  ,window_height - 50 /*<----width of player*/);
-    player = new Player(point);
-    entities.push_back(player);
-    spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
+    if(netstatus == "client"){
+        return;
+    }else{
+        QPoint point((window_width/2) - 25 /*<---width of player widget*/  ,window_height - 50 /*<----width of player*/);
+        player = new Player(point);
+        entities.push_back(player);
+        spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
 
-    if(netstatus == "host"){
-        player2 = new Player(QPoint(window_width/2-25, window_height - 50));
-        entities.push_back(player2);
+        if(netstatus == "host"){
+            player2 = new Player(QPoint(window_width/2-25, window_height - 50));
+            entities.push_back(player2);
+        }
     }
 }
 
@@ -67,17 +71,24 @@ void GameModel::gameOver(){
  *them and removing them from the vector.  Otherwise, it just updates the entity
  */
 void GameModel::masterUpdate(){
-    string message = Client::getInstance().getMessage().toStdString();
+    string message = Host::getInstance().getMessage().toStdString();
     for(string line: split(message,'\n')){
+        qDebug() << QString::fromStdString(line);
+
+        if(line == "") { continue; }
+
         if(line == "left down"){
             player2->setDir(-1);
         }else if(line == "right down"){
             player2->setDir(1);
-        }else{
+        }else if(line == "fire down"){
+            create("projectile", player2->getPos().x(),player2->getPos().y());
+        }else if(line == "right up" || "left up"){
             player2->setDir(0);
         }
     }
-    //player->update();
+
+
     for(size_t i = 0; i < entities.size(); i++){
         Entity* e = entities.at(i);
         //kill the dead entities
@@ -95,6 +106,7 @@ void GameModel::masterUpdate(){
     }
 
     //random spawning of enemies
+    /*
     if(--spawnCountDown <= 0 and currentLvl > 3){
         if (rand()%2 == 0) {
             create("enemy",rand()%500,rand()%500);
@@ -102,7 +114,7 @@ void GameModel::masterUpdate(){
             create("trackingenemy", rand()%500, rand()%500);
         }
         spawnCountDown = rand() % 300;
-    }
+    }*/
 }
 
 /*
@@ -134,7 +146,6 @@ void GameModel::slaveUpdate(){
             ent->setPos( QPoint(x,y));
         }
     }
-    //player->update();
 }
 
 //return a string representation of game state including pos data for each entity

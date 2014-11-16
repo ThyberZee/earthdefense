@@ -23,21 +23,6 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, QString netstat, i
     GameModel::getInstance().setDifficulty(difficulty);
     GameModel::getInstance().initializeGame(netstat.toStdString());
 
-    //init player widget
-    Player* p = GameModel::getInstance().getPlayer();
-    pl = new PlayerWidget(p,this);
-    pl->setAttribute(Qt::WA_TranslucentBackground, true); //Transparency!!! :D
-    GameModel::getInstance().getPlayer()->setDir(0);
-    pl->show();
-
-    if(netstat == "host"){
-        Player* p = GameModel::getInstance().getPlayer2();
-        pl2 = new PlayerWidget(p,this);
-        pl2->setAttribute(Qt::WA_TranslucentBackground, true); //Transparency!!! :D
-        GameModel::getInstance().getPlayer2()->setDir(0);
-        pl2->show();
-    }
-
     //start timer
     fpsTimer = new QTimer(this);
     fpsTimer->setInterval(1000/60.0);
@@ -71,22 +56,31 @@ InGame::~InGame()
 void InGame::keyPressEvent(QKeyEvent *ev){
 
     if (ev->key() == 0x01000012){ //left key pressed
-        GameModel::getInstance().getPlayer()->setDir(-1);
-        if(netstatus == "client") {Client::getInstance().sendMessage("left down");}
+        if(netstatus == "client") {
+            Client::getInstance().sendMessage("left down");
+        }else{
+            GameModel::getInstance().getPlayer()->setDir(-1);
+        }
         //InputManager::getInstance().keyDown("left");
 
     }else if (ev->key() == 0x01000014){ //right key pressed
-        GameModel::getInstance().getPlayer()->setDir(1);
-        if(netstatus == "client") {Client::getInstance().sendMessage("right down");}
+        if(netstatus == "client") {
+            Client::getInstance().sendMessage("right down");
+        }else{
+            GameModel::getInstance().getPlayer()->setDir(1);
+        }
         //InputManager::getInstance().keyDown("right");
 
 
     }else if (ev->key() == 0x20){ // space key pressed
-        int x = GameModel::getInstance().getPlayer()->getPos().x() + 22;
-        int y = GameModel::getInstance().getPlayer()->getPos().y() - 10;
+        if(netstatus == "client"){
+            Client::getInstance().sendMessage("fire down");
+        }else{
+            int x = GameModel::getInstance().getPlayer()->getPos().x() + 22;
+            int y = GameModel::getInstance().getPlayer()->getPos().y() - 10;
 
-        GameModel::getInstance().create("projectile", x, y);
-        if(netstatus == "client") {Client::getInstance().sendMessage("fire down");}
+            GameModel::getInstance().create("projectile", x, y);
+        }
         //InputManager::getInstance().keyDown("fire");
     }
 }
@@ -94,19 +88,20 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
     if (ev->key() == 0x01000012){ // left key released
-        GameModel::getInstance().getPlayer()->setDir(0);     // OLD
-
-         if(netstatus == "client") {Client::getInstance().sendMessage("left up");}
+         if(netstatus == "client") {
+             Client::getInstance().sendMessage("left up");
+         }else{
+             GameModel::getInstance().getPlayer()->setDir(0);
+         }
         //InputManager::getInstance().keyUp("left");              // NEW
 
     }else if (ev->key() == 0x01000014){ // right key released
-        GameModel::getInstance().getPlayer()->setDir(0);     // OLD
-         if(netstatus == "client") {Client::getInstance().sendMessage("right up");}
-        //InputManager::getInstance().keyUp("right");     // NEW
 
-    }else if (ev->key() == 0x20){ // space key released
-         if(netstatus == "client") {Client::getInstance().sendMessage("fire up");}
-        //InputManager::getInstance().keyUp("fire");
+         if(netstatus == "client") {
+             Client::getInstance().sendMessage("right up");
+         }else{
+             GameModel::getInstance().getPlayer()->setDir(0);
+         }
     }
 }
 
@@ -136,35 +131,35 @@ void InGame::updateView() {
     for(Entity* entity : entities){
         //if the ent is new, create new sprite;
         if(entity->getJustCreated()){
-                EntityWidget* temp = new EntityWidget(this, entity);
-                ewidgets.push_back(temp);
+            EntityWidget* temp = new EntityWidget(this, entity);
+            ewidgets.push_back(temp);
 
-                temp->setGeometry(QRect(entity->getPos().x(),
-                                        entity->getPos().y(),
-                                        entity->width,
-                                        entity->height));
-                temp->setAttribute(Qt::WA_TranslucentBackground, true);
+            temp->setGeometry(QRect(entity->getPos().x(),
+                                    entity->getPos().y(),
+                                    entity->width,
+                                    entity->height));
+            temp->setAttribute(Qt::WA_TranslucentBackground, true);
 
-                //check for type in order to set proper image
-                if(temp->getEntity()->toString().find("player") == 0){
-                    QPixmap player(":/resources/images/Player.png");
-                    temp->setPixmap(player);
-                }else if(temp->getEntity()->toString().find("projectile") == 0){
-                    QPixmap projectile(":/resources/images/projectile.png");
-                    temp->setPixmap(projectile);
-                } else if (temp->getEntity()->toString().find("trackingprojectile") == 0){
-                    QPixmap trprojectile(":/resources/images/trackingmissle.png");
-                    temp->setPixmap(trprojectile);
-                } else if (temp->getEntity()->toString().find("enemy") == 0){
-                    QPixmap enemy(":/resources/images/alien1.png");
-                    temp->setPixmap(enemy);
-                } else if (temp->getEntity()->toString().find("trackingenemy") == 0) {
-                    QPixmap trenemy(":/resources/images/trackingenemy.png");
-                    temp->setPixmap(trenemy);
-                }
-                temp->setScaledContents(true);
-                temp->show();
-                entity->setJustCreated(false);  //make sure we know that entity is no longer new.
+            //check for type in order to set proper image
+            if(temp->getEntity()->toString().find("player") == 0){
+                QPixmap player(":/resources/images/Player.png");
+                temp->setPixmap(player);
+            }else if(temp->getEntity()->toString().find("projectile") == 0){
+                QPixmap projectile(":/resources/images/projectile.png");
+                temp->setPixmap(projectile);
+            } else if (temp->getEntity()->toString().find("trackingprojectile") == 0){
+                QPixmap trprojectile(":/resources/images/trackingmissle.png");
+                temp->setPixmap(trprojectile);
+            } else if (temp->getEntity()->toString().find("enemy") == 0){
+                QPixmap enemy(":/resources/images/alien1.png");
+                temp->setPixmap(enemy);
+            } else if (temp->getEntity()->toString().find("trackingenemy") == 0) {
+                QPixmap trenemy(":/resources/images/trackingenemy.png");
+                temp->setPixmap(trenemy);
+            }
+            temp->setScaledContents(true);
+            temp->show();
+            entity->setJustCreated(false);  //make sure we know that entity is no longer new.
         }
     }
 

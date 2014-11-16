@@ -53,13 +53,13 @@ void Host::dataReceived()
 {
     QTcpSocket *sock = dynamic_cast<QTcpSocket*>(sender());
 
-    qDebug() << "Received data from socket!";
+    //qDebug() << "Received data from socket!";
     while (sock->canReadLine()) {
         QString str = sock->readLine();
         qDebug() << str;
         message += str;
     }
-    qDebug() << message;
+    //qDebug() << message;
 }
 
 void Host::clientDisconnected()
