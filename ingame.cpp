@@ -105,13 +105,16 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
     }
 }
 
+
 /* * * * * * * * * * * * * * * * * * * * *
  *         MAIN UPDATE FUNCTION          *
  * * * * * * * * * * * * * * * * * * * * */
 
+
 void InGame::updateView() {
     //set score label
     ui->scorelbl->setText(QString::number(GameModel::getInstance().getScore()));
+    ui->lblNetstatus->setText(netstatus);
 
 
     //update game depending on whether game is multiplayer or singlplayer, host or client;
@@ -187,6 +190,7 @@ void InGame::updateView() {
 
 void InGame::gameOver(){
     //fpsTimer->stop();
+    //QMessageBox
 }
 
 void InGame::advanceLevel() {
