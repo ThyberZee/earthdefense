@@ -56,6 +56,7 @@ void Host::dataReceived()
     qDebug() << "Received data from socket!";
     while (sock->canReadLine()) {
         QString str = sock->readLine();
+        qDebug() << str;
         message += str;
     }
     qDebug() << message;
@@ -79,4 +80,3 @@ void Host::on_connectionSucceeded()
 {
     qDebug() << "conection successful";
 }
-

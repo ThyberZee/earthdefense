@@ -95,12 +95,15 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
     if (ev->key() == 0x01000012){ // left key released
         GameModel::getInstance().getPlayer()->setDir(0);     // OLD
-         if(netstatus == "client") {Client::getInstance().sendMessage("fire up");}
+
+         if(netstatus == "client") {Client::getInstance().sendMessage("left up");}
         //InputManager::getInstance().keyUp("left");              // NEW
+
     }else if (ev->key() == 0x01000014){ // right key released
         GameModel::getInstance().getPlayer()->setDir(0);     // OLD
-         if(netstatus == "client") {Client::getInstance().sendMessage("fire up");}
-        //InputManager::getInstance().keyUp("right");             // NEW
+         if(netstatus == "client") {Client::getInstance().sendMessage("right up");}
+        //InputManager::getInstance().keyUp("right");     // NEW
+
     }else if (ev->key() == 0x20){ // space key released
          if(netstatus == "client") {Client::getInstance().sendMessage("fire up");}
         //InputManager::getInstance().keyUp("fire");
@@ -188,7 +191,7 @@ void InGame::updateView() {
 }
 
 void InGame::gameOver(){
-    fpsTimer->stop();
+    //fpsTimer->stop();
 }
 
 void InGame::advanceLevel() {

@@ -67,6 +67,16 @@ void GameModel::gameOver(){
  *them and removing them from the vector.  Otherwise, it just updates the entity
  */
 void GameModel::masterUpdate(){
+    string message = Client::getInstance().getMessage().toStdString();
+    for(string line: split(message,'\n')){
+        if(line == "left down"){
+            player2->setDir(-1);
+        }else if(line == "right down"){
+            player2->setDir(1);
+        }else{
+            player2->setDir(0);
+        }
+    }
     //player->update();
     for(size_t i = 0; i < entities.size(); i++){
         Entity* e = entities.at(i);
@@ -114,10 +124,6 @@ void GameModel::slaveUpdate(){
         stream >> y;
         stream >> dir;
 
-        if(type=="player"){
-            continue;
-        }
-
         Entity* ent = getById(ID);
         if(ent == NULL){
             Entity* e = create(type,x,y,dir);
@@ -128,7 +134,7 @@ void GameModel::slaveUpdate(){
             ent->setPos( QPoint(x,y));
         }
     }
-    player->update();
+    //player->update();
 }
 
 //return a string representation of game state including pos data for each entity
