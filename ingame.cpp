@@ -141,7 +141,7 @@ void InGame::updateView() {
             temp->setAttribute(Qt::WA_TranslucentBackground, true);
 
             //check for type in order to set proper image
-            if(temp->getEntity()->toString().find("player") == 0){
+             if(temp->getEntity()->toString().find("player") == 0){
                 QPixmap player(":/resources/images/Player.png");
                 temp->setPixmap(player);
             }else if(temp->getEntity()->toString().find("projectile") == 0){
@@ -158,7 +158,7 @@ void InGame::updateView() {
                 temp->setPixmap(trenemy);
             }
             temp->setScaledContents(true);
-            temp->show();
+            //temp->show();
             entity->setJustCreated(false);  //make sure we know that entity is no longer new.
         }
     }
@@ -199,7 +199,6 @@ void InGame::advanceLevel() {
 
 void InGame::on_btnSaveGame_clicked()
 {
-
     GameModel::getInstance().saveGame("savegame");
 }
 

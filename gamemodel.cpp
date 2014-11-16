@@ -62,7 +62,8 @@ void GameModel::gameOver(){
 
 }
 
-/*this is the most important function of the model.  It first updates the player,
+/*this is the most important function of the model.  If their is a connected host,
+ *it will check that and update player 2 accordingly. Then it updates player 1,
  *then checks all of the enemies that called their kill function last frame, deleting
  *them and removing them from the vector.  Otherwise, it just updates the entity
  */
@@ -78,7 +79,7 @@ void GameModel::masterUpdate(){
         }else if(line == "right down"){
             player2->setDir(1);
         }else if(line == "fire down"){
-            create("projectile", player2->getPos().x(),player2->getPos().y());
+            create("projectile", player2->getPos().x()+22,player2->getPos().y()-10);
         }else if(line == "right up" || "left up"){
             player2->setDir(0);
         }
@@ -204,6 +205,7 @@ Entity *GameModel::create(string type, int x, int y, int dir){
     if(type == "player"){
         Player* p = new Player(QPoint(x,y));
         //player = new Player(QPoint(x,y));
+        entities.push_back(p);
 
         return p;
 
