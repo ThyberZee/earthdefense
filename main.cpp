@@ -25,7 +25,7 @@ bool unitTest(){
     GameModel::getInstance().saveGame("savefilename2");
 
     GameModel::getInstance().reset();
-
+/*
     HighScore::getInstance()->load();
     HighScore::getInstance()->addScore(99999, "MSW");
 
@@ -36,7 +36,7 @@ bool unitTest(){
     qDebug() << HighScore::getInstance()->state().c_str();
 
     HighScore::getInstance()->reset();
-
+*/
     return true;
 }
 

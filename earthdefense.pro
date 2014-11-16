@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     client.cpp \
     trackingprojectile.cpp \
     inputmanager.cpp \
-    trackingenemy.cpp
+    trackingenemy.cpp \
+    gameover.cpp
 
 HEADERS  += mainwindow.h \
             gamemodel.h \
@@ -51,10 +52,12 @@ HEADERS  += mainwindow.h \
     client.h \
     trackingprojectile.h \
     inputmanager.h \
-    trackingenemy.h
+    trackingenemy.h \
+    gameover.h
 
 FORMS    += mainwindow.ui \
-            ingame.ui
+            ingame.ui \
+    gameover.ui
 
 RESOURCES += \
     resources.qrc

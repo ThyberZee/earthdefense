@@ -1,6 +1,7 @@
 #include "ingame.h"
 #include "client.h"
 #include "host.h"
+#include "gameover.h"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, QString netstat, i
 
     //start timer
     fpsTimer = new QTimer(this);
-    fpsTimer->setInterval(1000/60.0);
+    fpsTimer->setInterval(1000/50.0);
     connect(fpsTimer, &QTimer::timeout, this, &InGame::updateView);
     fpsTimer->start();
 
@@ -49,7 +50,7 @@ InGame::~InGame()
  * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // Matt, Can you try to abstract input handling away from the slots and into the
-// model?  basicall, instead of acting directly on a keydown or up, just call the
+// model?  basically, instead of acting directly on a keydown or up, just call the
 // appropriate method in the input manager to set the flag.  Then, inside the model
 // check the input managers state, and perform the appropriate action.
 
@@ -190,8 +191,13 @@ void InGame::updateView() {
 }
 
 void InGame::gameOver(){
-    //fpsTimer->stop();
+    fpsTimer->stop();
     //QMessageBox
+    Gameover* gameWindow = new Gameover(this,GameModel::getInstance().getScore());
+    gameWindow->show();
+    gameWindow->setEnabled(true);
+    this->hide();
+
 }
 
 void InGame::advanceLevel() {

@@ -44,7 +44,6 @@ void Client::dataReceived() {
     while (socket->canReadLine()) {
         message += socket->readLine();
     }
-    //qDebug() << message;
 }
 
 void Client::serverDisconnected()

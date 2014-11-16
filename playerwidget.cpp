@@ -7,4 +7,5 @@ PlayerWidget::PlayerWidget(Player* p, QWidget *parent) :QLabel(parent)
 }
 
 PlayerWidget::~PlayerWidget() {
+
 }

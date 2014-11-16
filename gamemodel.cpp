@@ -70,7 +70,6 @@ void GameModel::gameOver(){
 void GameModel::masterUpdate(){
     string message = Host::getInstance().getMessage().toStdString();
     for(string line: split(message,'\n')){
-        qDebug() << QString::fromStdString(line);
 
         if(line == "") { continue; }
 
