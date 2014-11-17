@@ -16,7 +16,7 @@ InGame::InGame(QMainWindow *parent, QString netstat, QString filename, int initD
     ui->setupUi(this);
 
 //scores handler
-    HighScore::getInstance()->load();
+    if (!HighScore::getInstance()->load()) { qDebug() << "EE: something's wrong with the highscore class..."; }
 
 //start gamemodel
     GameModel::getInstance().setObserver(this);
