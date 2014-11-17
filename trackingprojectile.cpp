@@ -4,10 +4,21 @@
 TrackingProjectile::TrackingProjectile(QPoint p, int d): Projectile(p,d){}
 
 void TrackingProjectile::update(){
-    if(pos.x() > GameModel::getInstance().getPlayer()->getPos().x() + 20){
-        pos.setX(pos.x() - GameModel::getInstance().getDifficulty());
+Player* temp = GameModel::getInstance().getPlayer2();
+
+if(temp != NULL){
+    int r = rand() % 40;
+    if(r <= 20){
+        temp = GameModel::getInstance().getPlayer();
+    }
+}else{
+    temp = GameModel::getInstance().getPlayer();
+}
+
+    if(pos.x() > temp->getPos().x() + 20){
+        pos.setX(pos.x() - (GameModel::getInstance().getDifficulty()) * 1.5);
     }else{
-        pos.setX(pos.x() + GameModel::getInstance().getDifficulty()); // The horizontal movement of tproj. are determined by difficulty lvl
+        pos.setX(pos.x() + (GameModel::getInstance().getDifficulty()) * 1.5); // The horizontal movement of tproj. are determined by difficulty lvl
     }
     pos.setY(pos.y() + (GameModel::getInstance().getDifficulty()*4 /* sets speed of bullet according to difficulty level */)*direction);
     box->moveTo(pos.x(),pos.y());

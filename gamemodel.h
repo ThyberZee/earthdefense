@@ -29,7 +29,6 @@ using namespace std;
 class GameModel {
 private:
     WorldObserver* observer;
-
     vector<Entity*> entities;
     Player* player;
     Player* player2;
@@ -39,11 +38,11 @@ private:
 public:
     ~GameModel();
 
-    void initializeGame();
+    void initializeGame(string netstatus);
     void gameOver();
     void reset();
 
-    string state();
+    string state();;
     void loadGame(QString filename);
     void saveGame(string filename);
 
@@ -60,7 +59,7 @@ public:
     //getters and setters
     Player*         getPlayer()     { return player;}
     Player*         getPlayer2()    { return player2;}
-    vector<Entity*> getEntities()   { return entities;}
+    vector<Entity*>& getEntities()  { return entities;}    //return reference for efficiency
     int             getScore()      { return score;}
     int             getCurrentLvl() { return currentLvl; }
     int             getDifficulty() { return difficulty; }

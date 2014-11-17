@@ -6,19 +6,21 @@ HighScore* HighScore::instance = nullptr;
 
 // called sometime before it is needed
 bool HighScore::load() {
-    if (fileDoesNotExist())   // If the highscore file is not found,
-    {   createDefault();     }   // Create it.
+//    if (!fileDoesNotExist())   // If the highscore file is not found,
+//    {   createDefault();     }   // Create it.
 
     ifstream scorefile;               // load the "scores" file
     scorefile.open("scores");
 
     if (scorefile) {                        // If the scores file loaded without having issues, do the following
-        for ( size_t i = 0; i < 5; ++i) {   // Load 5 scores into a vector<Score*>
-            unsigned int value;     scorefile >> value;
+        while(scorefile){
+            unsigned int value;     scorefile >> value;         //grab all value and initial pairs in file
             std::string initials;   scorefile >> initials;
-            addScore(value, initials);      // and add it to the vector of scores
-        }
 
+            if(initials!="" && value){
+                addScore(value, initials);// and add them to the vector of scores
+            }
+        }
         scorefile.close();                  // Close the file
         return true;                        // aaand... done!
     } else {
@@ -45,7 +47,7 @@ void HighScore::createDefault() {
     ofstream scorefile;
     scorefile.open("scores");
 
-    const std::string DEFAULT_CONTENTS = "10000 AAA\n8000 AAA\n6000 AAA\n4000 AAA\n2000 AAA";
+    const std::string DEFAULT_CONTENTS = "1000 AAA\n800 AAA\n600 AAA\n400 AAA\n200 AAA";
     scorefile << DEFAULT_CONTENTS;
     scorefile.close();
 }
@@ -56,9 +58,12 @@ void HighScore::save() {
     ofstream scorefile;                         // Open 'scores' file
     scorefile.open("scores");
 
-    for (size_t i = 0; i < 5; ++i) {            // For the 5 scores in the file,
+    /*for (size_t i = 0; i < 5; ++i) {            // For the 5 scores in the file,
         Score& s = scores.at(i);                // grab each
         scorefile << s.toString() << "\n";      // and write to the file buffer
+    }*/
+    for(Score s: scores){
+        scorefile << s.toString() <<"\n";
     }
     scorefile.close();
 }
@@ -74,6 +79,10 @@ void HighScore::addScore(unsigned int newValue, std::string newInitials) {
         save();
     }
 
+}
+
+Score &HighScore::getScore(unsigned int pos) {
+    return scores.at(pos);
 }
 
 // unit test exclusive

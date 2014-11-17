@@ -24,7 +24,7 @@ public:
 
     std::string toString() { return std::to_string(value) + " " + initials; }
 
-// OPERATORS
+// OPERATORS FOR std::sort()    { e.g. HighScore::sort(); }
     bool operator <(const Score& that) const { return value < that.value; }
     bool operator >(const Score& that) const { return value > that.value; }
 

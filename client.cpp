@@ -25,6 +25,7 @@ void Client::connectToServer(QString ip)
 }
 
 void Client::sendMessage(QString msg){
+    msg += "\n";
     socket->write(msg.toLocal8Bit());
 }
 
@@ -43,7 +44,6 @@ void Client::dataReceived() {
     while (socket->canReadLine()) {
         message += socket->readLine();
     }
-    //qDebug() << message;
 }
 
 void Client::serverDisconnected()

@@ -19,6 +19,7 @@
 
 #include "inputmanager.h"
 #include "mainwindow.h"
+#include "highscore.h"
 
 namespace Ui {
 class InGame;

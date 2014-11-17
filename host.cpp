@@ -53,12 +53,11 @@ void Host::dataReceived()
 {
     QTcpSocket *sock = dynamic_cast<QTcpSocket*>(sender());
 
-    qDebug() << "Received data from socket!";
+    //qDebug() << "Received data from socket!";
     while (sock->canReadLine()) {
         QString str = sock->readLine();
         message += str;
     }
-    qDebug() << message;
 }
 
 void Host::clientDisconnected()
@@ -79,4 +78,3 @@ void Host::on_connectionSucceeded()
 {
     qDebug() << "conection successful";
 }
-

@@ -3,23 +3,29 @@
 
 GameModel GameModel::instance;
 
-GameModel::GameModel() : window_height(700), window_width(640) { }
+GameModel::GameModel(): window_height(700), window_width(640) { }
 
 //initialize game
-void GameModel::initializeGame(){
-    QPoint point((window_width/2) - 25 /*<---width of player widget*/  ,window_height - 50 /*<----width of player*/);
-    player = new Player(point);
-    entities.push_back(player);
-    spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
-    currentLvl = 0;
+void GameModel::initializeGame(string netstatus){
+    if(netstatus == "client"){
+        return;
+    }else{
+        QPoint point((window_width/2) - 25 /*<---width of player widget*/  ,window_height - 50 /*<----width of player*/);
+        player = new Player(point);
+        entities.push_back(player);
+        spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 30
+        currentLvl = 0;
+        player2 = NULL;
+
+        if(netstatus == "host"){
+            player2 = new Player(QPoint(window_width/2-25, window_height - 50));
+            entities.push_back(player2);
+        }
+    }
 }
 
 //reset game
 void GameModel::reset(){
-
-    //reset player
-    /*delete player;
-    player = nullptr;*/
 
     //delete all entities, then empties array
     for(Entity* e: entities){
@@ -58,12 +64,29 @@ void GameModel::gameOver(){
 
 }
 
-/*this is the most important function of the model.  It first updates the player,
+/*this is the most important function of the model.  If their is a connected host,
+ *it will check that and update player 2 accordingly. Then it updates player 1,
  *then checks all of the enemies that called their kill function last frame, deleting
  *them and removing them from the vector.  Otherwise, it just updates the entity
  */
 void GameModel::masterUpdate(){
-    //player->update();
+    string message = Host::getInstance().getMessage().toStdString();
+    for(string line: split(message,'\n')){
+
+        if(line == "") { continue; }
+
+        if(line == "left down"){
+            player2->setDir(-1);
+        }else if(line == "right down"){
+            player2->setDir(1);
+        }else if(line == "fire down"){
+            create("projectile", player2->getPos().x()+22,player2->getPos().y()-10);
+        }else if(line == "right up" || "left up"){
+            player2->setDir(0);
+        }
+    }
+
+
     for(size_t i = 0; i < entities.size(); i++){
         Entity* e = entities.at(i);
         //kill the dead entities
@@ -87,7 +110,6 @@ void GameModel::masterUpdate(){
         } else {
             create("trackingenemy", rand()%500, rand()%300);
         }
-
         spawnCountDown = rand() % 300;
     }
 }
@@ -101,7 +123,6 @@ void GameModel::slaveUpdate(){
     string type;
     int ID, x, y, dir;
     for(string line: split(message,'\n')){
-
         if(line == "") { continue; }
 
         stringstream stream(line);
@@ -110,10 +131,6 @@ void GameModel::slaveUpdate(){
         stream >> x;
         stream >> y;
         stream >> dir;
-
-        if(type=="player"){
-            continue;
-        }
 
         Entity* ent = getById(ID);
         if(ent == NULL){
@@ -125,7 +142,6 @@ void GameModel::slaveUpdate(){
             ent->setPos( QPoint(x,y));
         }
     }
-    player->update();
 }
 
 //return a string representation of game state including pos data for each entity
@@ -138,7 +154,6 @@ string GameModel::state(){
             ss << e->toString() << endl;
         }
     }
-    //ss << player->toString() << endl;
     return ss.str();
 }
 
@@ -156,7 +171,6 @@ void GameModel::saveGame(string filename){
         e->save(outfile);
     }
 
-    //player->save(outfile);
     outfile.close();
 }
 
@@ -185,10 +199,11 @@ void GameModel::loadGame(QString filename){
 Entity *GameModel::create(string type, int x, int y, int dir){
 
     if(type == "player"){
-        QPoint tempPoint(x,y);
-        player = new Player(QPoint(x,y));
+        Player* p = new Player(QPoint(x,y));
+        //player = new Player(QPoint(x,y));
+        entities.push_back(p);
 
-        return player;
+        return p;
 
     }else if(type == "enemy"){
         QPoint tempPoint(x,y);
@@ -252,5 +267,4 @@ GameModel::~GameModel(){
     for(Entity* e: entities){
         delete e;
     }
-    // delete player;
 }
