@@ -37,6 +37,10 @@ void TrackingEnemy::update()
     if(--cooldown == 0){
         string type;
         GameModel::getInstance().create("trackingprojectile", pos.x(), pos.y()+height, 1);
-        cooldown = rand() % 300;
+        if (GameModel::getInstance().getCurrentLvl() > 3){
+            cooldown = rand() % 100;
+        } else {
+            cooldown = rand() % 300;
+        }
     }
 }

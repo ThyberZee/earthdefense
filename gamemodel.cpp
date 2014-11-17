@@ -110,7 +110,7 @@ void GameModel::masterUpdate(){
         } else {
             create("trackingenemy", rand()%500, rand()%300);
         }
-        spawnCountDown = rand() % 300;
+        spawnCountDown = rand() % 100;
     }
 }
 

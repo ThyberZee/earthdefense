@@ -28,9 +28,9 @@ void createLevels() {
             "enemy  101 -300 200 0\n" \
             "enemy  102 840 200 0\n" \
             "enemy  103 940 200 0\n" \
-            "enemy  104 -300 300 0\n" \
+            "enemy  104 -400 300 0\n" \
             "enemy  105 740 400 0\n" \
-            "enemy  106 -300 600 0\n";
+            "enemy  106 -500 600 0\n";
     ofstream lvl2("Level2");
     lvl2 << "enemy  101 -300 200 0\n" \
             "enemy  102 840 200 0\n" \
@@ -44,12 +44,29 @@ void createLevels() {
     ofstream lvl3("Level3");
     lvl3 << "enemy  101 -300 200 0\n" \
             "enemy  102 840 200 0\n" \
-            "enemy  103 940 200 0\n" \
-            "enemy  104 -300 300 0\n" \
+            "enemy  103 1040 200 0\n" \
+            "enemy  104 -600 300 0\n" \
             "enemy  105 740 400 0\n" \
-            "enemy  106 -300 600 0\n";
+            "enemy  106 -700 600 0\n" \
+            "enemy  107 -650 100 0\n" \
+            "enemy  112 -500 150 0\n" \
+            "trackingenemy 108 1040 400 0\n" \
+            "trackingenemy 110 1140 100 0\n" \
+            "trackingenemy 111 400 -300 0\n" \
+            "trackingenemy 109 1240 150 0\n";
+    ofstream lvl4("Level4");
+    lvl4 << "trackingenemy 108 1040 400 0\n" \
+            "trackingenemy 110 1140 100 0\n" \
+            "trackingenemy 111 400 -300 0\n" \
+            "trackingenemy 109 1240 150 0\n" \
+            "trackingenemy 105 -100 100 0\n" \
+            "trackingenemy 106 -200 200 0\n" \
+            "trackingenemy 107 -300 300 0\n" \
+            "trackingenemy 112 1040 400 0\n" \
+            "trackingenemy 113 1240 150 0\n";
     lvl1.close();
     lvl2.close();
     lvl3.close();
+    lvl4.close();
 }
 

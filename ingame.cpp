@@ -134,11 +134,16 @@ void InGame::updateView() {
     //set score label
     ui->scorelbl->setText(QString::number(GameModel::getInstance().getScore()));
     ui->lblNetstatus->setText(netstatus);
+    if (GameModel::getInstance().getCurrentLvl() > 4){
+        ui->lblLevel->setText(QString("Survival!"));
+    } else {
+        ui->lblLevel->setText(QString::number(GameModel::getInstance().getCurrentLvl()));
+    }
 
     Score& highscore = HighScore::getInstance()->getScore(0);
     int hs = highscore.getValue();
 
-    if (GameModel::getInstance().getScore() > hs) { ui->highscorelbl->setText(QString::number(GameModel::getInstance().getScore()));        }
+    if (GameModel::getInstance().getScore() > hs) { ui->highscorelbl->setText(QString::number(GameModel::getInstance().getScore()));}
     else                                          { ui->highscorelbl->setText(QString::number(hs));       }
 
     //update game depending on whether game is multiplayer or singlplayer, host or client;
