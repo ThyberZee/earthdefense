@@ -10,31 +10,40 @@
     <height>700</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Earth Defense</string>
   </property>
   <widget class="QLabel" name="scorelbl">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>430</x>
      <y>40</y>
-     <width>71</width>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Waree</family>
-     <pointsize>18</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Ubuntu</family>
+     <pointsize>12</pointsize>
+     <weight>7</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="cursor">
     <cursorShape>ArrowCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:blue</string>
+    <string notr="true">color: blue;
+font: 63 12pt &quot;Ubuntu&quot;;
+</string>
    </property>
    <property name="text">
     <string>0</string>
@@ -59,7 +68,7 @@
     <enum>Qt::NoFocus</enum>
    </property>
    <property name="text">
-    <string>Save Game</string>
+    <string notr="true">Save Game</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -73,17 +82,20 @@
    </property>
    <property name="font">
     <font>
-     <family>URW Gothic L</family>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Ubuntu</family>
+     <pointsize>12</pointsize>
+     <weight>7</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:blue</string>
+    <string notr="true">color: blue;
+font: 63 12pt &quot;Ubuntu&quot;;
+</string>
    </property>
    <property name="text">
-    <string>Level</string>
+    <string notr="true">Level</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -100,14 +112,17 @@
    </property>
    <property name="font">
     <font>
-     <family>DejaVu Sans</family>
-     <pointsize>19</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Ubuntu</family>
+     <pointsize>12</pointsize>
+     <weight>7</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:blue</string>
+    <string notr="true">color: blue;
+font: 63 12pt &quot;Ubuntu&quot;;
+</string>
    </property>
    <property name="text">
     <string>0</string>
@@ -119,7 +134,7 @@
   <widget class="QLabel" name="lbScore">
    <property name="geometry">
     <rect>
-     <x>470</x>
+     <x>450</x>
      <y>10</y>
      <width>71</width>
      <height>31</height>
@@ -127,17 +142,20 @@
    </property>
    <property name="font">
     <font>
-     <family>URW Gothic L</family>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Ubuntu</family>
+     <pointsize>12</pointsize>
+     <weight>7</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:blue</string>
+    <string notr="true">color: blue;
+font: 63 12pt &quot;Ubuntu&quot;;
+</string>
    </property>
    <property name="text">
-    <string>Score</string>
+    <string notr="true">Score</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -156,7 +174,7 @@
     <enum>Qt::NoFocus</enum>
    </property>
    <property name="text">
-    <string>Load Game</string>
+    <string notr="true">Load Game</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnStartOver">
@@ -172,7 +190,7 @@
     <enum>Qt::NoFocus</enum>
    </property>
    <property name="text">
-    <string>Start Over</string>
+    <string notr="true">Start Over</string>
    </property>
   </widget>
   <widget class="QLabel" name="lblHighscore">
@@ -180,23 +198,26 @@
     <rect>
      <x>310</x>
      <y>10</y>
-     <width>141</width>
+     <width>81</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>URW Gothic L</family>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Ubuntu</family>
+     <pointsize>12</pointsize>
+     <weight>7</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:blue</string>
+    <string notr="true">color: blue;
+font: 63 12pt &quot;Ubuntu&quot;;
+</string>
    </property>
    <property name="text">
-    <string>High Score</string>
+    <string notr="true">High Score</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -205,25 +226,28 @@
   <widget class="QLabel" name="highscorelbl">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>290</x>
      <y>40</y>
-     <width>101</width>
+     <width>121</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Waree</family>
-     <pointsize>18</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Ubuntu</family>
+     <pointsize>12</pointsize>
+     <weight>7</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="cursor">
     <cursorShape>ArrowCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:blue</string>
+    <string notr="true">color: blue;
+font: 63 12pt &quot;Ubuntu&quot;;
+</string>
    </property>
    <property name="text">
     <string>0</string>

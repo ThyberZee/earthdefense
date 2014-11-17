@@ -44,6 +44,7 @@ public:
     void sort() { std::sort(scores.begin(), scores.end(), std::greater<Score>()); } // sort the scores in descending order
     void addScore(unsigned int newValue, std::string newInitials);                  // add a score to the highscore file
     void reset() { scores.clear(); }        // clear the contents of the scores array
+    Score& getScore(unsigned int pos);
     std::string state();
     // Score newScore(unsigned int value, std::string& initials);
 

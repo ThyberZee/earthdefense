@@ -42,7 +42,7 @@ public:
     void gameOver();
     void reset();
 
-    string state();
+    string state();;
     void loadGame(QString filename);
     void saveGame(string filename);
 

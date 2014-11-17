@@ -12,8 +12,10 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, string netstat, in
 {
     ui->setupUi(this);
 
-    //start gamemodel
+//scores handler
+    HighScore::getInstance()->load();
 
+//start gamemodel
     GameModel::getInstance().setObserver(this);
     if (initLoadGameFile.size() != 0) {
         GameModel::getInstance().loadGame(initLoadGameFile);
@@ -109,7 +111,17 @@ void InGame::updateView() {
     QString s = QString::number(GameModel::getInstance().getScore());
     ui->scorelbl->setText(s);
 
+    // set highscore label to highest score in the vector of scores.
+    /* if the current score is higher than that
+     *      update it.
+     * else, don't do anything.
+    */
 
+    Score& highscore = HighScore::getInstance()->getScore(0);
+    QString hs = QString::number(highscore.getValue());
+
+    if (s > hs) { ui->highscorelbl->setText(s);        }
+    else        { ui->highscorelbl->setText(hs);       }
 
     //update game depending on whether game is multiplayer or singlplayer, host or client;
     if(netstatus == "client"){

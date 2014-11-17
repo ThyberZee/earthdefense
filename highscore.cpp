@@ -76,6 +76,10 @@ void HighScore::addScore(unsigned int newValue, std::string newInitials) {
 
 }
 
+Score &HighScore::getScore(unsigned int pos) {
+    return scores.at(pos);
+}
+
 // unit test exclusive
 std::string HighScore::state() {
     std::stringstream ss;
