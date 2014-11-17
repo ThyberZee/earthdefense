@@ -93,7 +93,8 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         }
 
     }else if (ev->key() == 0x20){ // space key pressed
-        if(GameModel::getInstance().getCooldown() >= 0){
+
+        if(GameModel::getInstance().getCooldown() <= 0){
             if(netstatus == "client"){
                 Client::getInstance().sendMessage("fire down");
             }else{

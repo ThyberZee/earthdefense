@@ -160,6 +160,10 @@ void GameModel::slaveUpdate(){
             }
         }
     }
+    //yes, client needs to keep track of its own cooldown as well;
+    if(cooldown > 0){
+        cooldown--;
+    }
 }
 
 //return a string representation of game state including pos data for each entity
