@@ -36,6 +36,6 @@ void TrackingEnemy::update()
     //decrement cooldown; if 0, shoot and reset to random val;
     if(--cooldown == 0){
         GameModel::getInstance().create("trackingprojectile", pos.x(), pos.y()+height, 1);
-        cooldown = rand() % 300;
+        cooldown = (rand() % 300) + 10;
     }
 }

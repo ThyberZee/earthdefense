@@ -48,9 +48,9 @@ void Enemy::update()
     if(--cooldown == 0){
         GameModel::getInstance().create("projectile", pos.x(), pos.y()+height, 1);
         if (GameModel::getInstance().getCurrentLvl() > 3){
-            cooldown = rand() % 100;
+            cooldown = (rand() % 100) + 10;
         } else {
-            cooldown = rand() % 300;
+            cooldown = (rand() % 300) + 10;
         }
     }
 }
