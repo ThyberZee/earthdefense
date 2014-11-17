@@ -133,6 +133,7 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 void InGame::updateView() {
     //set score label
     ui->scorelbl->setText(QString::number(GameModel::getInstance().getScore()));
+    ui->lblLevel->setText(QString::number(GameModel::getInstance().getCurrentLvl()));
     ui->lblNetstatus->setText(netstatus);
 
     Score& highscore = HighScore::getInstance()->getScore(0);
@@ -199,19 +200,19 @@ void InGame::updateView() {
             //explosions!!!
 
                 if((wdgt->getExpCount() >= 0 && wdgt->getExpCount() < 5) || (wdgt->getExpCount() >= 40 && wdgt->getExpCount() < 45)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/explosion0.png"));
+                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion0.png"));
                     wdgt->incExpCount();
                 }else if((wdgt->getExpCount() >= 5 && wdgt->getExpCount() < 10) || (wdgt->getExpCount() >= 35 && wdgt->getExpCount() < 40)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/explosion1.png"));
+                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion1.png"));
                     wdgt->incExpCount();
                 }else if((wdgt->getExpCount() >= 10 && wdgt->getExpCount() < 15) || (wdgt->getExpCount() >= 30 && wdgt->getExpCount() < 35)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/explosion2.png"));
+                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion2.png"));
                     wdgt->incExpCount();
                 }else if((wdgt->getExpCount() >= 15 && wdgt->getExpCount() < 20) || (wdgt->getExpCount() >= 25 && wdgt->getExpCount() < 30)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/explosion3.png"));
+                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion3.png"));
                     wdgt->incExpCount();
                 }else if(wdgt->getExpCount() >= 20 && wdgt->getExpCount() < 25){
-                    wdgt->setPixmap(QPixmap(":/resources/images/explosion4.png"));
+                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion4.png"));
                     wdgt->incExpCount();
                 }else{
                     ewidgets.erase(ewidgets.begin()+i);

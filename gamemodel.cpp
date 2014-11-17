@@ -32,6 +32,8 @@ void GameModel::reset(){
         delete e;
     }
     entities.clear();
+    player = NULL;
+    player2 = NULL;
     currentLvl = 0;
     score = 0;
 }
