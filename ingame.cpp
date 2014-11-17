@@ -176,11 +176,9 @@ void InGame::updateView() {
             //explosions!!!
             ewidgets.erase(ewidgets.begin()+i);
 
-            /*
-            if(wdgt->getEntity()->){
-
+            if( dynamic_cast<Player*>(wdgt->getEntity()) == 0 || dynamic_cast<Enemy*>(wdgt->getEntity()) == 0){
+                qDebug() << "works!";
             }
-            */
 
             delete wdgt;
         }else{
@@ -197,7 +195,6 @@ void InGame::gameOver(){
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
-
 }
 
 void InGame::advanceLevel() {
