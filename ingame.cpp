@@ -14,8 +14,10 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, QString netstat, i
 {
     ui->setupUi(this);
 
-    //start gamemodel
+//scores handler
+    HighScore::getInstance()->load();
 
+//start gamemodel
     GameModel::getInstance().setObserver(this);
     if (initLoadGameFile.size() != 0) {
         GameModel::getInstance().loadGame(initLoadGameFile);
@@ -117,6 +119,11 @@ void InGame::updateView() {
     ui->scorelbl->setText(QString::number(GameModel::getInstance().getScore()));
     ui->lblNetstatus->setText(netstatus);
 
+    Score& highscore = HighScore::getInstance()->getScore(0);
+    int hs = highscore.getValue();
+
+    if (GameModel::getInstance().getScore() > hs) { ui->highscorelbl->setText(QString::number(GameModel::getInstance().getScore()));        }
+    else                                          { ui->highscorelbl->setText(QString::number(hs));       }
 
     //update game depending on whether game is multiplayer or singlplayer, host or client;
     if(netstatus == "client"){

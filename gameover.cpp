@@ -22,7 +22,7 @@ Gameover::Gameover(QWidget *parent, int score) :
 
     HighScore::getInstance()->load();
 
-    for(int i = 0; i < HighScore::getInstance()->getScores().size();i++){
+    for(size_t i = 0; i < HighScore::getInstance()->getScores().size();i++){
         Score score = HighScore::getInstance()->getScores().at(i);
         QLabel* initLbl = new QLabel(this);
         QLabel* scoreLbl = new QLabel(this);
