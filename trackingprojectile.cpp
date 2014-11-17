@@ -16,9 +16,9 @@ if(temp != NULL){
 }
 
     if(pos.x() > temp->getPos().x() + 20){
-        pos.setX(pos.x() - (GameModel::getInstance().getDifficulty()) * 1.5);
+        pos.setX(pos.x() - (GameModel::getInstance().getDifficulty()));
     }else{
-        pos.setX(pos.x() + (GameModel::getInstance().getDifficulty()) * 1.5); // The horizontal movement of tproj. are determined by difficulty lvl
+        pos.setX(pos.x() + (GameModel::getInstance().getDifficulty())); // The horizontal movement of tproj. are determined by difficulty lvl
     }
     pos.setY(pos.y() + (GameModel::getInstance().getDifficulty()*4 /* sets speed of bullet according to difficulty level */)*direction);
     box->moveTo(pos.x(),pos.y());
@@ -43,7 +43,7 @@ if(temp != NULL){
             }
         }
         QRect* otherbox = GameModel::getInstance().getPlayer()->getBox();
-        if(box->intersects(*otherbox) && direction == 1){
+        if(box->intersects(*otherbox) && direction == 1 && GameModel::getInstance().getCheat() == false){
             GameModel::getInstance().gameOver();
         }
     }

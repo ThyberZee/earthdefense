@@ -94,14 +94,18 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
 
     }else if (ev->key() == 0x20){ // space key pressed
-        if(netstatus == "client"){
-            Client::getInstance().sendMessage("fire down");
-        }else{
-            int x = GameModel::getInstance().getPlayer()->getPos().x() + 22;
-            int y = GameModel::getInstance().getPlayer()->getPos().y() - 10;
+        if(GameModel::getInstance().getCooldown() == 0){
+            if(netstatus == "client"){
+                Client::getInstance().sendMessage("fire down");
+            }else{
+                int x = GameModel::getInstance().getPlayer()->getPos().x() + 22;
+                int y = GameModel::getInstance().getPlayer()->getPos().y() - 10;
 
-            GameModel::getInstance().create("projectile", x, y);
+                GameModel::getInstance().create("projectile", x, y);
+            }
+            GameModel::getInstance().setCooldown(20);
         }
+
         //InputManager::getInstance().keyDown("fire");
     }
 }

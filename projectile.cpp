@@ -41,7 +41,7 @@ void Projectile::update(){
 
         // kill player
         QRect* otherbox = GameModel::getInstance().getPlayer()->getBox();
-        if(box->intersects(*otherbox) && direction == 1){
+        if(box->intersects(*otherbox) && direction == 1 && GameModel::getInstance().getCheat() == false){
             GameModel::getInstance().gameOver();
         }
     }
