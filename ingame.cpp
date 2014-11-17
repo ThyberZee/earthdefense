@@ -103,7 +103,7 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
                 GameModel::getInstance().create("projectile", x, y);
             }
-            GameModel::getInstance().setCooldown(20);
+            GameModel::getInstance().setCooldown(5);
         }
 
         //InputManager::getInstance().keyDown("fire");
@@ -209,27 +209,29 @@ void InGame::updateView() {
     for(size_t i = 0; i < ewidgets.size(); i++){
         EntityWidget *wdgt = ewidgets.at(i);
         if (wdgt->getEntity()->isAlive() == false){     //destroy widget if corresponding entity is dead
-            //explosions!!!
 
-                if((wdgt->getExpCount() >= 0 && wdgt->getExpCount() < 5) || (wdgt->getExpCount() >= 40 && wdgt->getExpCount() < 45)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion0.png"));
-                    wdgt->incExpCount();
-                }else if((wdgt->getExpCount() >= 5 && wdgt->getExpCount() < 10) || (wdgt->getExpCount() >= 35 && wdgt->getExpCount() < 40)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion1.png"));
-                    wdgt->incExpCount();
-                }else if((wdgt->getExpCount() >= 10 && wdgt->getExpCount() < 15) || (wdgt->getExpCount() >= 30 && wdgt->getExpCount() < 35)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion2.png"));
-                    wdgt->incExpCount();
-                }else if((wdgt->getExpCount() >= 15 && wdgt->getExpCount() < 20) || (wdgt->getExpCount() >= 25 && wdgt->getExpCount() < 30)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion3.png"));
-                    wdgt->incExpCount();
-                }else if(wdgt->getExpCount() >= 20 && wdgt->getExpCount() < 25){
-                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion4.png"));
-                    wdgt->incExpCount();
-                }else{
-                    ewidgets.erase(ewidgets.begin()+i);
-                    delete wdgt;
-                }
+            //sound!!!
+
+            //explosions!!!
+            if((wdgt->getExpCount() >= 0 && wdgt->getExpCount() < 5) || (wdgt->getExpCount() >= 40 && wdgt->getExpCount() < 45)){
+                wdgt->setPixmap(QPixmap(":/resources/images/Explosion0.png"));
+                wdgt->incExpCount();
+            }else if((wdgt->getExpCount() >= 5 && wdgt->getExpCount() < 10) || (wdgt->getExpCount() >= 35 && wdgt->getExpCount() < 40)){
+                wdgt->setPixmap(QPixmap(":/resources/images/Explosion1.png"));
+                wdgt->incExpCount();
+            }else if((wdgt->getExpCount() >= 10 && wdgt->getExpCount() < 15) || (wdgt->getExpCount() >= 30 && wdgt->getExpCount() < 35)){
+                wdgt->setPixmap(QPixmap(":/resources/images/Explosion2.png"));
+                wdgt->incExpCount();
+            }else if((wdgt->getExpCount() >= 15 && wdgt->getExpCount() < 20) || (wdgt->getExpCount() >= 25 && wdgt->getExpCount() < 30)){
+                wdgt->setPixmap(QPixmap(":/resources/images/Explosion3.png"));
+                wdgt->incExpCount();
+            }else if(wdgt->getExpCount() >= 20 && wdgt->getExpCount() < 25){
+                wdgt->setPixmap(QPixmap(":/resources/images/Explosion4.png"));
+                wdgt->incExpCount();
+            }else{
+                ewidgets.erase(ewidgets.begin()+i);
+                delete wdgt;
+            }
         }else{
             wdgt->move(wdgt->getEntity()->getPos().x(),wdgt->getEntity()->getPos().y());
             wdgt->show();

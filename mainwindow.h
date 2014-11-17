@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QTcpServer>
+#include <QMessageBox>
 #include "ui_mainwindow.h"
 #include "ingame.h"
 #include "utils.h"
@@ -25,12 +26,11 @@ public:
     
 public  slots:
 
-
     void on_btnNewGame_clicked();
     void on_btnLoadGame_clicked();
     void on_rbSinglePlayer_clicked();
     void on_rbMultiplayer_clicked();
-
+    void on_btnInstructions_clicked();
     void on_rbEasy_clicked();
 
 private:
@@ -38,3 +38,4 @@ private:
 };
 
 #endif // MAINWINDOW_H
+

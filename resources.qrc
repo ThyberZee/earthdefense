@@ -23,5 +23,7 @@
         <file>resources/images/Explosion2.png</file>
         <file>resources/images/Explosion3.png</file>
         <file>resources/images/Explosion4.png</file>
+        <file>resources/Audio/Death.wav</file>
+        <file>resources/Audio/shoot.wav</file>
     </qresource>
 </RCC>
