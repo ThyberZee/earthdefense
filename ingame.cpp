@@ -177,8 +177,8 @@ void InGame::updateView() {
             ewidgets.erase(ewidgets.begin()+i);
 
             /*
-            if( dynamic_cast<PlayerWidget*>(wdgt) == 0){
-                //Work your magic, Sam!!
+            if(wdgt->getEntity()->){
+
             }
             */
 
