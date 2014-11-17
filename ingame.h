@@ -58,6 +58,8 @@ private:
     QString loadGameFile, ip;
     int difficulty;
 
+    const int cooldowntime = 20;
+
 };
 
 #endif // INGAME_H
