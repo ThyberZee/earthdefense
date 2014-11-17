@@ -194,7 +194,6 @@ void InGame::updateView() {
                     ewidgets.erase(ewidgets.begin()+i);
                     delete wdgt;
                 }
-
         }else{
             wdgt->move(wdgt->getEntity()->getPos().x(),wdgt->getEntity()->getPos().y());
             wdgt->show();
@@ -224,6 +223,7 @@ void InGame::on_btnSaveGame_clicked()
     GameModel::getInstance().saveGame("savegame");
 }
 
+//hide this window and create a new ingame, passing in the same params.
 void InGame::on_btnStartOver_clicked()
 {
     this->hide();
