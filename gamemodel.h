@@ -35,6 +35,7 @@ private:
     int window_height, window_width; //these two variables set in intitializer
     int score, spawnCountDown, currentLvl, difficulty;
     int cooldown;
+    bool cheat;
 
 public:
     ~GameModel();
@@ -73,6 +74,9 @@ public:
     void setScore(int s)                { score = s; }
     void setObserver(WorldObserver* o)  { observer = o; }
     void setDifficulty(int i)           { difficulty = i; }
+
+    void setCheat(bool b){cheat = b;}
+    bool getCheat(){return cheat;}
 
     /***  singleton implementation ***/
 private:
