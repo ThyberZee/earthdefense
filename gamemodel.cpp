@@ -11,6 +11,7 @@ void GameModel::initializeGame(){
     player = new Player(point);
     entities.push_back(player);
     spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
+    currentLvl = 0;
 }
 
 //reset game
@@ -25,7 +26,7 @@ void GameModel::reset(){
         delete e;
     }
     entities.clear();
-    currentLvl = 1;
+    currentLvl = 0;
     score = 0;
 }
 
@@ -43,9 +44,9 @@ bool GameModel::checkForNextLevel() {
 }
 
 void GameModel::advanceLevel() {
-    currentLvl++;
-    QString filename = QString("Level") + QString(currentLvl);
-    loadGame(QString(filename));
+    QString filename = QString("Level%1").arg(++currentLvl);
+    qDebug() << filename;
+    loadGame(filename);
     observer->advanceLevel();
 }
 
@@ -80,11 +81,11 @@ void GameModel::masterUpdate(){
     }
 
     //random spawning of enemies
-    if(--spawnCountDown <= 0 and currentLvl > 3){
+    if(--spawnCountDown <= 0 && currentLvl > 3){
         if (rand()%2 == 0) {
-            create("enemy",rand()%500,rand()%500);
+            create("enemy", rand()%500,rand()%400);
         } else {
-            create("trackingenemy", rand()%500, rand()%500);
+            create("trackingenemy", rand()%500, rand()%300);
         }
 
         spawnCountDown = rand() % 300;
@@ -150,7 +151,6 @@ string GameModel::state(){
  */
 void GameModel::saveGame(string filename){
     ofstream outfile(filename);
-    //QFile outfile(QString(":/") + filename);
     outfile << "score " << score << endl;
     for(Entity* e: entities){
         e->save(outfile);
@@ -166,9 +166,6 @@ void GameModel::loadGame(QString filename){
     int id, dir, x, y;      //direction is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename.toStdString());
-    //QFile infile(QString(":/") + filename);
-
-    //infile >> score;
     while(infile){
         infile >> type;
         infile >> id;

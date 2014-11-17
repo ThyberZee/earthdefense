@@ -29,7 +29,7 @@ class InGame : public QMainWindow, public WorldObserver
     Q_OBJECT
     
 public:
-    explicit InGame(QMainWindow *parent = 0, QString initLoadGameFile = 0, QString netstat = 0, int initDifficulty = 0, QString initIp = 0);
+    explicit InGame(QMainWindow *parent = 0, QString netstat = 0, QString filename = 0, int initDifficulty = 0, QString initIp = 0);
     void gameOver();
     ~InGame();
 

@@ -34,7 +34,7 @@ void MainWindow::on_btnNewGame_clicked()
         initDifficulty = 3;
     }
 
-    InGame* gameWindow = new InGame(this, "", netstat, initDifficulty, initIp);
+    InGame* gameWindow = new InGame(this, netstat, "", initDifficulty, initIp);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
@@ -62,7 +62,7 @@ void MainWindow::on_btnLoadGame_clicked()
         initDifficulty = 3;
     }
 
-    InGame* gameWindow = new InGame(this, "savegame", netstat, initDifficulty, initIp);
+    InGame* gameWindow = new InGame(this, netstat, "savegame", initDifficulty, initIp);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();

@@ -4,23 +4,25 @@
 
 using namespace std;
 
-InGame::InGame(QMainWindow *parent, QString initLoadGameFile, QString netstat, int initDifficulty, QString initIp) :
+InGame::InGame(QMainWindow *parent, QString netstat, QString filename, int initDifficulty, QString initIp) :
     QMainWindow(parent),
     ui(new Ui::InGame),
     netstatus(netstat),
     difficulty(initDifficulty),
-    ip(initIp)
+    ip(initIp),
+    loadGameFile(filename)
 {
     ui->setupUi(this);
 
     //start gamemodel
 
     GameModel::getInstance().setObserver(this);
-    if (initLoadGameFile.size() != 0) {
-        GameModel::getInstance().loadGame(initLoadGameFile);
-    }
 
     GameModel::getInstance().setDifficulty(difficulty);
+
+    if (loadGameFile != "") {
+        GameModel::getInstance().loadGame(loadGameFile);
+    }
 
     GameModel::getInstance().initializeGame();
 
@@ -41,7 +43,6 @@ InGame::InGame(QMainWindow *parent, QString initLoadGameFile, QString netstat, i
         Client::getInstance().connectToServer(ip);
     }else if(netstat == "host"){
         Host::getInstance().start();
-
     }
 }
 
@@ -201,7 +202,7 @@ void InGame::on_btnStartOver_clicked()
     this->fpsTimer->stop();
     GameModel::getInstance().reset();
     GameModel::getInstance().initializeGame();
-    InGame* newGameScreen = new InGame(this, "", netstatus, difficulty, ip);
+    InGame* newGameScreen = new InGame(this, netstatus, "", difficulty, ip);
     newGameScreen->show();
     newGameScreen->setEnabled(true);
 }

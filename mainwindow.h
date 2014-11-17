@@ -6,6 +6,7 @@
 #include <QTcpServer>
 #include "ui_mainwindow.h"
 #include "ingame.h"
+#include "utils.h"
 
 namespace Ui {
 class MainWindow;

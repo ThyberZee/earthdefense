@@ -9,4 +9,6 @@ using namespace std;
 
 vector<string> split(string text, char c = ',');
 
+void createLevels();
+
 #endif // UTILS_H

@@ -46,6 +46,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
+    createLevels();
+
     if(!unitTest()) { return 1;         } // If the unit test fails, then quit;
     else            { return a.exec();  } // else, run the program.
 }
