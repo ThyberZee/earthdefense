@@ -209,9 +209,9 @@ void InGame::updateView() {
         EntityWidget *wdgt = ewidgets.at(i);
         if (wdgt->getEntity()->isAlive() == false){     //destroy widget if corresponding entity is dead
 
-            //sound!!!
-
             //explosions!!!
+            //Work your magic, Sam!
+            //Let me try... Explosionitisimo!
             if((wdgt->getExpCount() >= 0 && wdgt->getExpCount() < 5) || (wdgt->getExpCount() >= 40 && wdgt->getExpCount() < 45)){
                 wdgt->setPixmap(QPixmap(":/resources/images/Explosion0.png"));
                 wdgt->incExpCount();
@@ -235,6 +235,7 @@ void InGame::updateView() {
             wdgt->move(wdgt->getEntity()->getPos().x(),wdgt->getEntity()->getPos().y());
             wdgt->show();
         }
+        //I worked my magic!
     }
 }
 
