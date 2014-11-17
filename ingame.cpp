@@ -133,6 +133,7 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 void InGame::updateView() {
     //set score label
     ui->scorelbl->setText(QString::number(GameModel::getInstance().getScore()));
+    ui->lblLevel->setText(QString::number(GameModel::getInstance().getCurrentLvl()));
     ui->lblNetstatus->setText(netstatus);
 
     Score& highscore = HighScore::getInstance()->getScore(0);
