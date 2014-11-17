@@ -36,11 +36,12 @@ private:
     int score, spawnCountDown, currentLvl, difficulty;
     int cooldown;
     bool cheat;
+    string netstatus;
 
 public:
     ~GameModel();
 
-    void initializeGame(string netstatus);
+    void initializeGame(string netstat);
     void gameOver();
     void reset();
 

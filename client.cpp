@@ -27,6 +27,7 @@ void Client::connectToServer(QString ip)
 void Client::sendMessage(QString msg){
     msg += "\n";
     socket->write(msg.toLocal8Bit());
+    qDebug() << msg;
 }
 
 QString Client::getMessage(){

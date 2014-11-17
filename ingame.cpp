@@ -32,9 +32,10 @@ InGame::InGame(QMainWindow *parent, QString netstat, QString filename, int initD
     GameModel::getInstance().initializeGame(netstat.toStdString());
 
     //init player widget
-    pl = new PlayerWidget(GameModel::getInstance().getPlayer(), this);
+ /* Player* player = GameModel::getInstance().getPlayer();
+    pl = new PlayerWidget(player, this);
     pl->setAttribute(Qt::WA_TranslucentBackground, true); //Transparency!!! :D
-    GameModel::getInstance().getPlayer()->setDir(0);
+    player->setDir(0);
     pl->show();
 
     if (GameModel::getInstance().getPlayer2() != nullptr){
@@ -42,7 +43,7 @@ InGame::InGame(QMainWindow *parent, QString netstat, QString filename, int initD
         pl2->setAttribute(Qt::WA_TranslucentBackground, true);
         GameModel::getInstance().getPlayer2()->setDir(0);
         pl2->show();
-    }
+    }*/
 
 
     //start timer
@@ -82,7 +83,7 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         }else{
             GameModel::getInstance().getPlayer()->setDir(-1);
         }
-        //InputManager::getInstance().keyDown("left");
+
 
     }else if (ev->key() == 0x01000014){ //right key pressed
         if(netstatus == "client") {
@@ -90,11 +91,9 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         }else{
             GameModel::getInstance().getPlayer()->setDir(1);
         }
-        //InputManager::getInstance().keyDown("right");
-
 
     }else if (ev->key() == 0x20){ // space key pressed
-        if(GameModel::getInstance().getCooldown() == 0){
+        if(GameModel::getInstance().getCooldown() >= 0){
             if(netstatus == "client"){
                 Client::getInstance().sendMessage("fire down");
             }else{
@@ -105,8 +104,6 @@ void InGame::keyPressEvent(QKeyEvent *ev){
             }
             GameModel::getInstance().setCooldown(5);
         }
-
-        //InputManager::getInstance().keyDown("fire");
     }
 }
 
@@ -129,7 +126,6 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
          }
     }
 }
-
 
 /* * * * * * * * * * * * * * * * * * * * *
  *         MAIN UPDATE FUNCTION          *
@@ -240,12 +236,7 @@ void InGame::updateView() {
 }
 
 void InGame::gameOver(){
-    if(netstatus=="host"){
-        Host::getInstance().sendMessage("gameover");
-    }
-
     fpsTimer->stop();
-    //QMessageBox
     Gameover* gameWindow = new Gameover(this,GameModel::getInstance().getScore());
     gameWindow->show();
     gameWindow->setEnabled(true);
