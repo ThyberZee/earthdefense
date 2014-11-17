@@ -6,8 +6,10 @@ GameModel GameModel::instance;
 GameModel::GameModel(): window_height(700), window_width(640) { }
 
 //initialize game
-void GameModel::initializeGame(string netstatus){
+void GameModel::initializeGame(string netstat){
+    netstatus = netstat;
     if(netstatus == "client"){
+        //player = new Player(point);
         return;
     }else{
         QPoint point((window_width/2) - 25 /*<---width of player widget*/  ,window_height - 50 /*<----width of player*/);
@@ -59,8 +61,10 @@ void GameModel::advanceLevel() {
 }
 
 
-
 void GameModel::gameOver(){
+    if(netstatus == "host"){
+        Host::getInstance().sendMessage("gameover\n");
+    }
     observer->gameOver();
     //reset();
 
@@ -140,16 +144,17 @@ void GameModel::slaveUpdate(){
 
         if(type == "gameover"){
             observer->gameOver();
-        }
-
-        Entity* ent = getById(ID);
-        if(ent == NULL){
-            Entity* e = create(type,x,y,dir);
-            e->setId(ID);
-        }else if(type == "dead"){
-            ent->kill();
         }else{
-            ent->setPos( QPoint(x,y));
+
+            Entity* ent = getById(ID);
+            if(ent == NULL){
+                Entity* e = create(type,x,y,dir);
+                e->setId(ID);
+            }else if(type == "dead"){
+                ent->kill();
+            }else{
+                ent->setPos( QPoint(x,y));
+            }
         }
     }
 }
