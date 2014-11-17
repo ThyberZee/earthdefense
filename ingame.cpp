@@ -174,13 +174,27 @@ void InGame::updateView() {
         EntityWidget *wdgt = ewidgets.at(i);
         if (wdgt->getEntity()->isAlive() == false){     //destroy widget if corresponding entity is dead
             //explosions!!!
-            ewidgets.erase(ewidgets.begin()+i);
 
-            if( dynamic_cast<Player*>(wdgt->getEntity()) == 0 || dynamic_cast<Enemy*>(wdgt->getEntity()) == 0){
-                qDebug() << "works!";
-            }
+                if((wdgt->getExpCount() >= 0 && wdgt->getExpCount() < 5) || (wdgt->getExpCount() >= 40 && wdgt->getExpCount() < 45)){
+                    wdgt->setPixmap(QPixmap(":/resources/images/explosion0.png"));
+                    wdgt->incExpCount();
+                }else if((wdgt->getExpCount() >= 5 && wdgt->getExpCount() < 10) || (wdgt->getExpCount() >= 35 && wdgt->getExpCount() < 40)){
+                    wdgt->setPixmap(QPixmap(":/resources/images/explosion1.png"));
+                    wdgt->incExpCount();
+                }else if((wdgt->getExpCount() >= 10 && wdgt->getExpCount() < 15) || (wdgt->getExpCount() >= 30 && wdgt->getExpCount() < 35)){
+                    wdgt->setPixmap(QPixmap(":/resources/images/explosion2.png"));
+                    wdgt->incExpCount();
+                }else if((wdgt->getExpCount() >= 15 && wdgt->getExpCount() < 20) || (wdgt->getExpCount() >= 25 && wdgt->getExpCount() < 30)){
+                    wdgt->setPixmap(QPixmap(":/resources/images/explosion3.png"));
+                    wdgt->incExpCount();
+                }else if(wdgt->getExpCount() >= 20 && wdgt->getExpCount() < 25){
+                    wdgt->setPixmap(QPixmap(":/resources/images/explosion4.png"));
+                    wdgt->incExpCount();
+                }else{
+                    ewidgets.erase(ewidgets.begin()+i);
+                    delete wdgt;
+                }
 
-            delete wdgt;
         }else{
             wdgt->move(wdgt->getEntity()->getPos().x(),wdgt->getEntity()->getPos().y());
             wdgt->show();

@@ -103,7 +103,7 @@ void GameModel::masterUpdate(){
     }
 
     //random spawning of enemies
-    /*
+
     if(--spawnCountDown <= 0 and currentLvl > 3){
         if (rand()%2 == 0) {
             create("enemy",rand()%500,rand()%500);
@@ -111,7 +111,7 @@ void GameModel::masterUpdate(){
             create("trackingenemy", rand()%500, rand()%500);
         }
         spawnCountDown = rand() % 300;
-    }*/
+    }
 }
 
 /*
