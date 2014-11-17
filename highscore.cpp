@@ -6,8 +6,8 @@ HighScore* HighScore::instance = nullptr;
 
 // called sometime before it is needed
 bool HighScore::load() {
-//    if (!fileDoesNotExist())   // If the highscore file is not found,
-//    {   createDefault();     }   // Create it.
+    if (!fileDoesNotExist())   // If the highscore file is not found,
+    {   createDefault();     }   // Create it.
 
     ifstream scorefile;               // load the "scores" file
     scorefile.open("scores");
@@ -39,7 +39,7 @@ bool HighScore::fileDoesNotExist()
 {
     const std::string SCOREFILE = "scores";
     struct stat buf;
-    return stat(SCOREFILE.c_str(), &buf) != 1;
+    return stat(SCOREFILE.c_str(), &buf) != -1;
 }
 
 // Creates a file containing default high scores ONLY WHEN THE FILE DOES NOT EXIST

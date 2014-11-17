@@ -15,7 +15,7 @@ void GameModel::initializeGame(string netstatus){
         entities.push_back(player);
         spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 30
         currentLvl = 0;
-        player2 = NULL;
+        //player2 = NULL;
 
         if(netstatus == "host"){
             player2 = new Player(QPoint(window_width/2-25, window_height - 50));
@@ -32,6 +32,8 @@ void GameModel::reset(){
         delete e;
     }
     entities.clear();
+    player = NULL;
+    player2 = NULL;
     currentLvl = 0;
     score = 0;
 }
@@ -131,6 +133,10 @@ void GameModel::slaveUpdate(){
         stream >> x;
         stream >> y;
         stream >> dir;
+
+        if(type == "gameover"){
+            observer->gameOver();
+        }
 
         Entity* ent = getById(ID);
         if(ent == NULL){

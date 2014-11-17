@@ -16,7 +16,7 @@ InGame::InGame(QMainWindow *parent, QString netstat, QString filename, int initD
     ui->setupUi(this);
 
 //scores handler
-    HighScore::getInstance()->load();
+    if (!HighScore::getInstance()->load()) { qDebug() << "EE: something's wrong with the highscore class..."; }
 
 //start gamemodel
     GameModel::getInstance().setObserver(this);
@@ -133,6 +133,7 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 void InGame::updateView() {
     //set score label
     ui->scorelbl->setText(QString::number(GameModel::getInstance().getScore()));
+    ui->lblLevel->setText(QString::number(GameModel::getInstance().getCurrentLvl()));
     ui->lblNetstatus->setText(netstatus);
     if (GameModel::getInstance().getCurrentLvl() > 4){
         ui->lblLevel->setText(QString("Survival!"));
@@ -196,6 +197,7 @@ void InGame::updateView() {
         }
     }
 
+
     //update each remaining widget
 
     for(size_t i = 0; i < ewidgets.size(); i++){
@@ -204,19 +206,19 @@ void InGame::updateView() {
             //explosions!!!
 
                 if((wdgt->getExpCount() >= 0 && wdgt->getExpCount() < 5) || (wdgt->getExpCount() >= 40 && wdgt->getExpCount() < 45)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/explosion0.png"));
+                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion0.png"));
                     wdgt->incExpCount();
                 }else if((wdgt->getExpCount() >= 5 && wdgt->getExpCount() < 10) || (wdgt->getExpCount() >= 35 && wdgt->getExpCount() < 40)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/explosion1.png"));
+                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion1.png"));
                     wdgt->incExpCount();
                 }else if((wdgt->getExpCount() >= 10 && wdgt->getExpCount() < 15) || (wdgt->getExpCount() >= 30 && wdgt->getExpCount() < 35)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/explosion2.png"));
+                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion2.png"));
                     wdgt->incExpCount();
                 }else if((wdgt->getExpCount() >= 15 && wdgt->getExpCount() < 20) || (wdgt->getExpCount() >= 25 && wdgt->getExpCount() < 30)){
-                    wdgt->setPixmap(QPixmap(":/resources/images/explosion3.png"));
+                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion3.png"));
                     wdgt->incExpCount();
                 }else if(wdgt->getExpCount() >= 20 && wdgt->getExpCount() < 25){
-                    wdgt->setPixmap(QPixmap(":/resources/images/explosion4.png"));
+                    wdgt->setPixmap(QPixmap(":/resources/images/Explosion4.png"));
                     wdgt->incExpCount();
                 }else{
                     ewidgets.erase(ewidgets.begin()+i);
@@ -230,6 +232,10 @@ void InGame::updateView() {
 }
 
 void InGame::gameOver(){
+    if(netstatus=="host"){
+        Host::getInstance().sendMessage("gameover");
+    }
+
     fpsTimer->stop();
     //QMessageBox
     Gameover* gameWindow = new Gameover(this,GameModel::getInstance().getScore());

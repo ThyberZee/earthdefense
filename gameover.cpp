@@ -20,10 +20,10 @@ Gameover::Gameover(QWidget *parent, int score) :
     grid->addWidget(lbl,1,0);
     grid->addWidget(edit,1,1);*/
 
-    HighScore::getInstance()->load();
+//    HighScore::getInstance()->load();
 
     for(size_t i = 0; i < HighScore::getInstance()->getScores().size();i++){
-        Score score = HighScore::getInstance()->getScores().at(i);
+        Score &score = HighScore::getInstance()->getScores().at(i);
         QLabel* initLbl = new QLabel(this);
         QLabel* scoreLbl = new QLabel(this);
 

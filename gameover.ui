@@ -45,6 +45,12 @@
        <property name="styleSheet">
         <string notr="true">color:darkorange</string>
        </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>3</number>
+       </property>
       </widget>
      </item>
     </layout>
