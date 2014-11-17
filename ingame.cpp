@@ -83,7 +83,7 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         }else{
             GameModel::getInstance().getPlayer()->setDir(-1);
         }
-        //InputManager::getInstance().keyDown("left");
+
 
     }else if (ev->key() == 0x01000014){ //right key pressed
         if(netstatus == "client") {
@@ -91,11 +91,9 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         }else{
             GameModel::getInstance().getPlayer()->setDir(1);
         }
-        //InputManager::getInstance().keyDown("right");
-
 
     }else if (ev->key() == 0x20){ // space key pressed
-        if(GameModel::getInstance().getCooldown() == 0){
+        if(GameModel::getInstance().getCooldown() >= 0){
             if(netstatus == "client"){
                 Client::getInstance().sendMessage("fire down");
             }else{
@@ -106,8 +104,6 @@ void InGame::keyPressEvent(QKeyEvent *ev){
             }
             GameModel::getInstance().setCooldown(5);
         }
-
-        //InputManager::getInstance().keyDown("fire");
     }
 }
 
