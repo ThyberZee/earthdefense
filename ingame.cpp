@@ -192,6 +192,7 @@ void InGame::updateView() {
         }
     }
 
+
     //update each remaining widget
 
     for(size_t i = 0; i < ewidgets.size(); i++){
@@ -226,6 +227,10 @@ void InGame::updateView() {
 }
 
 void InGame::gameOver(){
+    if(netstatus=="host"){
+        Host::getInstance().sendMessage("gameover");
+    }
+
     fpsTimer->stop();
     //QMessageBox
     Gameover* gameWindow = new Gameover(this,GameModel::getInstance().getScore());
