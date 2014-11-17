@@ -175,10 +175,10 @@ void InGame::updateView() {
         if (wdgt->getEntity()->isAlive() == false){     //destroy widget if corresponding entity is dead
             //explosions!!!
             ewidgets.erase(ewidgets.begin()+i);
+            /*
+            if(dynamic_cast<Player*>(wdgt->getEntity()) == 0 || dynamic_cast<Enemy*>(wdgt->getEntity()) == 0){
 
-            if( dynamic_cast<Player*>(wdgt->getEntity()) == 0 || dynamic_cast<Enemy*>(wdgt->getEntity()) == 0){
-                qDebug() << "works!";
-            }
+            }*/
 
             delete wdgt;
         }else{
@@ -210,6 +210,7 @@ void InGame::on_btnSaveGame_clicked()
     GameModel::getInstance().saveGame("savegame");
 }
 
+//hide this window and create a new ingame, passing in the same params.
 void InGame::on_btnStartOver_clicked()
 {
     this->hide();
