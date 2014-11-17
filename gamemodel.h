@@ -34,6 +34,7 @@ private:
     Player* player2;
     int window_height, window_width; //these two variables set in intitializer
     int score, spawnCountDown, currentLvl, difficulty;
+    int cooldown;
     bool cheat;
 
 public:
@@ -43,7 +44,7 @@ public:
     void gameOver();
     void reset();
 
-    string state();;
+    string state();
     void loadGame(QString filename);
     void saveGame(string filename);
 
@@ -52,6 +53,9 @@ public:
 
     void masterUpdate();
     void slaveUpdate();
+
+    void setCooldown(int i){cooldown = i;}
+    int getCooldown(){return cooldown;}
 
     Entity* create(string type, int x, int y, int dir=-1);
     Entity* getById(int id);
