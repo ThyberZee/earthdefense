@@ -114,6 +114,9 @@ void GameModel::masterUpdate(){
         }
         spawnCountDown = rand() % 100;
     }
+    if(cooldown > 0){
+        cooldown--;
+    }
 }
 
 /*
