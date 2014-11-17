@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QKeyEvent>
+#include <QString>
 #include <iostream>
 #include <typeinfo>
 
@@ -29,7 +30,7 @@ class InGame : public QMainWindow, public WorldObserver
     Q_OBJECT
     
 public:
-    explicit InGame(QMainWindow *parent = 0, QString initLoadGameFile = 0, string netstat = 0, int initDifficulty = 0);
+    explicit InGame(QMainWindow *parent = 0, QString initLoadGameFile = 0, QString netstat = 0, int initDifficulty = 0, QString initIp = 0);
     void gameOver();
     ~InGame();
 
@@ -42,8 +43,6 @@ private slots:
     void on_btnSaveGame_clicked();
     void advanceLevel();
 
-    void on_btnLoadGame_clicked();
-
     void on_btnStartOver_clicked();
 
 private:
@@ -52,11 +51,11 @@ private:
     PlayerWidget *pl2;  // Pointer to other player.  only used if multiplayer;
 
     bool client;    //shows whether the game is listening for multiplayer or not
-    string netstatus;   //shows whether game is singleplayer, hosting, or listening.
+    QString netstatus;   //shows whether game is singleplayer, hosting, or listening.
 
     vector<EntityWidget*> ewidgets;
     QTimer* fpsTimer;               // Timer that drives the InGame UI
-    QString loadGameFile;
+    QString loadGameFile, ip;
     int difficulty;
 
 };

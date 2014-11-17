@@ -13,9 +13,9 @@ Client::Client(QObject *parent) :
     connect(socket, SIGNAL(disconnected()), this, SLOT(serverDisconnected()));
 }
 
-void Client::connectToServer()
+void Client::connectToServer(QString ip)
 {
-    socket->connectToHost("localhost", 5000);
+    socket->connectToHost(ip, 5000);
     if (!socket->waitForConnected())  {
         qDebug() << "cannot connect";
         return;
@@ -25,6 +25,7 @@ void Client::connectToServer()
 }
 
 void Client::sendMessage(QString msg){
+    msg += "\n";
     socket->write(msg.toLocal8Bit());
 }
 
@@ -43,7 +44,6 @@ void Client::dataReceived() {
     while (socket->canReadLine()) {
         message += socket->readLine();
     }
-    //qDebug() << message;
 }
 
 void Client::serverDisconnected()

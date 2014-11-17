@@ -1,0 +1,4 @@
+enemy 2 -200 100 0
+enemy 3 -200 200 0
+enemy 4 -300 300 0
+trackingenemy 5 500 500 0

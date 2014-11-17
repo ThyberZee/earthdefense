@@ -3,8 +3,7 @@
 
 #include "enemy.h"
 
-class TrackingEnemy : public Enemy
-{
+class TrackingEnemy : public Enemy {
 public:
     TrackingEnemy(QPoint point);
     void update();

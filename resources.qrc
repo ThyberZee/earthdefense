@@ -12,11 +12,12 @@
         <file>resources/Levels/Level3</file>
         <file>resources/Levels/Level4</file>
         <file>resources/Levels/Level5</file>
-        <file>resources/images/basicenemy.png</file>
         <file>resources/images/basicmissle.png</file>
         <file>resources/images/playership1.png</file>
         <file>resources/images/playership2.png</file>
         <file>resources/images/trackingenemy.png</file>
+        <file>resources/images/world.jpg</file>
+        <file>resources/images/awesome.jpg</file>
         <file>resources/images/Explosion0.png</file>
         <file>resources/images/Explosion1.png</file>
         <file>resources/images/Explosion2.png</file>

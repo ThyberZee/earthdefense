@@ -27,7 +27,7 @@ void Projectile::update(){
 
             if(entity == this){
                  continue;    //prevents comparing self to self
-            }else if (entity->toString().find("enemy") == 0){
+            }else if (entity->toString().find("enemy") == 0 || entity->toString().find("trackingenemy") == 0){
 
                 if(direction == -1){
                     QRect* otherbox = entity->getBox();

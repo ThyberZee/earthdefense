@@ -2,7 +2,6 @@
 #define ENEMY_H
 
 #include "entity.h"
-#include "gamemodel.h"
 
 class Enemy : public Entity
 {
@@ -21,4 +20,4 @@ public:
 
 };
 
-#endif // PLAYER_H
+#endif // ENEMY_H

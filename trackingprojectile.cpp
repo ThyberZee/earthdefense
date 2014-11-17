@@ -4,10 +4,10 @@
 TrackingProjectile::TrackingProjectile(QPoint p, int d): Projectile(p,d){}
 
 void TrackingProjectile::update(){
-    if(pos.x() > GameModel::getInstance().getPlayer()->getPos().x() + 45){
-        pos.setX(pos.x() - 1);
+    if(pos.x() > GameModel::getInstance().getPlayer()->getPos().x() + 20){
+        pos.setX(pos.x() - GameModel::getInstance().getDifficulty());
     }else{
-        pos.setX(pos.x() + 1);
+        pos.setX(pos.x() + GameModel::getInstance().getDifficulty()); // The horizontal movement of tproj. are determined by difficulty lvl
     }
     pos.setY(pos.y() + (GameModel::getInstance().getDifficulty()*4 /* sets speed of bullet according to difficulty level */)*direction);
     box->moveTo(pos.x(),pos.y());
@@ -31,13 +31,10 @@ void TrackingProjectile::update(){
                 }
             }
         }
-        /*
-        // kill player
         QRect* otherbox = GameModel::getInstance().getPlayer()->getBox();
-        if(box->intersects(*otherbox)){
-            this->kill();
-            GameModel::getInstance().reset();
-        }*/
+        if(box->intersects(*otherbox) && direction == 1){
+            GameModel::getInstance().gameOver();
+        }
     }
 }
 

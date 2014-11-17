@@ -19,6 +19,9 @@
   <property name="windowTitle">
    <string notr="true">Earth Defense</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">color:darkorange</string>
+  </property>
   <widget class="QLabel" name="scorelbl">
    <property name="geometry">
     <rect>
@@ -41,9 +44,7 @@
     <cursorShape>ArrowCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: blue;
-font: 63 12pt &quot;Ubuntu&quot;;
-</string>
+    <string notr="true">color:darkorange</string>
    </property>
    <property name="text">
     <string>0</string>
@@ -64,8 +65,16 @@ font: 63 12pt &quot;Ubuntu&quot;;
      <height>27</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
    <property name="focusPolicy">
     <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:#00CC00</string>
    </property>
    <property name="text">
     <string notr="true">Save Game</string>
@@ -90,9 +99,7 @@ font: 63 12pt &quot;Ubuntu&quot;;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: blue;
-font: 63 12pt &quot;Ubuntu&quot;;
-</string>
+    <string notr="true">color:darkorange</string>
    </property>
    <property name="text">
     <string notr="true">Level</string>
@@ -120,9 +127,7 @@ font: 63 12pt &quot;Ubuntu&quot;;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: blue;
-font: 63 12pt &quot;Ubuntu&quot;;
-</string>
+    <string notr="true">color:darkorange</string>
    </property>
    <property name="text">
     <string>0</string>
@@ -150,9 +155,7 @@ font: 63 12pt &quot;Ubuntu&quot;;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: blue;
-font: 63 12pt &quot;Ubuntu&quot;;
-</string>
+    <string notr="true">color:darkorange</string>
    </property>
    <property name="text">
     <string notr="true">Score</string>
@@ -161,7 +164,7 @@ font: 63 12pt &quot;Ubuntu&quot;;
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnLoadGame">
+  <widget class="QPushButton" name="btnStartOver">
    <property name="geometry">
     <rect>
      <x>100</x>
@@ -170,24 +173,20 @@ font: 63 12pt &quot;Ubuntu&quot;;
      <height>27</height>
     </rect>
    </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="text">
-    <string notr="true">Load Game</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnStartOver">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>10</y>
-     <width>98</width>
-     <height>27</height>
-    </rect>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+    </font>
    </property>
    <property name="focusPolicy">
     <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:#00CC00</string>
    </property>
    <property name="text">
     <string notr="true">Start Over</string>
@@ -196,7 +195,7 @@ font: 63 12pt &quot;Ubuntu&quot;;
   <widget class="QLabel" name="lblHighscore">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>330</x>
      <y>10</y>
      <width>81</width>
      <height>31</height>
@@ -212,9 +211,7 @@ font: 63 12pt &quot;Ubuntu&quot;;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: blue;
-font: 63 12pt &quot;Ubuntu&quot;;
-</string>
+    <string notr="true">color:darkorange</string>
    </property>
    <property name="text">
     <string notr="true">High Score</string>
@@ -226,7 +223,7 @@ font: 63 12pt &quot;Ubuntu&quot;;
   <widget class="QLabel" name="highscorelbl">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>330</x>
      <y>40</y>
      <width>121</width>
      <height>31</height>
@@ -245,9 +242,7 @@ font: 63 12pt &quot;Ubuntu&quot;;
     <cursorShape>ArrowCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: blue;
-font: 63 12pt &quot;Ubuntu&quot;;
-</string>
+    <string notr="true">color:darkorange</string>
    </property>
    <property name="text">
     <string>0</string>
@@ -257,6 +252,26 @@ font: 63 12pt &quot;Ubuntu&quot;;
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblNetstatus">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>10</y>
+     <width>131</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
    </property>
   </widget>
  </widget>

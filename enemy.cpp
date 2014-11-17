@@ -1,18 +1,14 @@
+#include "gamemodel.h"      //not standard practice, but trut me
 #include "enemy.h"
 
 int Enemy::score = 100;
 
 Enemy::Enemy(QPoint point): Entity(point){
-    width  = 50;
-    height = 50;
-    target = QPoint(rand()%640,rand()%500);
+    width  = 40;
+    height = 40;
+    target = QPoint(rand()%640,rand()%400 + 50); //We want it to stay off of the top of the screen
     cooldown= rand()% 500;
-    box = new QRect(pos, QSize(50,50));   //sets box to be 30 by 30 with upper left corner at position
-    
-    // MATT IDEA
-    /*
-        
-    */
+    box = new QRect(pos, QSize(40,40));   //sets box to be 40 by 40 with upper left corner at position
 }
 
 string Enemy::toString()
@@ -50,12 +46,7 @@ void Enemy::update()
 
     //decrement cooldown; if 0, shoot and reset to random val;
     if(--cooldown == 0){
-        //QPixmap projectile();
-        if (rand( )%2 == 0) {
-            GameModel::getInstance().create("trackingprojectile", pos.x(), pos.y()+height, 1);
-        } else {
-            GameModel::getInstance().create("projectile", pos.x(), pos.y()+height, 1);
-        }
+        GameModel::getInstance().create("projectile", pos.x(), pos.y()+height, 1);
         cooldown = rand() % 300;
     }
 }
