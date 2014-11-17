@@ -11,6 +11,7 @@ private:
     //pointer to GameModel player
     Entity* projectile;
     QPixmap image;
+    int explosionCount;
 
 public:
     explicit EntityWidget(QWidget *parent = 0, Entity *init_projectile = nullptr);
@@ -20,6 +21,8 @@ public:
 
     //getters, setters
     QPixmap getImage() { return image; }
+    int getExpCount() { return explosionCount; }
+    void incExpCount(){ explosionCount++;}
 
 signals:
 
