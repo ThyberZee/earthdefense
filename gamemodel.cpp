@@ -13,7 +13,8 @@ void GameModel::initializeGame(string netstatus){
         QPoint point((window_width/2) - 25 /*<---width of player widget*/  ,window_height - 50 /*<----width of player*/);
         player = new Player(point);
         entities.push_back(player);
-        spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 300
+        spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 30
+        player2 = NULL;
 
         if(netstatus == "host"){
             player2 = new Player(QPoint(window_width/2-25, window_height - 50));
