@@ -32,8 +32,8 @@ void GameModel::reset(){
         delete e;
     }
     entities.clear();
-    player = NULL;
-    player2 = NULL;
+    player = nullptr;
+    player2 = nullptr;
     currentLvl = 0;
     score = 0;
 }
@@ -106,13 +106,14 @@ void GameModel::masterUpdate(){
     }
 
     //random spawning of enemies
-    if(--spawnCountDown <= 0 && currentLvl > 3){
+    if(--spawnCountDown <= 0 && currentLvl > 4){
         if (rand()%2 == 0) {
             create("enemy", rand()%500,rand()%400);
         } else {
             create("trackingenemy", rand()%500, rand()%300);
         }
-        spawnCountDown = rand() % 100;
+
+        spawnCountDown = rand() % 30;
     }
 }
 
