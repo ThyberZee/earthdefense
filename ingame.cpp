@@ -5,7 +5,7 @@
 
 using namespace std;
 
-InGame::InGame(QMainWindow *parent, QString netstat, QString filename, int initDifficulty, QString initIp) :
+InGame::InGame(QMainWindow *parent, QString netstat, QString filename, int initDifficulty, QString initIp, bool initCheat) :
     QMainWindow(parent),
     ui(new Ui::InGame),
     netstatus(netstat),
@@ -22,6 +22,8 @@ InGame::InGame(QMainWindow *parent, QString netstat, QString filename, int initD
     GameModel::getInstance().setObserver(this);
 
     GameModel::getInstance().setDifficulty(difficulty);
+
+    GameModel::getInstance().setCheat(initCheat);
 
     if (loadGameFile != "") {
         GameModel::getInstance().loadGame(loadGameFile);

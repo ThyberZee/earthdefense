@@ -71,7 +71,7 @@ public:
     void setObserver(WorldObserver* o)  { observer = o; }
     void setDifficulty(int i)           { difficulty = i; }
 
-    void setCheat(bool b){cheat = b);
+    void setCheat(bool b){cheat = b;}
     bool getCheat(){return cheat;}
 
     /***  singleton implementation ***/

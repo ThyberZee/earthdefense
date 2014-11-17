@@ -34,7 +34,14 @@ void MainWindow::on_btnNewGame_clicked()
         initDifficulty = 3;
     }
 
-    InGame* gameWindow = new InGame(this, netstat, "", initDifficulty, initIp);
+    bool cheat;
+    if (ui->cbCheat->isChecked()){
+        cheat = true;
+    } else {
+        cheat = false;
+    }
+
+    InGame* gameWindow = new InGame(this, netstat, "", initDifficulty, initIp, cheat);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
@@ -53,6 +60,13 @@ void MainWindow::on_btnLoadGame_clicked()
         netstat = "single";
     }
 
+    bool cheat;
+    if (ui->cbCheat->isChecked()){
+        cheat = true;
+    } else {
+        cheat = false;
+    }
+
     int initDifficulty;
     if (ui->cbDifficulty->currentIndex() == 0) {
         initDifficulty = 1;
@@ -62,7 +76,7 @@ void MainWindow::on_btnLoadGame_clicked()
         initDifficulty = 3;
     }
 
-    InGame* gameWindow = new InGame(this, netstat, "savegame", initDifficulty, initIp);
+    InGame* gameWindow = new InGame(this, netstat, "savegame", initDifficulty, initIp, cheat);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
