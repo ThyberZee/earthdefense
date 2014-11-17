@@ -148,6 +148,9 @@ void GameModel::slaveUpdate(){
 
             Entity* ent = getById(ID);
             if(ent == NULL){
+                if(ID == 13){
+                    player2 = dynamic_cast<Player*>(ent);
+                }
                 Entity* e = create(type,x,y,dir);
                 e->setId(ID);
             }else if(type == "dead"){
