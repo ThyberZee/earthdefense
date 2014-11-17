@@ -124,7 +124,6 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
     }
 }
 
-
 /* * * * * * * * * * * * * * * * * * * * *
  *         MAIN UPDATE FUNCTION          *
  * * * * * * * * * * * * * * * * * * * * */
