@@ -103,7 +103,7 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
                 GameModel::getInstance().create("projectile", x, y);
             }
-            GameModel::getInstance().setCooldown(cooldowntime / GameModel::getInstance().getDifficulty());
+            GameModel::getInstance().setCooldown(cooldowntime);
         }
     }
 }
