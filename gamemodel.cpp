@@ -117,7 +117,7 @@ void GameModel::masterUpdate(){
             create("trackingenemy", rand()%500, rand()%300);
         }
 
-        spawnCountDown = rand() % 30;
+        spawnCountDown = rand() % 100;
     }
     if(cooldown > 0){
         cooldown--;

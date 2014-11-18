@@ -21,7 +21,7 @@
 #include "mainwindow.h"
 #include "highscore.h"
 
-const int cooldowntime = 20;
+const int cooldowntime = 15;
 
 namespace Ui {
 class InGame;
