@@ -56,6 +56,12 @@ bool GameModel::checkForNextLevel() {
 void GameModel::advanceLevel() {
     QString filename = QString("Level%1").arg(++currentLvl);
     loadGame(filename);
+    if(netstatus == "host"){
+        QString msg = QString("level ") + QString::number(currentLvl) + QString("\n");
+        Host::getInstance().sendMessage(msg);
+    }
+
+
     observer->advanceLevel();
 }
 
@@ -168,6 +174,7 @@ void GameModel::slaveUpdate(){
 //return a string representation of game state including pos data for each entity
 string GameModel::state(){
     stringstream ss;
+
     for(Entity* e:entities){
         if(!e->isAlive()){
             ss << "dead " << e->getId() << endl;
