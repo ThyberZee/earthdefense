@@ -145,14 +145,14 @@ void GameModel::slaveUpdate(){
         if(type == "gameover"){
             observer->gameOver();
         }else{
-
             Entity* ent = getById(ID);
             if(ent == NULL){
-                if(ID == 13){
-                    player2 = dynamic_cast<Player*>(ent);
-                }
                 Entity* e = create(type,x,y,dir);
-                e->setId(ID);
+                //this last if is a last-ditch check against lookup failure
+                //it actually prevents segfaults, believe it or naw.
+                if(e != NULL){
+                    e->setId(ID);
+                }
             }else if(type == "dead"){
                 ent->kill();
             }else{
