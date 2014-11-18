@@ -1,5 +1,3 @@
-#include <QTcpSocket>
-#include <QDebug>
 #include "client.h"
 
 //singleton magic

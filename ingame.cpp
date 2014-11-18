@@ -1,7 +1,4 @@
 #include "ingame.h"
-#include "client.h"
-#include "host.h"
-#include "gameover.h"
 
 using namespace std;
 
@@ -30,21 +27,6 @@ InGame::InGame(QMainWindow *parent, QString netstat, QString filename, int initD
     }
 
     GameModel::getInstance().initializeGame(netstat.toStdString());
-
-    //init player widget
- /* Player* player = GameModel::getInstance().getPlayer();
-    pl = new PlayerWidget(player, this);
-    pl->setAttribute(Qt::WA_TranslucentBackground, true); //Transparency!!! :D
-    player->setDir(0);
-    pl->show();
-
-    if (GameModel::getInstance().getPlayer2() != nullptr){
-        pl2 = new PlayerWidget(GameModel::getInstance().getPlayer2(), this);
-        pl2->setAttribute(Qt::WA_TranslucentBackground, true);
-        GameModel::getInstance().getPlayer2()->setDir(0);
-        pl2->show();
-    }*/
-
 
     //start timer
     fpsTimer = new QTimer(this);
@@ -94,8 +76,8 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
     }else if (ev->key() == 0x20){ // space key pressed
 
-        if(GameModel::getInstance().getCooldown() <= 0){
-            if(netstatus == "client"){
+        if(GameModel::getInstance().getCooldown() <= 0){ // This cooldown here is to prevent firing tons of projectiles
+            if(netstatus == "client"){                   // when the space key is held down
                 Client::getInstance().sendMessage("fire down");
             }else{
                 int x = GameModel::getInstance().getPlayer()->getPos().x() + 22;
@@ -103,7 +85,7 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
                 GameModel::getInstance().create("projectile", x, y);
             }
-            GameModel::getInstance().setCooldown(cooldowntime / GameModel::getInstance().getDifficulty());
+            GameModel::getInstance().setCooldown(cooldowntime);
         }
     }
 }
@@ -134,10 +116,11 @@ void InGame::keyReleaseEvent(QKeyEvent *ev) {
 
 
 void InGame::updateView() {
-    //set score label
+
     ui->scorelbl->setText(QString::number(GameModel::getInstance().getScore()));
     ui->lblLevel->setText(QString::number(GameModel::getInstance().getCurrentLvl()));
     ui->lblNetstatus->setText(netstatus);
+
     if (GameModel::getInstance().getCurrentLvl() > 4){
         ui->lblLevel->setText(QString("Survival!"));
     } else {
@@ -147,8 +130,11 @@ void InGame::updateView() {
     Score& highscore = HighScore::getInstance()->getScore(0);
     int hs = highscore.getValue();
 
-    if (GameModel::getInstance().getScore() > hs) { ui->highscorelbl->setText(QString::number(GameModel::getInstance().getScore()));}
-    else                                          { ui->highscorelbl->setText(QString::number(hs));       }
+    if (GameModel::getInstance().getScore() > hs) {
+        ui->highscorelbl->setText(QString::number(GameModel::getInstance().getScore()));
+    } else {
+        ui->highscorelbl->setText(QString::number(hs));
+    }
 
     //update game depending on whether game is multiplayer or singlplayer, host or client;
     if(netstatus == "client"){

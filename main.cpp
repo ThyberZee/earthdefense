@@ -25,18 +25,6 @@ bool unitTest(){
     GameModel::getInstance().saveGame("savefilename2");
 
     GameModel::getInstance().reset();
-/*
-    HighScore::getInstance()->load();
-    HighScore::getInstance()->addScore(99999, "MSW");
-
-    qDebug() << HighScore::getInstance()->state().c_str();
-    HighScore::getInstance()->reset();
-
-    HighScore::getInstance()->load();
-    qDebug() << HighScore::getInstance()->state().c_str();
-
-    HighScore::getInstance()->reset();
-*/
     return true;
 }
 
@@ -47,8 +35,7 @@ int main(int argc, char *argv[])
     w.show();
 
     createLevels();
-    return a.exec();
 
-//    if(!unitTest()) { return 1;         } // If the unit test fails, then quit;
-//    else            { return a.exec();  } // else, run the program.
+    if(!unitTest()) { return 1;         } // If the unit test fails, then quit;
+    else            { return a.exec();  } // else, run the program.
 }

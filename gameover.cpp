@@ -10,17 +10,6 @@ Gameover::Gameover(QWidget *parent, int score) :
     ui->scoreDisplayLbl->setText(QString::number(score));
 
     QGridLayout* grid = ui->gridLayout;
-/*
-    QLabel* lbl = new QLabel(this);
-    lbl->setText("Enter initials");
-    QLineEdit* edit = new QLineEdit(this);
-
-    connect(edit,SIGNAL(returnPressed()),this,SLOT(editReturnPressed());
-
-    grid->addWidget(lbl,1,0);
-    grid->addWidget(edit,1,1);*/
-
-//    HighScore::getInstance()->load();
 
     for(size_t i = 0; i < HighScore::getInstance()->getScores().size();i++){
         Score &score = HighScore::getInstance()->getScores().at(i);
@@ -42,7 +31,6 @@ Gameover::Gameover(QWidget *parent, int score) :
 
 void Gameover::on_lineEdit_returnPressed()
 {
-    //HighScore::getInstance()->load();
     string initials = ui->lineEdit->text().toStdString();   //get text
     initials = initials.substr(0,initials.find(' '));       //truncate at space
     HighScore::getInstance()->addScore(score,initials);     //store text

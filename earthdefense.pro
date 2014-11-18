@@ -25,7 +25,6 @@ SOURCES += main.cpp\
            projectile.cpp \
            playerwidget.cpp \
 	   host.cpp \
-    score.cpp \
     entitywidget.cpp \
     utils.cpp \
     client.cpp \

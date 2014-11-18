@@ -114,7 +114,7 @@ void GameModel::masterUpdate(){
         advanceLevel();
     }
 
-    //random spawning of enemies
+    //random spawning of enemies only in Survival mode....after lvl 4
     if(--spawnCountDown <= 0 && currentLvl > 4){
         if (rand()%2 == 0) {
             create("enemy", rand()%500,rand()%400);
@@ -124,6 +124,8 @@ void GameModel::masterUpdate(){
 
         spawnCountDown = rand() % 100;
     }
+
+    // Decrements cooldown for shooting projectiles
     if(cooldown > 0){
         cooldown--;
     }
@@ -186,6 +188,7 @@ string GameModel::state(){
 }
 
 /* save game state into file.  Format as follows:
+ *
  * difficulty currentlvl
  * score int
  * entity0_type id x y dir
@@ -209,12 +212,12 @@ void GameModel::saveGame(string filename){
 //load game.  duh
 void GameModel::loadGame(QString filename){
     string type;
-    int id, dir, x, y, diff, lvl;      //direction is for projectiles. will be zero for player and enemy
+    int id, dir, x, y, diff, lvl;      //<dir>ection is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename.toStdString());
 
-    if (filename == "savegame"){
-        infile >> diff;
+    if (filename == "savegame"){ // If we are loading a game from a previous save...
+        infile >> diff;          // We want to read in difficulty and level
         infile >> lvl;
         GameModel::getInstance().setDifficulty(diff);
         GameModel::getInstance().setLevel(lvl);
@@ -240,7 +243,6 @@ Entity *GameModel::create(string type, int x, int y, int dir){
 
     if(type == "player"){
         Player* p = new Player(QPoint(x,y));
-        //player = new Player(QPoint(x,y));
         entities.push_back(p);
 
         return p;
