@@ -21,6 +21,10 @@
 #include "mainwindow.h"
 #include "highscore.h"
 
+#include "client.h"
+#include "host.h"
+#include "gameover.h"
+
 const int cooldowntime = 15;
 
 namespace Ui {

@@ -22,6 +22,9 @@ vector<string> split(string text, char c){
     return parsed;
 }
 
+
+//This function is called at runtime in main.cpp
+//It creates the Level files in the default directory so that the game can use them later
 void createLevels() {
     ofstream lvl1("Level1");
     lvl1 << "score 0\n" \
@@ -47,13 +50,13 @@ void createLevels() {
             "enemy  103  1040 200 0\n" \
             "enemy  104 -600  300 0\n" \
             "enemy  105  740  400 0\n" \
-            "enemy  106 -1000 600 0\n" \
-            "enemy  107 -1500 100 0\n" \
-            "enemy  112 -1300 150 0\n" \
+            "enemy  106 -700 600 0\n" \
+            "enemy  107 -800 100 0\n" \
+            "enemy  112 -900 150 0\n" \
             "trackingenemy 108 1040 400 0\n" \
-            "trackingenemy 110 -1340 100 0\n" \
+            "trackingenemy 110 -1040 100 0\n" \
             "trackingenemy 111 -400 -300 0\n" \
-            "trackingenemy 109 1240 240 0\n";
+            "trackingenemy 109 1000 240 0\n";
     ofstream lvl4("Level4");
     lvl4 << "trackingenemy 108 1040 400 0\n" \
             "trackingenemy 110 1140 100 0\n" \

@@ -28,12 +28,6 @@ bool HighScore::load() {
     }
 }
 
-// Not sure why this even is here...
-/*Score HighScore::newScore(unsigned int value, std::string& initials) {
-    Score score(value, initials);
-    return score;
-}*/
-
 // If file exists, return true
 bool HighScore::fileDoesNotExist()
 {
@@ -57,11 +51,6 @@ void HighScore::createDefault() {
 void HighScore::save() {
     ofstream scorefile;                         // Open 'scores' file
     scorefile.open("scores");
-
-    /*for (size_t i = 0; i < 5; ++i) {            // For the 5 scores in the file,
-        Score& s = scores.at(i);                // grab each
-        scorefile << s.toString() << "\n";      // and write to the file buffer
-    }*/
     for(Score s: scores){
         scorefile << s.toString() <<"\n";
     }

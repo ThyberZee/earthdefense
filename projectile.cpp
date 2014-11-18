@@ -26,7 +26,7 @@ void Projectile::update(){
         for(Entity *entity: GameModel::getInstance().getEntities()){
 
             if(entity == this){
-                 continue;    //prevents comparing self to self
+                 continue;    //prevents comparing self to self so enemies don't kill enemies
             }else if (entity->toString().find("enemy") == 0 || entity->toString().find("trackingenemy") == 0){
 
                 if(direction == -1){
