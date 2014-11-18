@@ -180,9 +180,9 @@ void InGame::updateView() {
              if(temp->getEntity()->toString().find("player") == 0){
                 //not sure why, but dynamic casting is necessary for this one.
                 dynamic_cast<Player*>(temp);
-                QPixmap player(":/resources/images/Player.png");
+                QPixmap player(":/resources/images/playership1.png");
                 if(temp->getEntity()->getId() == 13){
-                    player = QPixmap(":/resources/images/Player2.png");
+                    player = QPixmap(":/resources/images/playership2.png");
                 }
                 temp->setPixmap(player);
 
