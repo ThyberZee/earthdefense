@@ -16,7 +16,7 @@ void GameModel::initializeGame(string netstat){
         player = new Player(point);
         entities.push_back(player);
         spawnCountDown = rand() % 300 + 1;  //set a countdown to random int from 1 to 30
-        currentLvl = 0;
+        //currentLvl = 0;
         //player2 = NULL;
 
         if(netstatus == "host"){
@@ -55,7 +55,6 @@ bool GameModel::checkForNextLevel() {
 
 void GameModel::advanceLevel() {
     QString filename = QString("Level%1").arg(++currentLvl);
-    qDebug() << filename;
     loadGame(filename);
     observer->advanceLevel();
 }
@@ -180,7 +179,8 @@ string GameModel::state(){
 }
 
 /* save game state into file.  Format as follows:
- * score
+ * difficulty currentlvl
+ * score int
  * entity0_type id x y dir
  * entity1_type id x y dir
  * player       id x y dir
@@ -188,6 +188,7 @@ string GameModel::state(){
  */
 void GameModel::saveGame(string filename){
     ofstream outfile(filename);
+    outfile << difficulty << " " << currentLvl << endl;
     outfile << "score " << score << endl;
     for(Entity* e: entities){
         if (!e->toString().find("player")==0){
@@ -201,9 +202,17 @@ void GameModel::saveGame(string filename){
 //load game.  duh
 void GameModel::loadGame(QString filename){
     string type;
-    int id, dir, x, y;      //direction is for projectiles. will be zero for player and enemy
+    int id, dir, x, y, diff, lvl;      //direction is for projectiles. will be zero for player and enemy
 
     ifstream infile(filename.toStdString());
+
+    if (filename == "savegame"){
+        infile >> diff;
+        infile >> lvl;
+        GameModel::getInstance().setDifficulty(diff);
+        GameModel::getInstance().setLevel(lvl);
+    }
+
     while(infile){
         infile >> type;
         infile >> id;

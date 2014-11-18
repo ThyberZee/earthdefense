@@ -74,8 +74,8 @@ public:
 
     void setScore(int s)                { score = s; }
     void setObserver(WorldObserver* o)  { observer = o; }
+    void setLevel(int initLvl)          { currentLvl = initLvl; }
     void setDifficulty(int i)           { difficulty = i; }
-
     void setCheat(bool b){cheat = b;}
     bool getCheat(){return cheat;}
 
