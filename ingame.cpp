@@ -93,7 +93,8 @@ void InGame::keyPressEvent(QKeyEvent *ev){
         }
 
     }else if (ev->key() == 0x20){ // space key pressed
-        if(GameModel::getInstance().getCooldown() >= 0){
+
+        if(GameModel::getInstance().getCooldown() <= 0){
             if(netstatus == "client"){
                 Client::getInstance().sendMessage("fire down");
             }else{
@@ -102,7 +103,7 @@ void InGame::keyPressEvent(QKeyEvent *ev){
 
                 GameModel::getInstance().create("projectile", x, y);
             }
-            GameModel::getInstance().setCooldown(5);
+            GameModel::getInstance().setCooldown(cooldowntime);
         }
     }
 }
@@ -179,13 +180,12 @@ void InGame::updateView() {
              if(temp->getEntity()->toString().find("player") == 0){
                 //not sure why, but dynamic casting is necessary for this one.
                 dynamic_cast<Player*>(temp);
-                if (temp->getEntity() == GameModel::getInstance().getPlayer2()){
-                    QPixmap player(":/resources/images/playership2.png");
-                    temp->setPixmap(player);
-                }else{
-                    QPixmap player(":/resources/images/Player.png");
-                    temp->setPixmap(player);
+                QPixmap player(":/resources/images/playership1.png");
+                if(temp->getEntity()->getId() == 13){
+                    player = QPixmap(":/resources/images/playership2.png");
                 }
+                temp->setPixmap(player);
+
             }else if(temp->getEntity()->toString().find("projectile") == 0){
                 QPixmap projectile(":/resources/images/projectile.png");
                 temp->setPixmap(projectile);
@@ -200,6 +200,7 @@ void InGame::updateView() {
                 temp->setPixmap(trenemy);
             }
             temp->setScaledContents(true);
+
             entity->setJustCreated(false);  //make sure we know that entity is no longer new.
         }
     }
@@ -210,10 +211,9 @@ void InGame::updateView() {
     for(size_t i = 0; i < ewidgets.size(); i++){
         EntityWidget *wdgt = ewidgets.at(i);
         if (wdgt->getEntity()->isAlive() == false){     //destroy widget if corresponding entity is dead
-
-            //sound!!!
-
             //explosions!!!
+            //Work your magic, Sam!
+            //Let me try... Explosionitisimo!
             if((wdgt->getExpCount() >= 0 && wdgt->getExpCount() < 5) || (wdgt->getExpCount() >= 40 && wdgt->getExpCount() < 45)){
                 wdgt->setPixmap(QPixmap(":/resources/images/Explosion0.png"));
                 wdgt->incExpCount();
@@ -237,6 +237,7 @@ void InGame::updateView() {
             wdgt->move(wdgt->getEntity()->getPos().x(),wdgt->getEntity()->getPos().y());
             wdgt->show();
         }
+        //I worked my magic!
     }
 }
 

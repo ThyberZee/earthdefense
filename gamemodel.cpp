@@ -117,7 +117,7 @@ void GameModel::masterUpdate(){
             create("trackingenemy", rand()%500, rand()%300);
         }
 
-        spawnCountDown = rand() % 30;
+        spawnCountDown = rand() % 100;
     }
     if(cooldown > 0){
         cooldown--;
@@ -145,17 +145,24 @@ void GameModel::slaveUpdate(){
         if(type == "gameover"){
             observer->gameOver();
         }else{
-
             Entity* ent = getById(ID);
             if(ent == NULL){
                 Entity* e = create(type,x,y,dir);
-                e->setId(ID);
+                //this last if is a last-ditch check against lookup failure
+                //it actually prevents segfaults, believe it or naw.
+                if(e != NULL){
+                    e->setId(ID);
+                }
             }else if(type == "dead"){
                 ent->kill();
             }else{
                 ent->setPos( QPoint(x,y));
             }
         }
+    }
+    //yes, client needs to keep track of its own cooldown as well;
+    if(cooldown > 0){
+        cooldown--;
     }
 }
 

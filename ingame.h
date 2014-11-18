@@ -21,6 +21,8 @@
 #include "mainwindow.h"
 #include "highscore.h"
 
+const int cooldowntime = 15;
+
 namespace Ui {
 class InGame;
 }
@@ -57,7 +59,6 @@ private:
     QTimer* fpsTimer;               // Timer that drives the InGame UI
     QString loadGameFile, ip;
     int difficulty;
-
 };
 
 #endif // INGAME_H

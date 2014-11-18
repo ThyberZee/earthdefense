@@ -79,6 +79,8 @@ public:
     void setCheat(bool b){cheat = b;}
     bool getCheat(){return cheat;}
 
+    string getNetStatus(){return netstatus;}
+
     /***  singleton implementation ***/
 private:
     static GameModel instance;
