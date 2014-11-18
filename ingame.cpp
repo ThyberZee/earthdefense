@@ -181,7 +181,11 @@ void InGame::updateView() {
                 //not sure why, but dynamic casting is necessary for this one.
                 dynamic_cast<Player*>(temp);
                 QPixmap player(":/resources/images/Player.png");
+                if(temp->getEntity()->getId() == 13){
+                    player = QPixmap(":/resources/images/Player2.png");
+                }
                 temp->setPixmap(player);
+
             }else if(temp->getEntity()->toString().find("projectile") == 0){
                 QPixmap projectile(":/resources/images/projectile.png");
                 temp->setPixmap(projectile);
