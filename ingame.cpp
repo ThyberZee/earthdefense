@@ -180,10 +180,8 @@ void InGame::updateView() {
              if(temp->getEntity()->toString().find("player") == 0){
                 //not sure why, but dynamic casting is necessary for this one.
                 dynamic_cast<Player*>(temp);
-
                 QPixmap player(":/resources/images/Player.png");
                 temp->setPixmap(player);
-
             }else if(temp->getEntity()->toString().find("projectile") == 0){
                 QPixmap projectile(":/resources/images/projectile.png");
                 temp->setPixmap(projectile);
@@ -198,6 +196,7 @@ void InGame::updateView() {
                 temp->setPixmap(trenemy);
             }
             temp->setScaledContents(true);
+
             entity->setJustCreated(false);  //make sure we know that entity is no longer new.
         }
     }
@@ -208,7 +207,6 @@ void InGame::updateView() {
     for(size_t i = 0; i < ewidgets.size(); i++){
         EntityWidget *wdgt = ewidgets.at(i);
         if (wdgt->getEntity()->isAlive() == false){     //destroy widget if corresponding entity is dead
-
             //explosions!!!
             //Work your magic, Sam!
             //Let me try... Explosionitisimo!

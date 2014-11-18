@@ -44,6 +44,13 @@ void Projectile::update(){
         if(box->intersects(*otherbox) && direction == 1 && GameModel::getInstance().getCheat() == false){
             GameModel::getInstance().gameOver();
         }
+        //if hosting a multiplayer game, check for player2 as well
+        if(GameModel::getInstance().getNetStatus() == "host"){
+            QRect* otherbox = GameModel::getInstance().getPlayer2()->getBox();
+            if(box->intersects(*otherbox) && direction == 1 && GameModel::getInstance().getCheat() == false){
+                GameModel::getInstance().gameOver();
+            }
+        }
     }
 }
 
