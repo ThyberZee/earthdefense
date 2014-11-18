@@ -69,8 +69,6 @@ void MainWindow::on_btnInstructions_clicked()
     instructions.information(this, "Instructions", "<p style='color:orange;font-weight:bold;font-size:20px'>In a galaxy where aliens are on the verge " \
                              "of total universe domination, you and your squad are the only remaining human resistance to defend the humans on earth!<br>" \
                              "- Use the arrow keys to dodge enemy rockets, and press spacebar to combat them with your own.</p>");
-
-                             "impending disaster! Watch out for the ship seeking bullets.</p>");
 }
 
 
