@@ -86,7 +86,7 @@ void GameModel::masterUpdate(){
         }else if(line == "right down"){
             player2->setDir(1);
         }else if(line == "fire down"){
-            create("projectile", player2->getPos().x()+22,player2->getPos().y()-10);
+            create("projectile", player2->getPos().x() + 22, player2->getPos().y() - 10);
         }else if(line == "right up" || "left up"){
             player2->setDir(0);
         }
@@ -183,7 +183,9 @@ void GameModel::saveGame(string filename){
     ofstream outfile(filename);
     outfile << "score " << score << endl;
     for(Entity* e: entities){
-        e->save(outfile);
+        if (!e->toString().find("player")==0){
+            e->save(outfile);
+        }
     }
 
     outfile.close();

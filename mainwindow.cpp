@@ -12,43 +12,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_btnNewGame_clicked()
-{
-    QString initIp, netstat;
-    if(ui->rbHostGame->isChecked()){
-        netstat = "host";
-    }else if(ui->rbJoinGame->isChecked()){
-        netstat = "client";
-        initIp = ui->leIP->text();
-    }else{
-        netstat = "single";
-    }
-
-
-    int initDifficulty;
-    if (ui->cbDifficulty->currentIndex() == 0) {
-        initDifficulty = 1;
-    } else if (ui->cbDifficulty->currentIndex() == 1) {
-        initDifficulty = 2;
-    } else {
-        initDifficulty = 3;
-    }
-
-    bool cheat;
-    if (ui->cbCheat->isChecked()){
-        cheat = true;
-    } else {
-        cheat = false;
-    }
-
-    InGame* gameWindow = new InGame(this, netstat, "", initDifficulty, initIp, cheat);
-    gameWindow->show();
-    gameWindow->setEnabled(true);
-    this->hide();
-}
-
-void MainWindow::on_btnLoadGame_clicked()
-{
+// For when New Game and Load Game buttons are clicked
+void MainWindow::startGame(QString filename) {
     QString netstat, initIp;
 
     if(ui->rbHostGame->isChecked()){
@@ -76,11 +41,20 @@ void MainWindow::on_btnLoadGame_clicked()
         initDifficulty = 3;
     }
 
-    InGame* gameWindow = new InGame(this, netstat, "savegame", initDifficulty, initIp, cheat);
+    InGame* gameWindow = new InGame(this, netstat, filename, initDifficulty, initIp, cheat);
     gameWindow->show();
     gameWindow->setEnabled(true);
     this->hide();
+}
 
+void MainWindow::on_btnNewGame_clicked()
+{
+    startGame("");
+}
+
+void MainWindow::on_btnLoadGame_clicked()
+{
+    startGame("savegame");
 }
 
 void MainWindow::on_btnInstructions_clicked()
